@@ -48,9 +48,9 @@ double PID_Calc(struct PIDStruct* PIDS){
 
     PIDS->error_cumu += PIDS->error_term;
     if (PIDS->error_cumu > PIDS->imax){
-	PIDstruct->error_cumu = PIDstruct->imax;
-    } else if (PIDstruct->error_cumu < - PIDstruct->imax){
-	PIDstruct->error_cumu = -PIDstruct->imax;
+	PIDS->error_cumu = PIDS->imax;
+    } else if (PIDS->error_cumu < - PIDS->imax){
+	PIDS->error_cumu = -PIDS->imax;
     }
 
     i_term = PIDS->ki * PIDS->error_cumu;
@@ -65,7 +65,7 @@ void PID_Update(struct PIDStruct* PIDS){
     if(PIDS->start == 0) return;
     PIDS->error_term = PIDS->err_Calc(PIDS->info);
     PIDS->PIDResult = PID_Calc(PIDS);
-    PIDS->output_Func(PIDS,PIDS->error_term);
+    PIDS->output_Func(PIDS,PIDS->PIDResult);
     return;    
 }
 

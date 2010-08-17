@@ -1,0 +1,358 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+F:\Documents\Kit\RBC\Code\RBC2011\code\robocon.uvproj
+Project File Date:  08/17/2010
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling Startup.s...
+compiling main.c...
+compiling ral_encoder.c...
+compiling ral_joystick.c...
+compiling ral_linesensor.c...
+compiling ral_motor.c...
+compiling ral_mux.c...
+compiling ral_odometry.c...
+RAL\ral_odometry.h(24): error:  #110: expected either a definition or a tag name
+RAL\ral_odometry.h:   void Odometry_Init(struct* Pos P, int encoderChannelL, int encoderChannelR);
+RAL\ral_odometry.h:                            ^
+RAL\ral_odometry.h(25): error:  #110: expected either a definition or a tag name
+RAL\ral_odometry.h:   void Odometry_Update(struct* Pos P);
+RAL\ral_odometry.h:                              ^
+RAL\ral_odometry.h(26): error:  #110: expected either a definition or a tag name
+RAL\ral_odometry.h:   void Odometry_Set(struct* Pos P, double x, double y, double theta);
+RAL\ral_odometry.h:                           ^
+RAL\ral_odometry.c(6): error:  #110: expected either a definition or a tag name
+RAL\ral_odometry.c:   void Odometry_Init(struct* Pos P, int encoderChannelL, int encoderChannelR){
+RAL\ral_odometry.c:                            ^
+RAL\ral_odometry.c(6): error:  #141-D: unnamed prototyped parameters not allowed when body is present
+RAL\ral_odometry.c:   void Odometry_Init(struct* Pos P, int encoderChannelL, int encoderChannelR){
+RAL\ral_odometry.c:        ^
+RAL\ral_odometry.c(7): error:  #20: identifier "P" is undefined
+RAL\ral_odometry.c:       if(P == NULL)
+RAL\ral_odometry.c:          ^
+RAL\ral_odometry.c(7): error:  #20: identifier "NULL" is undefined
+RAL\ral_odometry.c:       if(P == NULL)
+RAL\ral_odometry.c:               ^
+RAL\ral_odometry.c(8): warning:  #223-D: function "malloc" declared implicitly
+RAL\ral_odometry.c:     P = (struct Pos*)malloc(sizeof(struct Pos));
+RAL\ral_odometry.c:                      ^
+RAL\ral_odometry.c(17): error:  #110: expected either a definition or a tag name
+RAL\ral_odometry.c:   void Odometry_Update(struct* Pos P){
+RAL\ral_odometry.c:                              ^
+RAL\ral_odometry.c(17): error:  #141-D: unnamed prototyped parameters not allowed when body is present
+RAL\ral_odometry.c:   void Odometry_Update(struct* Pos P){
+RAL\ral_odometry.c:        ^
+RAL\ral_odometry.c(18): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_odometry.c:       int LCount = Encoder_ReadBuffer(P->encoderChannelL);
+RAL\ral_odometry.c:                    ^
+RAL\ral_odometry.c(18): error:  #20: identifier "P" is undefined
+RAL\ral_odometry.c:       int LCount = Encoder_ReadBuffer(P->encoderChannelL);
+RAL\ral_odometry.c:                                       ^
+RAL\ral_odometry.c(20): error:  #75: operand of "*" must be a pointer
+RAL\ral_odometry.c:       double LCONST = 2 * ENCODER_L_RADIUS * PI / ENCODER_COUNT; 
+RAL\ral_odometry.c:                                              ^
+RAL\ral_odometry.c(21): error:  #268: declaration may not appear after executable statement in block
+RAL\ral_odometry.c:       double RCONST = 2 * ENCODER_R_RADIUS * PI / ENCODER_COUNT; 
+RAL\ral_odometry.c:       ^
+RAL\ral_odometry.c(21): error:  #75: operand of "*" must be a pointer
+RAL\ral_odometry.c:       double RCONST = 2 * ENCODER_R_RADIUS * PI / ENCODER_COUNT; 
+RAL\ral_odometry.c:                                              ^
+RAL\ral_odometry.c(22): error:  #268: declaration may not appear after executable statement in block
+RAL\ral_odometry.c:       double LDistance = LCount * LCONST;
+RAL\ral_odometry.c:       ^
+RAL\ral_odometry.c(23): error:  #268: declaration may not appear after executable statement in block
+RAL\ral_odometry.c:       double RDistance = RCount * RCONST;
+RAL\ral_odometry.c:       ^
+RAL\ral_odometry.c(24): error:  #268: declaration may not appear after executable statement in block
+RAL\ral_odometry.c:       double delta_Distance = (LDistance + RDistance) / 2.0;
+RAL\ral_odometry.c:       ^
+RAL\ral_odometry.c(31): error:  #110: expected either a definition or a tag name
+RAL\ral_odometry.c:   void Odometry_Set(struct* Pos P, double x, double y, double theta){
+RAL\ral_odometry.c:                           ^
+RAL\ral_odometry.c(31): error:  #141-D: unnamed prototyped parameters not allowed when body is present
+RAL\ral_odometry.c:   void Odometry_Set(struct* Pos P, double x, double y, double theta){
+RAL\ral_odometry.c:        ^
+RAL\ral_odometry.c(32): error:  #20: identifier "P" is undefined
+RAL\ral_odometry.c:       P->x = x;
+RAL\ral_odometry.c:       ^
+RAL\ral_odometry.c: RAL\ral_odometry.c: 2 warnings, 19 errors
+compiling ral_pid.c...
+RAL\ral_pid.c(51): error:  #20: identifier "PIDstruct" is undefined
+RAL\ral_pid.c:          PIDstruct->error_cumu = PIDstruct->imax;
+RAL\ral_pid.c:          ^
+RAL\ral_pid.c(52): error:  #20: identifier "PIDstruct" is undefined
+RAL\ral_pid.c:       } else if (PIDstruct->error_cumu < - PIDstruct->imax){
+RAL\ral_pid.c:                  ^
+RAL\ral_pid.c: RAL\ral_pid.c: 0 warnings, 2 errors
+compiling mal_adc.c...
+compiling mal_gpio.c...
+compiling mal_iap.c...
+compiling mal_pwm.c...
+compiling mal_spi.c...
+compiling mal_uart.c...
+Target not created
+Build target 'Target 1'
+compiling ral_odometry.c...
+RAL\ral_odometry.h(24): error:  #110: expected either a definition or a tag name
+RAL\ral_odometry.h:   void Odometry_Init(struct* Pos P, int encoderChannelL, int encoderChannelR);
+RAL\ral_odometry.h:                            ^
+RAL\ral_odometry.h(25): error:  #110: expected either a definition or a tag name
+RAL\ral_odometry.h:   void Odometry_Update(struct* Pos P);
+RAL\ral_odometry.h:                              ^
+RAL\ral_odometry.h(26): error:  #110: expected either a definition or a tag name
+RAL\ral_odometry.h:   void Odometry_Set(struct* Pos P, double x, double y, double theta);
+RAL\ral_odometry.h:                           ^
+RAL\ral_odometry.c(6): error:  #110: expected either a definition or a tag name
+RAL\ral_odometry.c:   void Odometry_Init(struct* Pos P, int encoderChannelL, int encoderChannelR){
+RAL\ral_odometry.c:                            ^
+RAL\ral_odometry.c(6): error:  #141-D: unnamed prototyped parameters not allowed when body is present
+RAL\ral_odometry.c:   void Odometry_Init(struct* Pos P, int encoderChannelL, int encoderChannelR){
+RAL\ral_odometry.c:        ^
+RAL\ral_odometry.c(7): error:  #20: identifier "P" is undefined
+RAL\ral_odometry.c:       if(P == NULL)
+RAL\ral_odometry.c:          ^
+RAL\ral_odometry.c(7): error:  #20: identifier "NULL" is undefined
+RAL\ral_odometry.c:       if(P == NULL)
+RAL\ral_odometry.c:               ^
+RAL\ral_odometry.c(8): warning:  #223-D: function "malloc" declared implicitly
+RAL\ral_odometry.c:     P = (struct Pos*)malloc(sizeof(struct Pos));
+RAL\ral_odometry.c:                      ^
+RAL\ral_odometry.c(17): error:  #110: expected either a definition or a tag name
+RAL\ral_odometry.c:   void Odometry_Update(struct* Pos P){
+RAL\ral_odometry.c:                              ^
+RAL\ral_odometry.c(17): error:  #141-D: unnamed prototyped parameters not allowed when body is present
+RAL\ral_odometry.c:   void Odometry_Update(struct* Pos P){
+RAL\ral_odometry.c:        ^
+RAL\ral_odometry.c(18): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_odometry.c:       int LCount = Encoder_ReadBuffer(P->encoderChannelL);
+RAL\ral_odometry.c:                    ^
+RAL\ral_odometry.c(18): error:  #20: identifier "P" is undefined
+RAL\ral_odometry.c:       int LCount = Encoder_ReadBuffer(P->encoderChannelL);
+RAL\ral_odometry.c:                                       ^
+RAL\ral_odometry.c(20): error:  #75: operand of "*" must be a pointer
+RAL\ral_odometry.c:       double LCONST = 2 * ENCODER_L_RADIUS * PI / ENCODER_COUNT; 
+RAL\ral_odometry.c:                                              ^
+RAL\ral_odometry.c(21): error:  #268: declaration may not appear after executable statement in block
+RAL\ral_odometry.c:       double RCONST = 2 * ENCODER_R_RADIUS * PI / ENCODER_COUNT; 
+RAL\ral_odometry.c:       ^
+RAL\ral_odometry.c(21): error:  #75: operand of "*" must be a pointer
+RAL\ral_odometry.c:       double RCONST = 2 * ENCODER_R_RADIUS * PI / ENCODER_COUNT; 
+RAL\ral_odometry.c:                                              ^
+RAL\ral_odometry.c(22): error:  #268: declaration may not appear after executable statement in block
+RAL\ral_odometry.c:       double LDistance = LCount * LCONST;
+RAL\ral_odometry.c:       ^
+RAL\ral_odometry.c(23): error:  #268: declaration may not appear after executable statement in block
+RAL\ral_odometry.c:       double RDistance = RCount * RCONST;
+RAL\ral_odometry.c:       ^
+RAL\ral_odometry.c(24): error:  #268: declaration may not appear after executable statement in block
+RAL\ral_odometry.c:       double delta_Distance = (LDistance + RDistance) / 2.0;
+RAL\ral_odometry.c:       ^
+RAL\ral_odometry.c(31): error:  #110: expected either a definition or a tag name
+RAL\ral_odometry.c:   void Odometry_Set(struct* Pos P, double x, double y, double theta){
+RAL\ral_odometry.c:                           ^
+RAL\ral_odometry.c(31): error:  #141-D: unnamed prototyped parameters not allowed when body is present
+RAL\ral_odometry.c:   void Odometry_Set(struct* Pos P, double x, double y, double theta){
+RAL\ral_odometry.c:        ^
+RAL\ral_odometry.c(32): error:  #20: identifier "P" is undefined
+RAL\ral_odometry.c:       P->x = x;
+RAL\ral_odometry.c:       ^
+RAL\ral_odometry.c: RAL\ral_odometry.c: 2 warnings, 19 errors
+compiling ral_pid.c...
+RAL\ral_pid.c(52): error:  #20: identifier "PIDstruct" is undefined
+RAL\ral_pid.c:       } else if (PIDstruct->error_cumu < - PIDstruct->imax){
+RAL\ral_pid.c:                  ^
+RAL\ral_pid.c: RAL\ral_pid.c: 0 warnings, 1 error
+Target not created
+Build target 'Target 1'
+compiling ral_odometry.c...
+RAL\ral_odometry.c(7): error:  #20: identifier "NULL" is undefined
+RAL\ral_odometry.c:       if(P == NULL)
+RAL\ral_odometry.c:               ^
+RAL\ral_odometry.c(8): warning:  #223-D: function "malloc" declared implicitly
+RAL\ral_odometry.c:     P = (struct Pos*)malloc(sizeof(struct Pos));
+RAL\ral_odometry.c:                      ^
+RAL\ral_odometry.c(18): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_odometry.c:       int LCount = Encoder_ReadBuffer(P->encoderChannelL);
+RAL\ral_odometry.c:                    ^
+RAL\ral_odometry.c(20): error:  #75: operand of "*" must be a pointer
+RAL\ral_odometry.c:       double LCONST = 2 * ENCODER_L_RADIUS * PI / ENCODER_COUNT; 
+RAL\ral_odometry.c:                                              ^
+RAL\ral_odometry.c(21): error:  #268: declaration may not appear after executable statement in block
+RAL\ral_odometry.c:       double RCONST = 2 * ENCODER_R_RADIUS * PI / ENCODER_COUNT; 
+RAL\ral_odometry.c:       ^
+RAL\ral_odometry.c(21): error:  #75: operand of "*" must be a pointer
+RAL\ral_odometry.c:       double RCONST = 2 * ENCODER_R_RADIUS * PI / ENCODER_COUNT; 
+RAL\ral_odometry.c:                                              ^
+RAL\ral_odometry.c(22): error:  #268: declaration may not appear after executable statement in block
+RAL\ral_odometry.c:       double LDistance = LCount * LCONST;
+RAL\ral_odometry.c:       ^
+RAL\ral_odometry.c(23): error:  #268: declaration may not appear after executable statement in block
+RAL\ral_odometry.c:       double RDistance = RCount * RCONST;
+RAL\ral_odometry.c:       ^
+RAL\ral_odometry.c(24): error:  #268: declaration may not appear after executable statement in block
+RAL\ral_odometry.c:       double delta_Distance = (LDistance + RDistance) / 2.0;
+RAL\ral_odometry.c:       ^
+RAL\ral_odometry.c: RAL\ral_odometry.c: 2 warnings, 7 errors
+compiling ral_pid.c...
+RAL\ral_pid.c(52): error:  #20: identifier "PIDstruct" is undefined
+RAL\ral_pid.c:       } else if (PIDstruct->error_cumu < - PIDstruct->imax){
+RAL\ral_pid.c:                  ^
+RAL\ral_pid.c: RAL\ral_pid.c: 0 warnings, 1 error
+Target not created
+Build target 'Target 1'
+assembling Startup.s...
+compiling main.c...
+compiling ral_encoder.c...
+compiling ral_joystick.c...
+compiling ral_linesensor.c...
+compiling ral_motor.c...
+compiling ral_mux.c...
+compiling ral_odometry.c...
+RAL\ral_odometry.c(19): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_odometry.c:       int LCount = Encoder_ReadBuffer(P->encoderChannelL);
+RAL\ral_odometry.c:                    ^
+RAL\ral_odometry.c(21): error:  #75: operand of "*" must be a pointer
+RAL\ral_odometry.c:       double LCONST = 2 * ENCODER_L_RADIUS * PI / ENCODER_COUNT; 
+RAL\ral_odometry.c:                                              ^
+RAL\ral_odometry.c(22): error:  #268: declaration may not appear after executable statement in block
+RAL\ral_odometry.c:       double RCONST = 2 * ENCODER_R_RADIUS * PI / ENCODER_COUNT; 
+RAL\ral_odometry.c:       ^
+RAL\ral_odometry.c(22): error:  #75: operand of "*" must be a pointer
+RAL\ral_odometry.c:       double RCONST = 2 * ENCODER_R_RADIUS * PI / ENCODER_COUNT; 
+RAL\ral_odometry.c:                                              ^
+RAL\ral_odometry.c(23): error:  #268: declaration may not appear after executable statement in block
+RAL\ral_odometry.c:       double LDistance = LCount * LCONST;
+RAL\ral_odometry.c:       ^
+RAL\ral_odometry.c(24): error:  #268: declaration may not appear after executable statement in block
+RAL\ral_odometry.c:       double RDistance = RCount * RCONST;
+RAL\ral_odometry.c:       ^
+RAL\ral_odometry.c(25): error:  #268: declaration may not appear after executable statement in block
+RAL\ral_odometry.c:       double delta_Distance = (LDistance + RDistance) / 2.0;
+RAL\ral_odometry.c:       ^
+RAL\ral_odometry.c: RAL\ral_odometry.c: 1 warning, 6 errors
+compiling ral_pid.c...
+RAL\ral_pid.c(52): error:  #20: identifier "PIDstruct" is undefined
+RAL\ral_pid.c:       } else if (PIDstruct->error_cumu < - PIDstruct->imax){
+RAL\ral_pid.c:                  ^
+RAL\ral_pid.c: RAL\ral_pid.c: 0 warnings, 1 error
+compiling mal_adc.c...
+compiling mal_gpio.c...
+compiling mal_iap.c...
+compiling mal_pwm.c...
+compiling mal_spi.c...
+compiling mal_uart.c...
+Target not created
+Build target 'Target 1'
+assembling Startup.s...
+compiling main.c...
+compiling ral_encoder.c...
+compiling ral_joystick.c...
+compiling ral_linesensor.c...
+compiling ral_motor.c...
+compiling ral_mux.c...
+compiling ral_odometry.c...
+RAL\ral_odometry.c(26): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_odometry.c:       LCount = Encoder_ReadBuffer(P->encoderChannelL);
+RAL\ral_odometry.c:                ^
+RAL\ral_odometry.c(28): error:  #75: operand of "*" must be a pointer
+RAL\ral_odometry.c:       LCONST = 2 * ENCODER_L_RADIUS * PI / ENCODER_COUNT; 
+RAL\ral_odometry.c:                                       ^
+RAL\ral_odometry.c(29): error:  #75: operand of "*" must be a pointer
+RAL\ral_odometry.c:       RCONST = 2 * ENCODER_R_RADIUS * PI / ENCODER_COUNT; 
+RAL\ral_odometry.c:                                       ^
+RAL\ral_odometry.c: RAL\ral_odometry.c: 1 warning, 2 errors
+compiling ral_pid.c...
+RAL\ral_pid.c(52): error:  #20: identifier "PIDstruct" is undefined
+RAL\ral_pid.c:       } else if (PIDstruct->error_cumu < - PIDstruct->imax){
+RAL\ral_pid.c:                  ^
+RAL\ral_pid.c: RAL\ral_pid.c: 0 warnings, 1 error
+compiling mal_adc.c...
+compiling mal_gpio.c...
+compiling mal_iap.c...
+compiling mal_pwm.c...
+compiling mal_spi.c...
+compiling mal_uart.c...
+Target not created
+Build target 'Target 1'
+assembling Startup.s...
+compiling main.c...
+compiling ral_encoder.c...
+compiling ral_joystick.c...
+compiling ral_linesensor.c...
+compiling ral_motor.c...
+compiling ral_mux.c...
+compiling ral_odometry.c...
+RAL\ral_odometry.c(26): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_odometry.c:       LCount = Encoder_ReadBuffer(P->encoderChannelL);
+RAL\ral_odometry.c:                ^
+RAL\ral_odometry.c(28): error:  #20: identifier "PI" is undefined
+RAL\ral_odometry.c:       LCONST = 2 * ENCODER_L_RADIUS * PI / ENCODER_COUNT; 
+RAL\ral_odometry.c:                                       ^
+RAL\ral_odometry.c: RAL\ral_odometry.c: 1 warning, 1 error
+compiling ral_pid.c...
+RAL\ral_pid.c(53): error:  #20: identifier "PIDstruct" is undefined
+RAL\ral_pid.c:          PIDstruct->error_cumu = -PIDstruct->imax;
+RAL\ral_pid.c:          ^
+RAL\ral_pid.c: RAL\ral_pid.c: 0 warnings, 1 error
+compiling mal_adc.c...
+compiling mal_gpio.c...
+compiling mal_iap.c...
+compiling mal_pwm.c...
+compiling mal_spi.c...
+compiling mal_uart.c...
+Target not created
+Build target 'Target 1'
+assembling Startup.s...
+compiling main.c...
+compiling ral_encoder.c...
+compiling ral_joystick.c...
+compiling ral_linesensor.c...
+compiling ral_motor.c...
+compiling ral_mux.c...
+compiling ral_odometry.c...
+RAL\ral_odometry.c(26): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_odometry.c:       LCount = Encoder_ReadBuffer(P->encoderChannelL);
+RAL\ral_odometry.c:                ^
+RAL\ral_odometry.c(28): error:  #20: identifier "PI" is undefined
+RAL\ral_odometry.c:       LCONST = 2 * ENCODER_L_RADIUS * PI / ENCODER_COUNT; 
+RAL\ral_odometry.c:                                       ^
+RAL\ral_odometry.c: RAL\ral_odometry.c: 1 warning, 1 error
+compiling ral_pid.c...
+compiling mal_adc.c...
+compiling mal_gpio.c...
+compiling mal_iap.c...
+compiling mal_pwm.c...
+compiling mal_spi.c...
+compiling mal_uart.c...
+Target not created
+Build target 'Target 1'
+assembling Startup.s...
+compiling main.c...
+compiling ral_encoder.c...
+compiling ral_joystick.c...
+compiling ral_linesensor.c...
+compiling ral_motor.c...
+compiling ral_mux.c...
+compiling ral_odometry.c...
+RAL\ral_odometry.c(26): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_odometry.c:       LCount = Encoder_ReadBuffer(P->encoderChannelL);
+RAL\ral_odometry.c:                ^
+RAL\ral_odometry.c(28): error:  #75: operand of "*" must be a pointer
+RAL\ral_odometry.c:       LCONST = 2 * ENCODER_L_RADIUS * PI / ENCODER_COUNT; 
+RAL\ral_odometry.c:                                       ^
+RAL\ral_odometry.c(29): error:  #75: operand of "*" must be a pointer
+RAL\ral_odometry.c:       RCONST = 2 * ENCODER_R_RADIUS * PI / ENCODER_COUNT; 
+RAL\ral_odometry.c:                                       ^
+RAL\ral_odometry.c: RAL\ral_odometry.c: 1 warning, 2 errors
+compiling ral_pid.c...
+compiling mal_adc.c...
+compiling mal_gpio.c...
+compiling mal_iap.c...
+compiling mal_pwm.c...
+compiling mal_spi.c...
+compiling mal_uart.c...
+Target not created
