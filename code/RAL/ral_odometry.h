@@ -19,6 +19,8 @@ struct Pos{
 	int pwmChannelR;
 	int encoderChannelL;
 	int encoderChannelR;
+	int encoderLastCntL;
+	int encoderLastCntR;
 };
 
 void Odometry_Init(struct Pos* P, int encoderChannelL, int encoderChannelR);

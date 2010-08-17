@@ -12,6 +12,9 @@ void Odometry_Init(struct Pos* P, int encoderChannelL, int encoderChannelR){
     P->theta = 0.0;
     P->encoderChannelL = encoderChannelL;
     P->encoderChannelR = encoderChannelR;
+	//init the last cnt by reading encoder 
+	P->encoderLastCntL = Encoder_ReadBuffer(P->encoderChannelL);
+	P->encoderLastCntR = Encoder_ReadBuffer(P->encoderChannelR);
     return;
 };
 
@@ -23,8 +26,19 @@ void Odometry_Update(struct Pos* P){
 	double LDistance;
 	double RDistance;
 	double delta_Distance;
-    LCount = Encoder_ReadBuffer(P->encoderChannelL);
-    RCount = Encoder_ReadBuffer(P->encoderChannelR);
+	int LnewCount;
+	int RnewCount;
+
+    LnewCount = Encoder_ReadBuffer(P->encoderChannelL);
+    RnewCount = Encoder_ReadBuffer(P->encoderChannelR);
+	
+	//do odometry update by the delta cnt in L/R encoders
+	LCount = LnewCount - P->encoderLastCntL;
+	RCount = RnewCount - P->encoderLastCntR;
+
+	P->encoderLastCntL = LnewCount;
+	P->encoderLastCntR = RnewCount;
+
     LCONST = 2 * ENCODER_L_RADIUS * PI / ENCODER_COUNT; 
     RCONST = 2 * ENCODER_R_RADIUS * PI / ENCODER_COUNT; 
     LDistance = LCount * LCONST;
