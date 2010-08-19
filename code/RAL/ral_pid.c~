@@ -1,18 +1,19 @@
 #include <LPC213x.h>
+#include <stdlib.h>
 #include "ral_pid.h"
 
 struct PIDStruct* PIDList[MAX_PID_CHANNEL]={NULL};
 int PIDListCount = 0;
 
 
-struct PIDStruct PID_Init(struct PIDStruct* PIDS,double (*err_Calc)(void* info),void (*output_Func)(double err),void *info){
+struct PIDStruct* PID_Init(struct PIDStruct* PIDS,double (*err_Calc)(void* info),void (*output_Func)(void* info, double err),void *info){
     if(PIDS == NULL)
 	PIDS = (struct PIDStruct*)malloc(sizeof(struct PIDStruct));
     
     PIDS->kp = 0;
     PIDS->ki = 0;
     PIDS->kd = 0;
-    PIDS->kimax = 0;
+    PIDS->imax = 0;
     PIDS->tolerance = 0;
     PIDS->error_cumu = 0;
     PIDS->last_error = 0;
@@ -25,11 +26,11 @@ struct PIDStruct PID_Init(struct PIDStruct* PIDS,double (*err_Calc)(void* info),
     PIDS->error_term = 0;
     PIDS->PIDResult = 0;    
 
-    return;
+    return PIDS;
 }
 
 
-void PID_SetParameter(struct PIDStruct* PIDS,double kp,ki,kd,imax,tolerance){
+void PID_SetParameter(struct PIDStruct* PIDS,double kp,double ki,double kd,double imax,double tolerance){
     PIDS->kp = kp;
     PIDS->ki = ki;
     PIDS->kd = kd;
@@ -41,15 +42,15 @@ void PID_SetParameter(struct PIDStruct* PIDS,double kp,ki,kd,imax,tolerance){
 double PID_Calc(struct PIDStruct* PIDS){
     double p_term;
     double i_term;
-    double k_term;
+    double d_term;
 
     p_term = PIDS->kp * PIDS->error_term;
 
     PIDS->error_cumu += PIDS->error_term;
-    if (PIDstruct->error_cumu > PIDstruct->imax){
-	PIDstruct->error_cumu = PIDstruct->imax;
-    } else if (PIDstruct->error_cumu < - PIDstruct->imax){
-	PIDstruct->error_cumu = -PIDstruct->imax;
+    if (PIDS->error_cumu > PIDS->imax){
+	PIDS->error_cumu = PIDS->imax;
+    } else if (PIDS->error_cumu < - PIDS->imax){
+	PIDS->error_cumu = -PIDS->imax;
     }
 
     i_term = PIDS->ki * PIDS->error_cumu;
@@ -64,7 +65,7 @@ void PID_Update(struct PIDStruct* PIDS){
     if(PIDS->start == 0) return;
     PIDS->error_term = PIDS->err_Calc(PIDS->info);
     PIDS->PIDResult = PID_Calc(PIDS);
-    PIDS->output_Func(PIDS,PIDS->error_term);
+    PIDS->output_Func(PIDS,PIDS->PIDResult);
     return;    
 }
 

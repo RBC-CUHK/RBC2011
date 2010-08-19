@@ -7,8 +7,8 @@ int PIDListCount = 0;
 
 
 struct PIDStruct* PID_Init(struct PIDStruct* PIDS,double (*err_Calc)(void* info),void (*output_Func)(void* info, double err),void *info){
-    if(PIDS == NULL)
-	PIDS = (struct PIDStruct*)malloc(sizeof(struct PIDStruct));
+    //if(PIDS == NULL)
+    //PIDS = (struct PIDStruct*)malloc(sizeof(struct PIDStruct));
     
     PIDS->kp = 0;
     PIDS->ki = 0;

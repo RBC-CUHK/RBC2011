@@ -5,8 +5,8 @@
 #include "ral_odometry.h"
 
 void Odometry_Init(struct Pos* P, int encoderChannelL, int encoderChannelR){
-    if(P == NULL)
-	P = (struct Pos*)malloc(sizeof(struct Pos));
+//    if(P == NULL)
+//	P = (struct Pos*)malloc(sizeof(struct Pos));
     P->x = 0;
     P->y = 0;
     P->theta = 0.0;
