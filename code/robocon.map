@@ -8,7 +8,7 @@ Section Cross References
     startup.o(RESET) refers to __main.o(!!!main) for __main
     startup.o(.text) refers to startup.o(HEAP) for Heap_Mem
     startup.o(.text) refers to startup.o(STACK) for Stack_Mem
-    ral_odometry.o(.text) refers to h1_alloc.o(.text) for malloc
+    ral_odometry.o(.text) refers (Special) to daddsub_noclz.o(x$fpl$drsb) for __aeabi_drsub
     ral_odometry.o(.text) refers to dflt_noclz.o(x$fpl$dflt) for __aeabi_i2d
     ral_odometry.o(.text) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
     ral_odometry.o(.text) refers to daddsub_noclz.o(x$fpl$dadd) for __aeabi_dadd
@@ -16,12 +16,15 @@ Section Cross References
     ral_odometry.o(.text) refers to cos.o(i.cos) for cos
     ral_odometry.o(.text) refers to sin.o(i.sin) for sin
     ral_odometry.o(.text) refers to daddsub_noclz.o(x$fpl$dsub) for __aeabi_dsub
-    ral_odometry.o(.text) refers to daddsub_noclz.o(x$fpl$drsb) for __aeabi_drsub
-    ral_pid.o(.text) refers to h1_alloc.o(.text) for malloc
     ral_pid.o(.text) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
     ral_pid.o(.text) refers to daddsub_noclz.o(x$fpl$dadd) for __aeabi_dadd
     ral_pid.o(.text) refers to drleqf.o(x$fpl$drleqf) for __aeabi_cdrcmple
     ral_pid.o(.text) refers to daddsub_noclz.o(x$fpl$dsub) for __aeabi_dsub
+    ral_pid.o(.text) refers to dflt_noclz.o(x$fpl$dflt) for __aeabi_i2d
+    ral_pid.o(.text) refers to ddiv.o(x$fpl$ddiv) for __aeabi_ddiv
+    ral_pid.o(.text) refers to dleqf.o(x$fpl$dleqf) for __aeabi_cdcmple
+    ral_pid.o(.text) refers to h1_alloc.o(.text) for malloc
+    ral_pid.o(.text) refers to dfix.o(x$fpl$dfix) for __aeabi_d2iz
     ral_pid.o(.text) refers to ral_pid.o(.bss) for PIDList
     ral_pid.o(.text) refers to ral_pid.o(.data) for PIDListCount
     malloc.o(.text) refers (Special) to hguard.o(.text) for __heap$guard
@@ -108,9 +111,16 @@ Section Cross References
     ddiv.o(x$fpl$ddiv) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
     ddiv.o(x$fpl$ddiv) refers to dretinf.o(x$fpl$dretinf) for __fpl_dretinf
     ddiv.o(x$fpl$ddiv) refers to dnaninf.o(x$fpl$dnaninf) for __fpl_dnaninf
+    dfix.o(x$fpl$dfix) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    dfix.o(x$fpl$dfix) refers to dnaninf.o(x$fpl$dnaninf) for __fpl_dnaninf
+    dfix.o(x$fpl$dfixr) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    dfix.o(x$fpl$dfixr) refers to dnaninf.o(x$fpl$dnaninf) for __fpl_dnaninf
     dflt_noclz.o(x$fpl$dfltu) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
     dflt_noclz.o(x$fpl$dfltu) refers to dflt_noclz.o(x$fpl$dflt) for __dflt_normalise
     dflt_noclz.o(x$fpl$dflt) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    dleqf.o(x$fpl$dleqf) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    dleqf.o(x$fpl$dleqf) refers to dnaninf.o(x$fpl$dnaninf) for __fpl_dnaninf
+    dleqf.o(x$fpl$dleqf) refers to dcmpi.o(x$fpl$dcmpinf) for __fpl_dcmp_Inf
     dmul.o(x$fpl$dmul) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
     dmul.o(x$fpl$dmul) refers to dretinf.o(x$fpl$dretinf) for __fpl_dretinf
     dmul.o(x$fpl$dmul) refers to dnaninf.o(x$fpl$dnaninf) for __fpl_dnaninf
@@ -193,9 +203,7 @@ Section Cross References
     libinit2.o(.ARM.Collect$$libinit$$00000014) refers to libinit2.o(.ARM.Collect$$libinit$$0000000B) for .ARM.Collect$$libinit$$0000000B
     libinit2.o(.ARM.Collect$$libinit$$00000022) refers to argv_veneer.o(.emb_text) for __ARM_argv_veneer
     libinit2.o(.ARM.Collect$$libinit$$00000023) refers to argv_veneer.o(.emb_text) for __ARM_argv_veneer
-    dleqf.o(x$fpl$dleqf) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
-    dleqf.o(x$fpl$dleqf) refers to dnaninf.o(x$fpl$dnaninf) for __fpl_dnaninf
-    dleqf.o(x$fpl$dleqf) refers to dcmpi.o(x$fpl$dcmpinf) for __fpl_dcmp_Inf
+    dcmpi.o(x$fpl$dcmpinf) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
     dnaninf.o(x$fpl$dnaninf) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
     dretinf.o(x$fpl$dretinf) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
     scalbn.o(x$fpl$scalbnl) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
@@ -277,11 +285,6 @@ Section Cross References
     argv_veneer.o(.emb_text) refers to no_argv.o(.text) for __ARM_get_argv
     dcheck1.o(x$fpl$dcheck1) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
     dcheck1.o(x$fpl$dcheck1) refers to retnan.o(x$fpl$retnan) for __fpl_return_NaN
-    dcmpi.o(x$fpl$dcmpinf) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
-    dfix.o(x$fpl$dfix) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
-    dfix.o(x$fpl$dfix) refers to dnaninf.o(x$fpl$dnaninf) for __fpl_dnaninf
-    dfix.o(x$fpl$dfixr) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
-    dfix.o(x$fpl$dfixr) refers to dnaninf.o(x$fpl$dnaninf) for __fpl_dnaninf
     dunder.o(i.__mathlib_dbl_underflow) refers to scalbn.o(x$fpl$scalbn) for scalbn
     fpclassify.o(i.__ARM_fpclassify) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
     poly.o(i.__kernel_poly) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
@@ -370,12 +373,12 @@ Section Cross References
 
 Removing Unused input sections from the image.
 
-    Removing ral_odometry.o(.text), (592 bytes).
-    Removing ral_pid.o(.text), (872 bytes).
+    Removing ral_odometry.o(.text), (688 bytes).
+    Removing ral_pid.o(.text), (2988 bytes).
     Removing ral_pid.o(.bss), (40 bytes).
     Removing ral_pid.o(.data), (4 bytes).
 
-4 unused section(s) (total 1508 bytes) removed from the image.
+4 unused section(s) (total 3720 bytes) removed from the image.
 
 ==============================================================================
 
@@ -392,25 +395,25 @@ Memory Map of the image
     0x00000000   0x00000110   Code   RO            3    RESET               startup.o
     0x00000110   0x00000008   Code   RO          160  * !!!main             c_t.l(__main.o)(c_t.l)
     0x00000118   0x00000006   Code   RO          416    .ARM.Collect$$libinit$$00000000  c_t.l(libinit.o)(c_t.l)
-    0x0000011e   0x00000000   Code   RO          255    .ARM.Collect$$libinit$$00000006  c_t.l(libinit2.o)(c_t.l)
-    0x0000011e   0x00000000   Code   RO          257    .ARM.Collect$$libinit$$00000008  c_t.l(libinit2.o)(c_t.l)
-    0x0000011e   0x00000000   Code   RO          259    .ARM.Collect$$libinit$$0000000A  c_t.l(libinit2.o)(c_t.l)
-    0x0000011e   0x00000000   Code   RO          262    .ARM.Collect$$libinit$$0000000D  c_t.l(libinit2.o)(c_t.l)
-    0x0000011e   0x00000000   Code   RO          264    .ARM.Collect$$libinit$$0000000F  c_t.l(libinit2.o)(c_t.l)
-    0x0000011e   0x00000000   Code   RO          266    .ARM.Collect$$libinit$$00000011  c_t.l(libinit2.o)(c_t.l)
-    0x0000011e   0x00000000   Code   RO          268    .ARM.Collect$$libinit$$00000013  c_t.l(libinit2.o)(c_t.l)
-    0x0000011e   0x00000000   Code   RO          270    .ARM.Collect$$libinit$$00000015  c_t.l(libinit2.o)(c_t.l)
-    0x0000011e   0x00000000   Code   RO          272    .ARM.Collect$$libinit$$00000017  c_t.l(libinit2.o)(c_t.l)
-    0x0000011e   0x00000000   Code   RO          274    .ARM.Collect$$libinit$$00000019  c_t.l(libinit2.o)(c_t.l)
-    0x0000011e   0x00000000   Code   RO          276    .ARM.Collect$$libinit$$0000001B  c_t.l(libinit2.o)(c_t.l)
-    0x0000011e   0x00000000   Code   RO          278    .ARM.Collect$$libinit$$0000001D  c_t.l(libinit2.o)(c_t.l)
-    0x0000011e   0x00000000   Code   RO          280    .ARM.Collect$$libinit$$0000001F  c_t.l(libinit2.o)(c_t.l)
-    0x0000011e   0x00000000   Code   RO          282    .ARM.Collect$$libinit$$00000021  c_t.l(libinit2.o)(c_t.l)
-    0x0000011e   0x00000000   Code   RO          286    .ARM.Collect$$libinit$$00000028  c_t.l(libinit2.o)(c_t.l)
-    0x0000011e   0x00000000   Code   RO          288    .ARM.Collect$$libinit$$0000002A  c_t.l(libinit2.o)(c_t.l)
-    0x0000011e   0x00000000   Code   RO          290    .ARM.Collect$$libinit$$0000002C  c_t.l(libinit2.o)(c_t.l)
-    0x0000011e   0x00000000   Code   RO          292    .ARM.Collect$$libinit$$0000002E  c_t.l(libinit2.o)(c_t.l)
-    0x0000011e   0x0000000c   Code   RO          293    .ARM.Collect$$libinit$$0000002F  c_t.l(libinit2.o)(c_t.l)
+    0x0000011e   0x00000000   Code   RO          261    .ARM.Collect$$libinit$$00000006  c_t.l(libinit2.o)(c_t.l)
+    0x0000011e   0x00000000   Code   RO          263    .ARM.Collect$$libinit$$00000008  c_t.l(libinit2.o)(c_t.l)
+    0x0000011e   0x00000000   Code   RO          265    .ARM.Collect$$libinit$$0000000A  c_t.l(libinit2.o)(c_t.l)
+    0x0000011e   0x00000000   Code   RO          268    .ARM.Collect$$libinit$$0000000D  c_t.l(libinit2.o)(c_t.l)
+    0x0000011e   0x00000000   Code   RO          270    .ARM.Collect$$libinit$$0000000F  c_t.l(libinit2.o)(c_t.l)
+    0x0000011e   0x00000000   Code   RO          272    .ARM.Collect$$libinit$$00000011  c_t.l(libinit2.o)(c_t.l)
+    0x0000011e   0x00000000   Code   RO          274    .ARM.Collect$$libinit$$00000013  c_t.l(libinit2.o)(c_t.l)
+    0x0000011e   0x00000000   Code   RO          276    .ARM.Collect$$libinit$$00000015  c_t.l(libinit2.o)(c_t.l)
+    0x0000011e   0x00000000   Code   RO          278    .ARM.Collect$$libinit$$00000017  c_t.l(libinit2.o)(c_t.l)
+    0x0000011e   0x00000000   Code   RO          280    .ARM.Collect$$libinit$$00000019  c_t.l(libinit2.o)(c_t.l)
+    0x0000011e   0x00000000   Code   RO          282    .ARM.Collect$$libinit$$0000001B  c_t.l(libinit2.o)(c_t.l)
+    0x0000011e   0x00000000   Code   RO          284    .ARM.Collect$$libinit$$0000001D  c_t.l(libinit2.o)(c_t.l)
+    0x0000011e   0x00000000   Code   RO          286    .ARM.Collect$$libinit$$0000001F  c_t.l(libinit2.o)(c_t.l)
+    0x0000011e   0x00000000   Code   RO          288    .ARM.Collect$$libinit$$00000021  c_t.l(libinit2.o)(c_t.l)
+    0x0000011e   0x00000000   Code   RO          292    .ARM.Collect$$libinit$$00000028  c_t.l(libinit2.o)(c_t.l)
+    0x0000011e   0x00000000   Code   RO          294    .ARM.Collect$$libinit$$0000002A  c_t.l(libinit2.o)(c_t.l)
+    0x0000011e   0x00000000   Code   RO          296    .ARM.Collect$$libinit$$0000002C  c_t.l(libinit2.o)(c_t.l)
+    0x0000011e   0x00000000   Code   RO          298    .ARM.Collect$$libinit$$0000002E  c_t.l(libinit2.o)(c_t.l)
+    0x0000011e   0x0000000c   Code   RO          299    .ARM.Collect$$libinit$$0000002F  c_t.l(libinit2.o)(c_t.l)
     0x0000012a   0x00000004   Code   RO          491    .ARM.Collect$$libshutdown$$00000000  c_t.l(libshutdown.o)(c_t.l)
     0x0000012e   0x00000000   Code   RO          439    .ARM.Collect$$libshutdown$$00000003  c_t.l(libshutdown2.o)(c_t.l)
     0x0000012e   0x00000000   Code   RO          442    .ARM.Collect$$libshutdown$$00000006  c_t.l(libshutdown2.o)(c_t.l)
@@ -418,20 +421,20 @@ Memory Map of the image
     0x0000012e   0x00000000   Code   RO          447    .ARM.Collect$$libshutdown$$0000000B  c_t.l(libshutdown2.o)(c_t.l)
     0x0000012e   0x00000000   Code   RO          450    .ARM.Collect$$libshutdown$$0000000E  c_t.l(libshutdown2.o)(c_t.l)
     0x0000012e   0x00000006   Code   RO          451    .ARM.Collect$$libshutdown$$0000000F  c_t.l(libshutdown2.o)(c_t.l)
-    0x00000134   0x00000000   Code   RO          198    .ARM.Collect$$rtentry$$00000000  c_t.l(rtentry.o)(c_t.l)
-    0x00000134   0x00000000   Code   RO          329    .ARM.Collect$$rtentry$$00000002  c_t.l(rtentry2.o)(c_t.l)
-    0x00000134   0x00000008   Code   RO          344    .ARM.Collect$$rtentry$$00000004  c_t.l(rtentry4.o)(c_t.l)
-    0x0000013c   0x00000000   Code   RO          331    .ARM.Collect$$rtentry$$00000009  c_t.l(rtentry2.o)(c_t.l)
-    0x0000013c   0x00000004   Code   RO          332    .ARM.Collect$$rtentry$$0000000A  c_t.l(rtentry2.o)(c_t.l)
-    0x00000140   0x00000000   Code   RO          334    .ARM.Collect$$rtentry$$0000000C  c_t.l(rtentry2.o)(c_t.l)
-    0x00000140   0x00000028   Code   RO          335    .ARM.Collect$$rtentry$$0000000D  c_t.l(rtentry2.o)(c_t.l)
+    0x00000134   0x00000000   Code   RO          204    .ARM.Collect$$rtentry$$00000000  c_t.l(rtentry.o)(c_t.l)
+    0x00000134   0x00000000   Code   RO          335    .ARM.Collect$$rtentry$$00000002  c_t.l(rtentry2.o)(c_t.l)
+    0x00000134   0x00000008   Code   RO          350    .ARM.Collect$$rtentry$$00000004  c_t.l(rtentry4.o)(c_t.l)
+    0x0000013c   0x00000000   Code   RO          337    .ARM.Collect$$rtentry$$00000009  c_t.l(rtentry2.o)(c_t.l)
+    0x0000013c   0x00000004   Code   RO          338    .ARM.Collect$$rtentry$$0000000A  c_t.l(rtentry2.o)(c_t.l)
+    0x00000140   0x00000000   Code   RO          340    .ARM.Collect$$rtentry$$0000000C  c_t.l(rtentry2.o)(c_t.l)
+    0x00000140   0x00000028   Code   RO          341    .ARM.Collect$$rtentry$$0000000D  c_t.l(rtentry2.o)(c_t.l)
     0x00000168   0x00000004   Code   RO          421    .ARM.Collect$$rtexit$$00000000  c_t.l(rtexit.o)(c_t.l)
     0x0000016c   0x00000000   Code   RO          459    .ARM.Collect$$rtexit$$00000002  c_t.l(rtexit2.o)(c_t.l)
     0x0000016c   0x00000004   Code   RO          460    .ARM.Collect$$rtexit$$00000003  c_t.l(rtexit2.o)(c_t.l)
     0x00000170   0x00000008   Code   RO          461    .ARM.Collect$$rtexit$$00000004  c_t.l(rtexit2.o)(c_t.l)
     0x00000178   0x00000020   Code   RO            4    .text               startup.o
     0x00000198   0x00000008   Code   RO           11    .text               main.o
-    0x000001a0   0x0000000c   Code   RO          325    .text               c_t.l(libspace.o)(c_t.l)
+    0x000001a0   0x0000000c   Code   RO          331    .text               c_t.l(libspace.o)(c_t.l)
     0x000001ac   0x00000004   Code   RO          390    .text               c_t.l(use_no_semi.o)(c_t.l)
     0x000001b0   0x00000060   Code   RO          392    .text               c_t.l(sys_stackheap_outer.o)(c_t.l)
     0x00000210   0x0000000c   Code   RO          400    .text               c_t.l(exit.o)(c_t.l)
@@ -445,7 +448,7 @@ Memory Map of the image
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x40000000   0x00000060   Zero   RW          326    .bss                c_t.l(libspace.o)(c_t.l)
+    0x40000000   0x00000060   Zero   RW          332    .bss                c_t.l(libspace.o)(c_t.l)
     0x40000060   0x00000000   Zero   RW            2    HEAP                startup.o
     0x40000060   0x00000488   Zero   RW            1    STACK               startup.o
 

@@ -109,44 +109,44 @@ double POS_ComputerTarget(struct PosInfo* POSS)
 
 	if(POSS->T1 < POSS->T2){
 		if(POSS->time < POSS->T1){
-			POSS->time_region = 1;		
+			POSS->timeRegion = 1;		
 		} else if(POSS->time < POSS->T2){
-			POSS->time_region = 2;
+			POSS->timeRegion = 2;
 		} else if(POSDS->time < POSS->Tend){
-			POSS->time_region = 3;
+			POSS->timeRegion = 3;
 		} else {
-			POSS->time_region = 4;
+			POSS->timeRegion = 4;
 		}
 	} else {
 		if(POSS->time < POSS->Tend / 2){
-			POSS->time_region = 1;
+			POSS->timeRegion = 1;
 		} else if(POSS->time < Tend){
-			POSS->time_region = 3;
+			POSS->timeRegion = 3;
 		} else {
-			POSS->time_region = 4;
+			POSS->timeRegion = 4;
 		}
 	}	
-	time_region = POSS->time_region;
+	time_region = POSS->timeRegion;
 	T1 = POSS->T1;
 	T2 = POSS->T2;
 	Tend = POSS->Tend;
-	if(POSS->init_pos < POSS->target_pos){
+	if(POSS->initPos < POSS->targetPos){
 
 		switch(time_region){
 			case 1:
-				s = t * t * POSS->acceleration / 2 + (double)POSS->init_pos;
+				s = t * t * POSS->acceleration / 2 + (double)POSS->initPos;
 			break;
 			case 2:
-				s =   (double)POSS->top_speed * ( t - T1) 
-					+ (double)POSS->top_speed * POSS->top_speed / (2 * POSS->acceleration)
+				s =   (double)POSS->topSpeed * ( t - T1) 
+					+ (double)POSS->topSpeed * POSS->topSpeed / (2 * POSS->acceleration)
 					//+ (double)POSS->top_speed / 2.0 * T1
-					+ (double)POSS->init_pos;
+					+ (double)POSS->initPos;
 			break;
 			case 3:
 				s =   -1 * (t-Tend) * (t-Tend) * POSS->deceleration / 2 + (double)POSS->target_pos;
 			break;
 			case 4:
-				s =   POSS->target_pos;
+				s =   POSS->targetPos;
 			break;
 		}
 	}
@@ -155,18 +155,18 @@ double POS_ComputerTarget(struct PosInfo* POSS)
 	else{
 		switch(time_region){
 			case 1:
-				s = -1 * t * t * POSS->acceleration / 2 + (double)POSS->init_pos;
+				s = -1 * t * t * POSS->acceleration / 2 + (double)POSS->initPos;
 			break;
 			case 2:
-				s =  -1* (double)POSS->top_speed * ( t - T1) 
-					- (double)POSS->top_speed * POSS->top_speed / (2 * POSS->acceleration)
-					+ (double)POSS->init_pos;
+				s =  -1* (double)POSS->topSpeed * ( t - T1) 
+					- (double)POSS->topSpeed * POSS->topSpeed / (2 * POSS->acceleration)
+					+ (double)POSS->initPos;
 			break;
 			case 3:
-				s =   (t-Tend) * (t-Tend) * POSS->deceleration / 2 + (double)POSS->target_pos;
+				s =   (t-Tend) * (t-Tend) * POSS->deceleration / 2 + (double)POSS->targetPos;
 			break;
 			case 4:
-				s =   POSS->target_pos;
+				s =   POSS->targetPos;
 			break;
 		}
 	
@@ -188,5 +188,37 @@ float VelInfoErrCal(struct VelInfo* VELS){
 }
 
 float ThetaInfoErrCal(struct ThetaInfo* THES){
-	return THES->targetTheta - 
+	return THES->targetTheta - THES->POS->theta; 
 }
+
+struct PIDStruct* PID_Init_Pos(struct PIDStrct* PIDS,double acc,double topSpeed,doubledece,int targetPos,int initPos,int pwmChannel,int encoderChannel){
+	struct PosInfo* POSS;
+	double posDiff = targetPos - initPos;
+	if(posDiff < 0)
+		posDiff = -posDiff;
+
+	POSS = (struct PosInfo*)malloc(sizeof(struct PosInfo));
+	POSS->acceleration = acc;
+	POSS->topSpeed =topSpeed;
+	POSS->deceleration = dece;
+	POSS->targetPos = targetPos;
+	POSS->initPos = initPos;
+	POSS->time = 0;
+	
+	POSS->T1 = POSS->topSpeed / POSS->acceleration;
+	POSS->Tend = 	(posDiff / POSS->topSpeed)
+		+	(POSS->topSpeed / (POSS->accleration * 2.0))
+		+	(POSS->topSpeed / (POSS->deceleration * 2.0));
+	POSS->T2 = Tend - (POSS->topSpeed / POSS->deceleration);
+
+	POSS->timeRegon = 0;
+	POSS->pwmChannel= pwmChannel;
+	POSS->encoderChannel;
+	
+	return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
+	
+}
+
+void PosinfoOutFunc(struct PosInfo* POSS,double err);
+
+
