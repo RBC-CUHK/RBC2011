@@ -9,21 +9,23 @@
 #define PI_180		0.017453292519943295769236907684886
 #define PI_2		1.5707963267948966192313216916398
 #define C180_PI		57.295779513082320876798154814105
-
+#include "ral_motor.h"
 
 struct Pos{
 	double x;
 	double y;
 	double theta;
-	int pwmChannelL;
-	int pwmChannelR;
+//	int pwmChannelL;
+//	int pwmChannelR;
+	struct Motor_Setting* motorL;
+	struct Motor_Setting* motorR;
 	int encoderChannelL;
 	int encoderChannelR;
 	int encoderLastCntL;
 	int encoderLastCntR;
 };
 
-void Odometry_Init(struct Pos* P, int encoderChannelL, int encoderChannelR);
+void Odometry_Init(struct Pos* P, struct Motor_Setting* motorL, struct Motor_Setting* motorR, int encoderChannelL, int encoderChannelR);
 void Odometry_Update(struct Pos* P);
 void Odometry_Set(struct Pos* P, double x, double y, double theta);
 #endif

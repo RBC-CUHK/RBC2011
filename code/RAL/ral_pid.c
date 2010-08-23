@@ -179,6 +179,10 @@ double PosInfoErrCal(struct PosInfo* POSS){
 	return (double)Encoder_ReadBuffer(POSS->encoderChannel) - correctPos; 
 }
 
+void PosInfoOutFunc(struct PosInfo* POSS,double result){
+	POSS->motor->Motor_SetPWM(POSS->motor,result);
+	return;
+}
 double VelInfoErrCal(struct VelInfo* VELS){
 	double currentSpeed;
 	int newPos = Encoder_ReadBuffer(VELS->encoderChannel);
@@ -187,11 +191,25 @@ double VelInfoErrCal(struct VelInfo* VELS){
 	return currentSpeed - VELS->targetSpeed;
 }
 
+void VelInfoOutFunc(struct VelInfo* VELS,double result){
+	VELS->motor->Motor_SetPWM(VELS->motor,result);
+	return;
+}
+
 double ThetaInfoErrCal(struct ThetaInfo* THES){
 	return THES->targetTheta - THES->pos->theta; 
 }
 
-struct PIDStruct* PID_Init_Pos(struct PIDStruct* PIDS,double acc,double topSpeed,double dece,int targetPos,int initPos,int pwmChannel,int encoderChannel){
+void ThetaInfoOutFunc(struct ThetaInfo* THES,double result){
+	if(result < 0){
+		THES->pos->motorL->Motor_SetPWM(THES->pos->motorL,THES->pos->motorL->currPWM - result);
+	} else {
+		THES->pos->motorR->Motor_SetPWM(THES->pos->motorR,THES->pos->motorR->currPWM - result);
+	}
+	return;
+}
+
+struct PIDStruct* PID_Init_Pos(struct PIDStruct* PIDS,double acc,double topSpeed,double dece,int targetPos,int initPos,struct Motor_Setting* motor,int encoderChannel){
 	struct PosInfo* POSS;
 	double posDiff = targetPos - initPos;
 	if(posDiff < 0)
@@ -212,18 +230,20 @@ struct PIDStruct* PID_Init_Pos(struct PIDStruct* PIDS,double acc,double topSpeed
 	POSS->T2 = POSS->Tend - (POSS->topSpeed / POSS->deceleration);
 
 	POSS->timeRegion = 0;
-	POSS->pwmChannel= pwmChannel;
+//	POSS->pwmChannel= pwmChannel;
+	POSS->motor = motor;
 	POSS->encoderChannel = encoderChannel;
 	
 	return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
 }
 
-struct PIDStruct* PID_Init_Vel(struct PIDStruct* PIDS,double targetSpeed,int pwmChannel,int encoderChannel){
+struct PIDStruct* PID_Init_Vel(struct PIDStruct* PIDS,double targetSpeed,struct Motor_Setting* motor,int encoderChannel){
 	struct VelInfo* VELS;
 	VELS = (struct VelInfo*)malloc(sizeof(struct VelInfo));
 	VELS->targetSpeed = targetSpeed;
 	VELS->oldPos = 0;
-	VELS->pwmChannel = pwmChannel;
+//	VELS->pwmChannel = pwmChannel;
+	VELS->motor = motor;
 	VELS->encoderChannel = encoderChannel;
 	return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS);
 }

@@ -16,474 +16,69 @@ compiling ral_linesensor.c...
 compiling ral_motor.c...
 compiling ral_mux.c...
 compiling ral_odometry.c...
-RAL\ral_odometry.c(16): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_odometry.h(20): error:  #70: incomplete type is not allowed
+RAL\ral_odometry.h:     struct Motor_Setting motorL;
+RAL\ral_odometry.h:                          ^
+RAL\ral_odometry.h(21): error:  #70: incomplete type is not allowed
+RAL\ral_odometry.h:     struct Motor_Setting motorR;
+RAL\ral_odometry.h:                          ^
+RAL\ral_odometry.c(18): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
 RAL\ral_odometry.c:     P->encoderLastCntL = Encoder_ReadBuffer(P->encoderChannelL);
 RAL\ral_odometry.c:                          ^
-RAL\ral_odometry.c(32): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_odometry.c(34): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
 RAL\ral_odometry.c:       LnewCount = Encoder_ReadBuffer(P->encoderChannelL);
 RAL\ral_odometry.c:                   ^
-RAL\ral_odometry.c: RAL\ral_odometry.c: 2 warnings, 0 errors
+RAL\ral_odometry.c: RAL\ral_odometry.c: 2 warnings, 2 errors
 compiling ral_pid.c...
-RAL\ral_pid.h(59): error:  #20: identifier "doubledece" is undefined
-RAL\ral_pid.h:   struct PIDStruct* PID_Init_Pos(struct PIDStruct* PIDS,double acc,double topSpeed,doubledece,int targetPos,int initPos,int pwmChannel,int encoderChannel);
-RAL\ral_pid.h:                                                                                    ^
-RAL\ral_pid.c(105): error:  #130: expected a "{"
-RAL\ral_pid.c:          double s;
+RAL\ral_odometry.h(20): error:  #70: incomplete type is not allowed
+RAL\ral_odometry.h:     struct Motor_Setting motorL;
+RAL\ral_odometry.h:                          ^
+RAL\ral_odometry.h(21): error:  #70: incomplete type is not allowed
+RAL\ral_odometry.h:     struct Motor_Setting motorR;
+RAL\ral_odometry.h:                          ^
+RAL\ral_pid.h(62): error:  #20: identifier "Motor_Setting" is undefined
+RAL\ral_pid.h:   struct PIDStruct* PID_Init_Vel(struct PIDStruct* PIDS,double targetSpeed,Motor_Setting* motor,int encoderChannel);
+RAL\ral_pid.h:                                                                            ^
+RAL\ral_pid.c(179): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_pid.c:          return (double)Encoder_ReadBuffer(POSS->encoderChannel) - correctPos; 
+RAL\ral_pid.c:                         ^
+RAL\ral_pid.c(183): error:  #393: pointer to incomplete class type is not allowed
+RAL\ral_pid.c:          POSS->motor->Motor_SetPWM(POSS->motor,result);
 RAL\ral_pid.c:          ^
-RAL\ral_pid.c(110): warning:  #12-D: parsing restarts here after previous syntax error
-RAL\ral_pid.c:          if(POSS->T1 < POSS->T2){
-RAL\ral_pid.c:                                 ^
-RAL\ral_pid.c(115): error:  #20: identifier "POSDS" is undefined
-RAL\ral_pid.c:                  } else if(POSDS->time < POSS->Tend){
-RAL\ral_pid.c:                            ^
-RAL\ral_pid.c(120): warning:  #940-D: missing return statement at end of non-void function "POS_ComputerTarget"
-RAL\ral_pid.c:          } else {
+RAL\ral_pid.c(188): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_pid.c:          int newPos = Encoder_ReadBuffer(VELS->encoderChannel);
+RAL\ral_pid.c:                       ^
+RAL\ral_pid.c(195): error:  #393: pointer to incomplete class type is not allowed
+RAL\ral_pid.c:          VELS->motor->Motor_SetPWM(VELS->motor,result);
 RAL\ral_pid.c:          ^
-RAL\ral_pid.c(120): error:  #169: expected a declaration
-RAL\ral_pid.c:          } else {
-RAL\ral_pid.c:            ^
-RAL\ral_pid.c(129): warning:  #12-D: parsing restarts here after previous syntax error
-RAL\ral_pid.c:          time_region = POSS->timeRegion;
-RAL\ral_pid.c:                                        ^
-RAL\ral_pid.c(130): error:  #77-D: this declaration has no storage class or type specifier
-RAL\ral_pid.c:          T1 = POSS->T1;
-RAL\ral_pid.c:          ^
-RAL\ral_pid.c(130): error:  #20: identifier "POSS" is undefined
-RAL\ral_pid.c:          T1 = POSS->T1;
-RAL\ral_pid.c:               ^
-RAL\ral_pid.c(131): error:  #77-D: this declaration has no storage class or type specifier
-RAL\ral_pid.c:          T2 = POSS->T2;
-RAL\ral_pid.c:          ^
-RAL\ral_pid.c(132): error:  #77-D: this declaration has no storage class or type specifier
-RAL\ral_pid.c:          Tend = POSS->Tend;
-RAL\ral_pid.c:          ^
-RAL\ral_pid.c(133): error:  #169: expected a declaration
-RAL\ral_pid.c:          if(POSS->initPos < POSS->targetPos){
-RAL\ral_pid.c:          ^
-RAL\ral_pid.c(174): warning:  #12-D: parsing restarts here after previous syntax error
-RAL\ral_pid.c:          return s;       
-RAL\ral_pid.c:                  ^
-RAL\ral_pid.c(176): error:  #169: expected a declaration
-RAL\ral_pid.c:   }
-RAL\ral_pid.c:   ^
-RAL\ral_pid.c(215): warning:  #12-D: parsing restarts here after previous syntax error
-RAL\ral_pid.c:          POSS->pwmChannel= pwmChannel;
-RAL\ral_pid.c:                                      ^
-RAL\ral_pid.c(216): error:  #77-D: this declaration has no storage class or type specifier
-RAL\ral_pid.c:          POSS->encoderChannel;
-RAL\ral_pid.c:          ^
-RAL\ral_pid.c(216): error:  #65: expected a ";"
-RAL\ral_pid.c:          POSS->encoderChannel;
-RAL\ral_pid.c:              ^
-RAL\ral_pid.c(218): error:  #169: expected a declaration
+RAL\ral_pid.c(237): warning:  #167-D: argument of type "double (*)(struct PosInfo *)" is incompatible with parameter of type "double (*)(void *)"
 RAL\ral_pid.c:          return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
-RAL\ral_pid.c:          ^
-RAL\ral_pid.c(219): error:  #169: expected a declaration
-RAL\ral_pid.c:   }
-RAL\ral_pid.c:   ^
-RAL\ral_pid.c(237): warning: At end of source:  #12-D: parsing restarts here after previous syntax error
-RAL\ral_pid.c: RAL\ral_pid.c: 6 warnings, 14 errors
+RAL\ral_pid.c:                               ^
+RAL\ral_pid.c(237): warning:  #167-D: argument of type "void (*)(struct PosInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
+RAL\ral_pid.c:          return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
+RAL\ral_pid.c:                                             ^
+RAL\ral_pid.c(240): error:  #20: identifier "Motor_Setting" is undefined
+RAL\ral_pid.c:   struct PIDStruct* PID_Init_Vel(struct PIDStruct* PIDS,double targetSpeed,Motor_Setting* motor,int encoderChannel){
+RAL\ral_pid.c:                                                                            ^
+RAL\ral_pid.c(248): warning:  #167-D: argument of type "double (*)(struct VelInfo *)" is incompatible with parameter of type "double (*)(void *)"
+RAL\ral_pid.c:          return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS);
+RAL\ral_pid.c:                               ^
+RAL\ral_pid.c(248): warning:  #167-D: argument of type "void (*)(struct VelInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
+RAL\ral_pid.c:          return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS);
+RAL\ral_pid.c:                                             ^
+RAL\ral_pid.c(256): warning:  #167-D: argument of type "double (*)(struct ThetaInfo *)" is incompatible with parameter of type "double (*)(void *)"
+RAL\ral_pid.c:          return PID_Init(PIDS,ThetaInfoErrCal,ThetaInfoOutFunc,THES);
+RAL\ral_pid.c:                               ^
+RAL\ral_pid.c(256): warning:  #167-D: argument of type "void (*)(struct ThetaInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
+RAL\ral_pid.c:          return PID_Init(PIDS,ThetaInfoErrCal,ThetaInfoOutFunc,THES);
+RAL\ral_pid.c:                                               ^
+RAL\ral_pid.c: RAL\ral_pid.c: 8 warnings, 6 errors
 compiling mal_adc.c...
 compiling mal_gpio.c...
 compiling mal_iap.c...
 compiling mal_pwm.c...
 compiling mal_spi.c...
 compiling mal_uart.c...
-Target not created
-Build target 'Target 1'
-compiling ral_pid.c...
-RAL\ral_pid.c(115): error:  #20: identifier "POSDS" is undefined
-RAL\ral_pid.c:                  } else if(POSDS->time < POSS->Tend){
-RAL\ral_pid.c:                            ^
-RAL\ral_pid.c(146): error:  #136: struct "PosInfo" has no field "target_pos"
-RAL\ral_pid.c:                                  s =   -1 * (t-Tend) * (t-Tend) * POSS->deceleration / 2 + (double)POSS->target_pos;
-RAL\ral_pid.c:                                                                                                          ^
-RAL\ral_pid.c(106): warning:  #550-D: variable "T2" was set but never used
-RAL\ral_pid.c:          double T1,T2,Tend;
-RAL\ral_pid.c:                    ^
-RAL\ral_pid.c(179): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
-RAL\ral_pid.c:          return (double)Encoder_ReadBuffer(POSS->encoderChannel) - correctPos; 
-RAL\ral_pid.c:                         ^
-RAL\ral_pid.c(184): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
-RAL\ral_pid.c:          int newPos = Encoder_ReadBuffer(VELS->encoderChannel);
-RAL\ral_pid.c:                       ^
-RAL\ral_pid.c(191): error:  #136: struct "ThetaInfo" has no field "POS"
-RAL\ral_pid.c:          return THES->targetTheta - THES->POS->theta; 
-RAL\ral_pid.c:                                           ^
-RAL\ral_pid.c(194): error:  #20: identifier "doubledece" is undefined
-RAL\ral_pid.c:   struct PIDStruct* PID_Init_Pos(struct PIDStruct* PIDS,double acc,double topSpeed,doubledece,int targetPos,int initPos,int pwmChannel,int encoderChannel){
-RAL\ral_pid.c:                                                                                    ^
-RAL\ral_pid.c(194): error:  #141-D: unnamed prototyped parameters not allowed when body is present
-RAL\ral_pid.c:   struct PIDStruct* PID_Init_Pos(struct PIDStruct* PIDS,double acc,double topSpeed,doubledece,int targetPos,int initPos,int pwmChannel,int encoderChannel){
-RAL\ral_pid.c:                     ^
-RAL\ral_pid.c(203): error:  #20: identifier "dece" is undefined
-RAL\ral_pid.c:          POSS->deceleration = dece;
-RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(210): error:  #136: struct "PosInfo" has no field "accleration"
-RAL\ral_pid.c:                  +       (POSS->topSpeed / (POSS->accleration * 2.0))
-RAL\ral_pid.c:                                                   ^
-RAL\ral_pid.c(212): error:  #20: identifier "Tend" is undefined
-RAL\ral_pid.c:          POSS->T2 = Tend - (POSS->topSpeed / POSS->deceleration);
-RAL\ral_pid.c:                     ^
-RAL\ral_pid.c(214): error:  #136: struct "PosInfo" has no field "timeRegon"
-RAL\ral_pid.c:          POSS->timeRegon = 0;
-RAL\ral_pid.c:                ^
-RAL\ral_pid.c(216): warning:  #174-D: expression has no effect
-RAL\ral_pid.c:          POSS->encoderChannel;
-RAL\ral_pid.c:          ^
-RAL\ral_pid.c(218): warning:  #167-D: argument of type "float (*)(struct PosInfo *)" is incompatible with parameter of type "double (*)(void *)"
-RAL\ral_pid.c:          return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
-RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(218): warning:  #167-D: argument of type "void (*)(struct PosInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
-RAL\ral_pid.c:          return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
-RAL\ral_pid.c:                                             ^
-RAL\ral_pid.c(223): error:  #20: identifier "VelInfo" is undefined
-RAL\ral_pid.c:          VELS = (struct VelInfo*)malloc(sizeof(VelInfo));
-RAL\ral_pid.c:                                                ^
-RAL\ral_pid.c(226): error:  #136: struct "VelInfo" has no field "pwmCannel"
-RAL\ral_pid.c:          VELS->pwmCannel = pwmCannel;
-RAL\ral_pid.c:                ^
-RAL\ral_pid.c(226): error:  #20: identifier "pwmCannel" is undefined
-RAL\ral_pid.c:          VELS->pwmCannel = pwmCannel;
-RAL\ral_pid.c:                            ^
-RAL\ral_pid.c(228): warning:  #167-D: argument of type "float (*)(struct VelInfo *)" is incompatible with parameter of type "double (*)(void *)"
-RAL\ral_pid.c:          return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS);
-RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(228): warning:  #167-D: argument of type "void (*)(struct VelInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
-RAL\ral_pid.c:          return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS);
-RAL\ral_pid.c:                                             ^
-RAL\ral_pid.c(232): error:  #65: expected a ";"
-RAL\ral_pid.c:          struct ThetaInfo* THES:
-RAL\ral_pid.c:                                ^
-RAL\ral_pid.c(236): warning:  #167-D: argument of type "float (*)(struct ThetaInfo *)" is incompatible with parameter of type "double (*)(void *)"
-RAL\ral_pid.c:          return PID_Init(PIDS,ThetaInfoErrCal,ThetaInfoOutFunc,THES);
-RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(236): warning:  #167-D: argument of type "void (*)(struct ThetaInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
-RAL\ral_pid.c:          return PID_Init(PIDS,ThetaInfoErrCal,ThetaInfoOutFunc,THES);
-RAL\ral_pid.c:                                               ^
-RAL\ral_pid.c: RAL\ral_pid.c: 10 warnings, 13 errors
-Target not created
-Build target 'Target 1'
-compiling ral_pid.c...
-RAL\ral_pid.c(123): error:  #20: identifier "Tend" is undefined
-RAL\ral_pid.c:                  } else if(POSS->time < Tend){
-RAL\ral_pid.c:                                         ^
-RAL\ral_pid.c(161): error:  #20: identifier "T1" is undefined
-RAL\ral_pid.c:                                  s =  -1* (double)POSS->topSpeed * ( t - T1) 
-RAL\ral_pid.c:                                                                          ^
-RAL\ral_pid.c(166): error:  #20: identifier "Tend" is undefined
-RAL\ral_pid.c:                                  s =   (t-Tend) * (t-Tend) * POSS->deceleration / 2 + (double)POSS->targetPos;
-RAL\ral_pid.c:                                           ^
-RAL\ral_pid.c(179): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
-RAL\ral_pid.c:          return (double)Encoder_ReadBuffer(POSS->encoderChannel) - correctPos; 
-RAL\ral_pid.c:                         ^
-RAL\ral_pid.c(184): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
-RAL\ral_pid.c:          int newPos = Encoder_ReadBuffer(VELS->encoderChannel);
-RAL\ral_pid.c:                       ^
-RAL\ral_pid.c(210): error:  #136: struct "PosInfo" has no field "accleration"
-RAL\ral_pid.c:                  +       (POSS->topSpeed / (POSS->accleration * 2.0))
-RAL\ral_pid.c:                                                   ^
-RAL\ral_pid.c(212): error:  #20: identifier "Tend" is undefined
-RAL\ral_pid.c:          POSS->T2 = Tend - (POSS->topSpeed / POSS->deceleration);
-RAL\ral_pid.c:                     ^
-RAL\ral_pid.c(214): error:  #136: struct "PosInfo" has no field "timeRegon"
-RAL\ral_pid.c:          POSS->timeRegon = 0;
-RAL\ral_pid.c:                ^
-RAL\ral_pid.c(216): warning:  #174-D: expression has no effect
-RAL\ral_pid.c:          POSS->encoderChannel;
-RAL\ral_pid.c:          ^
-RAL\ral_pid.c(218): warning:  #167-D: argument of type "float (*)(struct PosInfo *)" is incompatible with parameter of type "double (*)(void *)"
-RAL\ral_pid.c:          return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
-RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(218): warning:  #167-D: argument of type "void (*)(struct PosInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
-RAL\ral_pid.c:          return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
-RAL\ral_pid.c:                                             ^
-RAL\ral_pid.c(223): error:  #20: identifier "VelInfo" is undefined
-RAL\ral_pid.c:          VELS = (struct VelInfo*)malloc(sizeof(VelInfo));
-RAL\ral_pid.c:                                                ^
-RAL\ral_pid.c(226): error:  #136: struct "VelInfo" has no field "pwmCannel"
-RAL\ral_pid.c:          VELS->pwmCannel = pwmCannel;
-RAL\ral_pid.c:                ^
-RAL\ral_pid.c(226): error:  #20: identifier "pwmCannel" is undefined
-RAL\ral_pid.c:          VELS->pwmCannel = pwmCannel;
-RAL\ral_pid.c:                            ^
-RAL\ral_pid.c(228): warning:  #167-D: argument of type "float (*)(struct VelInfo *)" is incompatible with parameter of type "double (*)(void *)"
-RAL\ral_pid.c:          return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS);
-RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(228): warning:  #167-D: argument of type "void (*)(struct VelInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
-RAL\ral_pid.c:          return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS);
-RAL\ral_pid.c:                                             ^
-RAL\ral_pid.c(232): error:  #65: expected a ";"
-RAL\ral_pid.c:          struct ThetaInfo* THES:
-RAL\ral_pid.c:                                ^
-RAL\ral_pid.c(236): warning:  #167-D: argument of type "float (*)(struct ThetaInfo *)" is incompatible with parameter of type "double (*)(void *)"
-RAL\ral_pid.c:          return PID_Init(PIDS,ThetaInfoErrCal,ThetaInfoOutFunc,THES);
-RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(236): warning:  #167-D: argument of type "void (*)(struct ThetaInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
-RAL\ral_pid.c:          return PID_Init(PIDS,ThetaInfoErrCal,ThetaInfoOutFunc,THES);
-RAL\ral_pid.c:                                               ^
-RAL\ral_pid.c: RAL\ral_pid.c: 9 warnings, 10 errors
-Target not created
-Build target 'Target 1'
-compiling ral_pid.c...
-RAL\ral_pid.c(123): error:  #20: identifier "Tend" is undefined
-RAL\ral_pid.c:                  } else if(POSS->time < Tend){
-RAL\ral_pid.c:                                         ^
-RAL\ral_pid.c(161): error:  #20: identifier "T1" is undefined
-RAL\ral_pid.c:                                  s =  -1* (double)POSS->topSpeed * ( t - T1) 
-RAL\ral_pid.c:                                                                          ^
-RAL\ral_pid.c(166): error:  #20: identifier "Tend" is undefined
-RAL\ral_pid.c:                                  s =   (t-Tend) * (t-Tend) * POSS->deceleration / 2 + (double)POSS->targetPos;
-RAL\ral_pid.c:                                           ^
-RAL\ral_pid.c(179): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
-RAL\ral_pid.c:          return (double)Encoder_ReadBuffer(POSS->encoderChannel) - correctPos; 
-RAL\ral_pid.c:                         ^
-RAL\ral_pid.c(184): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
-RAL\ral_pid.c:          int newPos = Encoder_ReadBuffer(VELS->encoderChannel);
-RAL\ral_pid.c:                       ^
-RAL\ral_pid.c(210): error:  #136: struct "PosInfo" has no field "accleration"
-RAL\ral_pid.c:                  +       (POSS->topSpeed / (POSS->accleration * 2.0))
-RAL\ral_pid.c:                                                   ^
-RAL\ral_pid.c(212): error:  #20: identifier "Tend" is undefined
-RAL\ral_pid.c:          POSS->T2 = Tend - (POSS->topSpeed / POSS->deceleration);
-RAL\ral_pid.c:                     ^
-RAL\ral_pid.c(214): error:  #136: struct "PosInfo" has no field "timeRegon"
-RAL\ral_pid.c:          POSS->timeRegon = 0;
-RAL\ral_pid.c:                ^
-RAL\ral_pid.c(216): warning:  #174-D: expression has no effect
-RAL\ral_pid.c:          POSS->encoderChannel;
-RAL\ral_pid.c:          ^
-RAL\ral_pid.c(218): warning:  #167-D: argument of type "float (*)(struct PosInfo *)" is incompatible with parameter of type "double (*)(void *)"
-RAL\ral_pid.c:          return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
-RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(218): warning:  #167-D: argument of type "void (*)(struct PosInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
-RAL\ral_pid.c:          return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
-RAL\ral_pid.c:                                             ^
-RAL\ral_pid.c(223): error:  #20: identifier "VelInfo" is undefined
-RAL\ral_pid.c:          VELS = (struct VelInfo*)malloc(sizeof(VelInfo));
-RAL\ral_pid.c:                                                ^
-RAL\ral_pid.c(226): error:  #136: struct "VelInfo" has no field "pwmCannel"
-RAL\ral_pid.c:          VELS->pwmCannel = pwmCannel;
-RAL\ral_pid.c:                ^
-RAL\ral_pid.c(226): error:  #20: identifier "pwmCannel" is undefined
-RAL\ral_pid.c:          VELS->pwmCannel = pwmCannel;
-RAL\ral_pid.c:                            ^
-RAL\ral_pid.c(228): warning:  #167-D: argument of type "float (*)(struct VelInfo *)" is incompatible with parameter of type "double (*)(void *)"
-RAL\ral_pid.c:          return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS);
-RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(228): warning:  #167-D: argument of type "void (*)(struct VelInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
-RAL\ral_pid.c:          return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS);
-RAL\ral_pid.c:                                             ^
-RAL\ral_pid.c(233): error:  #20: identifier "ThetaInfo" is undefined
-RAL\ral_pid.c:          THES = (struct ThetaInfo*)malloc(sizeof(ThetaInfo));
-RAL\ral_pid.c:                                                  ^
-RAL\ral_pid.c(236): warning:  #167-D: argument of type "float (*)(struct ThetaInfo *)" is incompatible with parameter of type "double (*)(void *)"
-RAL\ral_pid.c:          return PID_Init(PIDS,ThetaInfoErrCal,ThetaInfoOutFunc,THES);
-RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(236): warning:  #167-D: argument of type "void (*)(struct ThetaInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
-RAL\ral_pid.c:          return PID_Init(PIDS,ThetaInfoErrCal,ThetaInfoOutFunc,THES);
-RAL\ral_pid.c:                                               ^
-RAL\ral_pid.c: RAL\ral_pid.c: 9 warnings, 10 errors
-Target not created
-Build target 'Target 1'
-compiling ral_pid.c...
-RAL\ral_pid.c(123): error:  #20: identifier "Tend" is undefined
-RAL\ral_pid.c:                  } else if(POSS->time < Tend){
-RAL\ral_pid.c:                                         ^
-RAL\ral_pid.c(161): error:  #20: identifier "T1" is undefined
-RAL\ral_pid.c:                                  s =  -1* (double)POSS->topSpeed * ( t - T1) 
-RAL\ral_pid.c:                                                                          ^
-RAL\ral_pid.c(166): error:  #20: identifier "Tend" is undefined
-RAL\ral_pid.c:                                  s =   (t-Tend) * (t-Tend) * POSS->deceleration / 2 + (double)POSS->targetPos;
-RAL\ral_pid.c:                                           ^
-RAL\ral_pid.c(179): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
-RAL\ral_pid.c:          return (double)Encoder_ReadBuffer(POSS->encoderChannel) - correctPos; 
-RAL\ral_pid.c:                         ^
-RAL\ral_pid.c(184): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
-RAL\ral_pid.c:          int newPos = Encoder_ReadBuffer(VELS->encoderChannel);
-RAL\ral_pid.c:                       ^
-RAL\ral_pid.c(210): error:  #136: struct "PosInfo" has no field "accleration"
-RAL\ral_pid.c:                  +       (POSS->topSpeed / (POSS->accleration * 2.0))
-RAL\ral_pid.c:                                                   ^
-RAL\ral_pid.c(212): error:  #20: identifier "Tend" is undefined
-RAL\ral_pid.c:          POSS->T2 = Tend - (POSS->topSpeed / POSS->deceleration);
-RAL\ral_pid.c:                     ^
-RAL\ral_pid.c(214): error:  #136: struct "PosInfo" has no field "timeRegon"
-RAL\ral_pid.c:          POSS->timeRegon = 0;
-RAL\ral_pid.c:                ^
-RAL\ral_pid.c(216): warning:  #174-D: expression has no effect
-RAL\ral_pid.c:          POSS->encoderChannel;
-RAL\ral_pid.c:          ^
-RAL\ral_pid.c(218): warning:  #167-D: argument of type "float (*)(struct PosInfo *)" is incompatible with parameter of type "double (*)(void *)"
-RAL\ral_pid.c:          return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
-RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(218): warning:  #167-D: argument of type "void (*)(struct PosInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
-RAL\ral_pid.c:          return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
-RAL\ral_pid.c:                                             ^
-RAL\ral_pid.c(223): error:  #20: identifier "VelInfo" is undefined
-RAL\ral_pid.c:          VELS = (struct VelInfo*)malloc(sizeof(VelInfo));
-RAL\ral_pid.c:                                                ^
-RAL\ral_pid.c(226): error:  #136: struct "VelInfo" has no field "pwmCannel"
-RAL\ral_pid.c:          VELS->pwmCannel = pwmCannel;
-RAL\ral_pid.c:                ^
-RAL\ral_pid.c(226): error:  #20: identifier "pwmCannel" is undefined
-RAL\ral_pid.c:          VELS->pwmCannel = pwmCannel;
-RAL\ral_pid.c:                            ^
-RAL\ral_pid.c(228): warning:  #167-D: argument of type "float (*)(struct VelInfo *)" is incompatible with parameter of type "double (*)(void *)"
-RAL\ral_pid.c:          return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS);
-RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(228): warning:  #167-D: argument of type "void (*)(struct VelInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
-RAL\ral_pid.c:          return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS);
-RAL\ral_pid.c:                                             ^
-RAL\ral_pid.c(236): warning:  #167-D: argument of type "float (*)(struct ThetaInfo *)" is incompatible with parameter of type "double (*)(void *)"
-RAL\ral_pid.c:          return PID_Init(PIDS,ThetaInfoErrCal,ThetaInfoOutFunc,THES);
-RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(236): warning:  #167-D: argument of type "void (*)(struct ThetaInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
-RAL\ral_pid.c:          return PID_Init(PIDS,ThetaInfoErrCal,ThetaInfoOutFunc,THES);
-RAL\ral_pid.c:                                               ^
-RAL\ral_pid.c: RAL\ral_pid.c: 9 warnings, 9 errors
-Target not created
-Build target 'Target 1'
-compiling ral_pid.c...
-RAL\ral_pid.c(179): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
-RAL\ral_pid.c:          return (double)Encoder_ReadBuffer(POSS->encoderChannel) - correctPos; 
-RAL\ral_pid.c:                         ^
-RAL\ral_pid.c(184): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
-RAL\ral_pid.c:          int newPos = Encoder_ReadBuffer(VELS->encoderChannel);
-RAL\ral_pid.c:                       ^
-RAL\ral_pid.c(218): warning:  #167-D: argument of type "float (*)(struct PosInfo *)" is incompatible with parameter of type "double (*)(void *)"
-RAL\ral_pid.c:          return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
-RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(218): warning:  #167-D: argument of type "void (*)(struct PosInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
-RAL\ral_pid.c:          return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
-RAL\ral_pid.c:                                             ^
-RAL\ral_pid.c(228): warning:  #167-D: argument of type "float (*)(struct VelInfo *)" is incompatible with parameter of type "double (*)(void *)"
-RAL\ral_pid.c:          return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS);
-RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(228): warning:  #167-D: argument of type "void (*)(struct VelInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
-RAL\ral_pid.c:          return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS);
-RAL\ral_pid.c:                                             ^
-RAL\ral_pid.c(236): warning:  #167-D: argument of type "float (*)(struct ThetaInfo *)" is incompatible with parameter of type "double (*)(void *)"
-RAL\ral_pid.c:          return PID_Init(PIDS,ThetaInfoErrCal,ThetaInfoOutFunc,THES);
-RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(236): warning:  #167-D: argument of type "void (*)(struct ThetaInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
-RAL\ral_pid.c:          return PID_Init(PIDS,ThetaInfoErrCal,ThetaInfoOutFunc,THES);
-RAL\ral_pid.c:                                               ^
-RAL\ral_pid.c: RAL\ral_pid.c: 8 warnings, 0 errors
-linking...
-robocon.axf: Error: L6218E: Undefined symbol Encoder_ReadBuffer (referred from ral_odometry.o).
-robocon.axf: Error: L6218E: Undefined symbol PosInfoOutFunc (referred from ral_pid.o).
-robocon.axf: Error: L6218E: Undefined symbol ThetaInfoOutFunc (referred from ral_pid.o).
-robocon.axf: Error: L6218E: Undefined symbol VelInfoOutFunc (referred from ral_pid.o).
-robocon.axf: Not enough information to list image symbols.
-robocon.axf: Finished: 1 information, 0 warning and 4 error messages.
-Target not created
-Build target 'Target 1'
-compiling ral_pid.c...
-RAL\ral_pid.c(179): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
-RAL\ral_pid.c:          return (double)Encoder_ReadBuffer(POSS->encoderChannel) - correctPos; 
-RAL\ral_pid.c:                         ^
-RAL\ral_pid.c(184): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
-RAL\ral_pid.c:          int newPos = Encoder_ReadBuffer(VELS->encoderChannel);
-RAL\ral_pid.c:                       ^
-RAL\ral_pid.c(218): warning:  #167-D: argument of type "float (*)(struct PosInfo *)" is incompatible with parameter of type "double (*)(void *)"
-RAL\ral_pid.c:          return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
-RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(218): warning:  #167-D: argument of type "void (*)(struct PosInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
-RAL\ral_pid.c:          return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
-RAL\ral_pid.c:                                             ^
-RAL\ral_pid.c(228): warning:  #167-D: argument of type "float (*)(struct VelInfo *)" is incompatible with parameter of type "double (*)(void *)"
-RAL\ral_pid.c:          return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS);
-RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(228): warning:  #167-D: argument of type "void (*)(struct VelInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
-RAL\ral_pid.c:          return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS);
-RAL\ral_pid.c:                                             ^
-RAL\ral_pid.c(236): warning:  #167-D: argument of type "float (*)(struct ThetaInfo *)" is incompatible with parameter of type "double (*)(void *)"
-RAL\ral_pid.c:          return PID_Init(PIDS,&ThetaInfoErrCal,&ThetaInfoOutFunc,THES);
-RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(236): warning:  #167-D: argument of type "void (*)(struct ThetaInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
-RAL\ral_pid.c:          return PID_Init(PIDS,&ThetaInfoErrCal,&ThetaInfoOutFunc,THES);
-RAL\ral_pid.c:                                                ^
-RAL\ral_pid.c: RAL\ral_pid.c: 8 warnings, 0 errors
-linking...
-robocon.axf: Error: L6218E: Undefined symbol Encoder_ReadBuffer (referred from ral_odometry.o).
-robocon.axf: Error: L6218E: Undefined symbol PosInfoOutFunc (referred from ral_pid.o).
-robocon.axf: Error: L6218E: Undefined symbol ThetaInfoOutFunc (referred from ral_pid.o).
-robocon.axf: Error: L6218E: Undefined symbol VelInfoOutFunc (referred from ral_pid.o).
-robocon.axf: Not enough information to list image symbols.
-robocon.axf: Finished: 1 information, 0 warning and 4 error messages.
-Target not created
-Build target 'Target 1'
-compiling ral_pid.c...
-RAL\ral_pid.c(177): error:  #147: declaration is incompatible with "double PosInfoErrCal(struct PosInfo *)" (declared at line 30 of "RAL\ral_pid.h")
-RAL\ral_pid.c:   float PosInfoErrCal(struct PosInfo* POSS){
-RAL\ral_pid.c:         ^
-RAL\ral_pid.c(179): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
-RAL\ral_pid.c:          return (double)Encoder_ReadBuffer(POSS->encoderChannel) - correctPos; 
-RAL\ral_pid.c:                         ^
-RAL\ral_pid.c(182): error:  #147: declaration is incompatible with "double VelInfoErrCal(struct VelInfo *)" (declared at line 40 of "RAL\ral_pid.h")
-RAL\ral_pid.c:   float VelInfoErrCal(struct VelInfo* VELS){
-RAL\ral_pid.c:         ^
-RAL\ral_pid.c(184): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
-RAL\ral_pid.c:          int newPos = Encoder_ReadBuffer(VELS->encoderChannel);
-RAL\ral_pid.c:                       ^
-RAL\ral_pid.c(190): error:  #147: declaration is incompatible with "double ThetaInfoErrCal(struct ThetaInfo *)" (declared at line 48 of "RAL\ral_pid.h")
-RAL\ral_pid.c:   float ThetaInfoErrCal(struct ThetaInfo* THES){
-RAL\ral_pid.c:         ^
-RAL\ral_pid.c(218): warning:  #167-D: argument of type "float (*)(struct PosInfo *)" is incompatible with parameter of type "double (*)(void *)"
-RAL\ral_pid.c:          return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
-RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(218): warning:  #167-D: argument of type "void (*)(struct PosInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
-RAL\ral_pid.c:          return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
-RAL\ral_pid.c:                                             ^
-RAL\ral_pid.c(228): warning:  #167-D: argument of type "float (*)(struct VelInfo *)" is incompatible with parameter of type "double (*)(void *)"
-RAL\ral_pid.c:          return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS);
-RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(228): warning:  #167-D: argument of type "void (*)(struct VelInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
-RAL\ral_pid.c:          return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS);
-RAL\ral_pid.c:                                             ^
-RAL\ral_pid.c(236): warning:  #167-D: argument of type "float (*)(struct ThetaInfo *)" is incompatible with parameter of type "double (*)(void *)"
-RAL\ral_pid.c:          return PID_Init(PIDS,ThetaInfoErrCal,ThetaInfoOutFunc,THES);
-RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(236): warning:  #167-D: argument of type "void (*)(struct ThetaInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
-RAL\ral_pid.c:          return PID_Init(PIDS,ThetaInfoErrCal,ThetaInfoOutFunc,THES);
-RAL\ral_pid.c:                                               ^
-RAL\ral_pid.c: RAL\ral_pid.c: 8 warnings, 3 errors
-Target not created
-Build target 'Target 1'
-compiling ral_pid.c...
-RAL\ral_pid.c(179): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
-RAL\ral_pid.c:          return (double)Encoder_ReadBuffer(POSS->encoderChannel) - correctPos; 
-RAL\ral_pid.c:                         ^
-RAL\ral_pid.c(184): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
-RAL\ral_pid.c:          int newPos = Encoder_ReadBuffer(VELS->encoderChannel);
-RAL\ral_pid.c:                       ^
-RAL\ral_pid.c(218): warning:  #167-D: argument of type "double (*)(struct PosInfo *)" is incompatible with parameter of type "double (*)(void *)"
-RAL\ral_pid.c:          return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
-RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(218): warning:  #167-D: argument of type "void (*)(struct PosInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
-RAL\ral_pid.c:          return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
-RAL\ral_pid.c:                                             ^
-RAL\ral_pid.c(228): warning:  #167-D: argument of type "double (*)(struct VelInfo *)" is incompatible with parameter of type "double (*)(void *)"
-RAL\ral_pid.c:          return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS);
-RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(228): warning:  #167-D: argument of type "void (*)(struct VelInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
-RAL\ral_pid.c:          return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS);
-RAL\ral_pid.c:                                             ^
-RAL\ral_pid.c(236): warning:  #167-D: argument of type "double (*)(struct ThetaInfo *)" is incompatible with parameter of type "double (*)(void *)"
-RAL\ral_pid.c:          return PID_Init(PIDS,ThetaInfoErrCal,ThetaInfoOutFunc,THES);
-RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(236): warning:  #167-D: argument of type "void (*)(struct ThetaInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
-RAL\ral_pid.c:          return PID_Init(PIDS,ThetaInfoErrCal,ThetaInfoOutFunc,THES);
-RAL\ral_pid.c:                                               ^
-RAL\ral_pid.c: RAL\ral_pid.c: 8 warnings, 0 errors
-linking...
-robocon.axf: Error: L6218E: Undefined symbol Encoder_ReadBuffer (referred from ral_odometry.o).
-robocon.axf: Error: L6218E: Undefined symbol PosInfoOutFunc (referred from ral_pid.o).
-robocon.axf: Error: L6218E: Undefined symbol ThetaInfoOutFunc (referred from ral_pid.o).
-robocon.axf: Error: L6218E: Undefined symbol VelInfoOutFunc (referred from ral_pid.o).
-robocon.axf: Not enough information to list image symbols.
-robocon.axf: Finished: 1 information, 0 warning and 4 error messages.
 Target not created
 Build target 'Target 1'
 assembling Startup.s...
@@ -494,10 +89,138 @@ compiling ral_linesensor.c...
 compiling ral_motor.c...
 compiling ral_mux.c...
 compiling ral_odometry.c...
-RAL\ral_odometry.c(16): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_motor.h(11): warning:  #1-D: last line of file ends without a newline
+RAL\ral_motor.h:   void Motor_Set213xPWM(struct Motor_Setting*, int PWM);
+RAL\ral_motor.h:                                                         ^
+RAL\ral_odometry.c(18): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
 RAL\ral_odometry.c:     P->encoderLastCntL = Encoder_ReadBuffer(P->encoderChannelL);
 RAL\ral_odometry.c:                          ^
-RAL\ral_odometry.c(32): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_odometry.c(34): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_odometry.c:       LnewCount = Encoder_ReadBuffer(P->encoderChannelL);
+RAL\ral_odometry.c:                   ^
+RAL\ral_odometry.c: RAL\ral_odometry.c: 3 warnings, 0 errors
+compiling ral_pid.c...
+RAL\ral_motor.h(11): warning:  #1-D: last line of file ends without a newline
+RAL\ral_motor.h:   void Motor_Set213xPWM(struct Motor_Setting*, int PWM);
+RAL\ral_motor.h:                                                         ^
+RAL\ral_pid.h(62): error:  #20: identifier "Motor_Setting" is undefined
+RAL\ral_pid.h:   struct PIDStruct* PID_Init_Vel(struct PIDStruct* PIDS,double targetSpeed,Motor_Setting* motor,int encoderChannel);
+RAL\ral_pid.h:                                                                            ^
+RAL\ral_pid.c(179): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_pid.c:          return (double)Encoder_ReadBuffer(POSS->encoderChannel) - correctPos; 
+RAL\ral_pid.c:                         ^
+RAL\ral_pid.c(188): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_pid.c:          int newPos = Encoder_ReadBuffer(VELS->encoderChannel);
+RAL\ral_pid.c:                       ^
+RAL\ral_pid.c(205): error:  #140: too many arguments in function call
+RAL\ral_pid.c:                  THES->pos->motorL->Motor_SetPWM(THES->pos->motorL,THES->pos->motorL->currPWM,result);
+RAL\ral_pid.c:                                                                                               ^
+RAL\ral_pid.c(207): error:  #140: too many arguments in function call
+RAL\ral_pid.c:                  THES->pos->motorR->Motor_SetPWM(THES->pos->motorR,THES->pos->motorR->currPWM,result);
+RAL\ral_pid.c:                                                                                               ^
+RAL\ral_pid.c(237): warning:  #167-D: argument of type "double (*)(struct PosInfo *)" is incompatible with parameter of type "double (*)(void *)"
+RAL\ral_pid.c:          return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
+RAL\ral_pid.c:                               ^
+RAL\ral_pid.c(237): warning:  #167-D: argument of type "void (*)(struct PosInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
+RAL\ral_pid.c:          return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
+RAL\ral_pid.c:                                             ^
+RAL\ral_pid.c(240): error:  #20: identifier "Motor_Setting" is undefined
+RAL\ral_pid.c:   struct PIDStruct* PID_Init_Vel(struct PIDStruct* PIDS,double targetSpeed,Motor_Setting* motor,int encoderChannel){
+RAL\ral_pid.c:                                                                            ^
+RAL\ral_pid.c(248): warning:  #167-D: argument of type "double (*)(struct VelInfo *)" is incompatible with parameter of type "double (*)(void *)"
+RAL\ral_pid.c:          return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS);
+RAL\ral_pid.c:                               ^
+RAL\ral_pid.c(248): warning:  #167-D: argument of type "void (*)(struct VelInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
+RAL\ral_pid.c:          return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS);
+RAL\ral_pid.c:                                             ^
+RAL\ral_pid.c(256): warning:  #167-D: argument of type "double (*)(struct ThetaInfo *)" is incompatible with parameter of type "double (*)(void *)"
+RAL\ral_pid.c:          return PID_Init(PIDS,ThetaInfoErrCal,ThetaInfoOutFunc,THES);
+RAL\ral_pid.c:                               ^
+RAL\ral_pid.c(256): warning:  #167-D: argument of type "void (*)(struct ThetaInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
+RAL\ral_pid.c:          return PID_Init(PIDS,ThetaInfoErrCal,ThetaInfoOutFunc,THES);
+RAL\ral_pid.c:                                               ^
+RAL\ral_pid.c: RAL\ral_pid.c: 9 warnings, 4 errors
+compiling mal_adc.c...
+compiling mal_gpio.c...
+compiling mal_iap.c...
+compiling mal_pwm.c...
+compiling mal_spi.c...
+compiling mal_uart.c...
+Target not created
+Build target 'Target 1'
+assembling Startup.s...
+compiling main.c...
+compiling ral_encoder.c...
+compiling ral_joystick.c...
+compiling ral_linesensor.c...
+compiling ral_motor.c...
+compiling ral_mux.c...
+compiling ral_odometry.c...
+RAL\ral_odometry.c(18): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_odometry.c:     P->encoderLastCntL = Encoder_ReadBuffer(P->encoderChannelL);
+RAL\ral_odometry.c:                          ^
+RAL\ral_odometry.c(34): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_odometry.c:       LnewCount = Encoder_ReadBuffer(P->encoderChannelL);
+RAL\ral_odometry.c:                   ^
+RAL\ral_odometry.c: RAL\ral_odometry.c: 2 warnings, 0 errors
+compiling ral_pid.c...
+RAL\ral_pid.h(62): error:  #20: identifier "Motor_Setting" is undefined
+RAL\ral_pid.h:   struct PIDStruct* PID_Init_Vel(struct PIDStruct* PIDS,double targetSpeed,Motor_Setting* motor,int encoderChannel);
+RAL\ral_pid.h:                                                                            ^
+RAL\ral_pid.c(179): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_pid.c:          return (double)Encoder_ReadBuffer(POSS->encoderChannel) - correctPos; 
+RAL\ral_pid.c:                         ^
+RAL\ral_pid.c(188): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_pid.c:          int newPos = Encoder_ReadBuffer(VELS->encoderChannel);
+RAL\ral_pid.c:                       ^
+RAL\ral_pid.c(205): error:  #140: too many arguments in function call
+RAL\ral_pid.c:                  THES->pos->motorL->Motor_SetPWM(THES->pos->motorL,THES->pos->motorL->currPWM,result);
+RAL\ral_pid.c:                                                                                               ^
+RAL\ral_pid.c(207): error:  #140: too many arguments in function call
+RAL\ral_pid.c:                  THES->pos->motorR->Motor_SetPWM(THES->pos->motorR,THES->pos->motorR->currPWM,result);
+RAL\ral_pid.c:                                                                                               ^
+RAL\ral_pid.c(237): warning:  #167-D: argument of type "double (*)(struct PosInfo *)" is incompatible with parameter of type "double (*)(void *)"
+RAL\ral_pid.c:          return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
+RAL\ral_pid.c:                               ^
+RAL\ral_pid.c(237): warning:  #167-D: argument of type "void (*)(struct PosInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
+RAL\ral_pid.c:          return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
+RAL\ral_pid.c:                                             ^
+RAL\ral_pid.c(240): error:  #20: identifier "Motor_Setting" is undefined
+RAL\ral_pid.c:   struct PIDStruct* PID_Init_Vel(struct PIDStruct* PIDS,double targetSpeed,Motor_Setting* motor,int encoderChannel){
+RAL\ral_pid.c:                                                                            ^
+RAL\ral_pid.c(248): warning:  #167-D: argument of type "double (*)(struct VelInfo *)" is incompatible with parameter of type "double (*)(void *)"
+RAL\ral_pid.c:          return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS);
+RAL\ral_pid.c:                               ^
+RAL\ral_pid.c(248): warning:  #167-D: argument of type "void (*)(struct VelInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
+RAL\ral_pid.c:          return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS);
+RAL\ral_pid.c:                                             ^
+RAL\ral_pid.c(256): warning:  #167-D: argument of type "double (*)(struct ThetaInfo *)" is incompatible with parameter of type "double (*)(void *)"
+RAL\ral_pid.c:          return PID_Init(PIDS,ThetaInfoErrCal,ThetaInfoOutFunc,THES);
+RAL\ral_pid.c:                               ^
+RAL\ral_pid.c(256): warning:  #167-D: argument of type "void (*)(struct ThetaInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
+RAL\ral_pid.c:          return PID_Init(PIDS,ThetaInfoErrCal,ThetaInfoOutFunc,THES);
+RAL\ral_pid.c:                                               ^
+RAL\ral_pid.c: RAL\ral_pid.c: 8 warnings, 4 errors
+compiling mal_adc.c...
+compiling mal_gpio.c...
+compiling mal_iap.c...
+compiling mal_pwm.c...
+compiling mal_spi.c...
+compiling mal_uart.c...
+Target not created
+Build target 'Target 1'
+assembling Startup.s...
+compiling main.c...
+compiling ral_encoder.c...
+compiling ral_joystick.c...
+compiling ral_linesensor.c...
+compiling ral_motor.c...
+compiling ral_mux.c...
+compiling ral_odometry.c...
+RAL\ral_odometry.c(18): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_odometry.c:     P->encoderLastCntL = Encoder_ReadBuffer(P->encoderChannelL);
+RAL\ral_odometry.c:                          ^
+RAL\ral_odometry.c(34): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
 RAL\ral_odometry.c:       LnewCount = Encoder_ReadBuffer(P->encoderChannelL);
 RAL\ral_odometry.c:                   ^
 RAL\ral_odometry.c: RAL\ral_odometry.c: 2 warnings, 0 errors
@@ -505,25 +228,77 @@ compiling ral_pid.c...
 RAL\ral_pid.c(179): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
 RAL\ral_pid.c:          return (double)Encoder_ReadBuffer(POSS->encoderChannel) - correctPos; 
 RAL\ral_pid.c:                         ^
-RAL\ral_pid.c(184): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_pid.c(188): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
 RAL\ral_pid.c:          int newPos = Encoder_ReadBuffer(VELS->encoderChannel);
 RAL\ral_pid.c:                       ^
-RAL\ral_pid.c(218): warning:  #167-D: argument of type "double (*)(struct PosInfo *)" is incompatible with parameter of type "double (*)(void *)"
+RAL\ral_pid.c(237): warning:  #167-D: argument of type "double (*)(struct PosInfo *)" is incompatible with parameter of type "double (*)(void *)"
 RAL\ral_pid.c:          return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
 RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(218): warning:  #167-D: argument of type "void (*)(struct PosInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
+RAL\ral_pid.c(237): warning:  #167-D: argument of type "void (*)(struct PosInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
 RAL\ral_pid.c:          return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
 RAL\ral_pid.c:                                             ^
-RAL\ral_pid.c(228): warning:  #167-D: argument of type "double (*)(struct VelInfo *)" is incompatible with parameter of type "double (*)(void *)"
+RAL\ral_pid.c(240): error:  #20: identifier "Motor_Setting" is undefined
+RAL\ral_pid.c:   struct PIDStruct* PID_Init_Vel(struct PIDStruct* PIDS,double targetSpeed,Motor_Setting* motor,int encoderChannel){
+RAL\ral_pid.c:                                                                            ^
+RAL\ral_pid.c(248): warning:  #167-D: argument of type "double (*)(struct VelInfo *)" is incompatible with parameter of type "double (*)(void *)"
 RAL\ral_pid.c:          return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS);
 RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(228): warning:  #167-D: argument of type "void (*)(struct VelInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
+RAL\ral_pid.c(248): warning:  #167-D: argument of type "void (*)(struct VelInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
 RAL\ral_pid.c:          return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS);
 RAL\ral_pid.c:                                             ^
-RAL\ral_pid.c(236): warning:  #167-D: argument of type "double (*)(struct ThetaInfo *)" is incompatible with parameter of type "double (*)(void *)"
+RAL\ral_pid.c(256): warning:  #167-D: argument of type "double (*)(struct ThetaInfo *)" is incompatible with parameter of type "double (*)(void *)"
 RAL\ral_pid.c:          return PID_Init(PIDS,ThetaInfoErrCal,ThetaInfoOutFunc,THES);
 RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(236): warning:  #167-D: argument of type "void (*)(struct ThetaInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
+RAL\ral_pid.c(256): warning:  #167-D: argument of type "void (*)(struct ThetaInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
+RAL\ral_pid.c:          return PID_Init(PIDS,ThetaInfoErrCal,ThetaInfoOutFunc,THES);
+RAL\ral_pid.c:                                               ^
+RAL\ral_pid.c: RAL\ral_pid.c: 8 warnings, 1 error
+compiling mal_adc.c...
+compiling mal_gpio.c...
+compiling mal_iap.c...
+compiling mal_pwm.c...
+compiling mal_spi.c...
+compiling mal_uart.c...
+Target not created
+Build target 'Target 1'
+assembling Startup.s...
+compiling main.c...
+compiling ral_encoder.c...
+compiling ral_joystick.c...
+compiling ral_linesensor.c...
+compiling ral_motor.c...
+compiling ral_mux.c...
+compiling ral_odometry.c...
+RAL\ral_odometry.c(18): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_odometry.c:     P->encoderLastCntL = Encoder_ReadBuffer(P->encoderChannelL);
+RAL\ral_odometry.c:                          ^
+RAL\ral_odometry.c(34): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_odometry.c:       LnewCount = Encoder_ReadBuffer(P->encoderChannelL);
+RAL\ral_odometry.c:                   ^
+RAL\ral_odometry.c: RAL\ral_odometry.c: 2 warnings, 0 errors
+compiling ral_pid.c...
+RAL\ral_pid.c(179): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_pid.c:          return (double)Encoder_ReadBuffer(POSS->encoderChannel) - correctPos; 
+RAL\ral_pid.c:                         ^
+RAL\ral_pid.c(188): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_pid.c:          int newPos = Encoder_ReadBuffer(VELS->encoderChannel);
+RAL\ral_pid.c:                       ^
+RAL\ral_pid.c(237): warning:  #167-D: argument of type "double (*)(struct PosInfo *)" is incompatible with parameter of type "double (*)(void *)"
+RAL\ral_pid.c:          return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
+RAL\ral_pid.c:                               ^
+RAL\ral_pid.c(237): warning:  #167-D: argument of type "void (*)(struct PosInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
+RAL\ral_pid.c:          return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
+RAL\ral_pid.c:                                             ^
+RAL\ral_pid.c(248): warning:  #167-D: argument of type "double (*)(struct VelInfo *)" is incompatible with parameter of type "double (*)(void *)"
+RAL\ral_pid.c:          return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS);
+RAL\ral_pid.c:                               ^
+RAL\ral_pid.c(248): warning:  #167-D: argument of type "void (*)(struct VelInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
+RAL\ral_pid.c:          return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS);
+RAL\ral_pid.c:                                             ^
+RAL\ral_pid.c(256): warning:  #167-D: argument of type "double (*)(struct ThetaInfo *)" is incompatible with parameter of type "double (*)(void *)"
+RAL\ral_pid.c:          return PID_Init(PIDS,ThetaInfoErrCal,ThetaInfoOutFunc,THES);
+RAL\ral_pid.c:                               ^
+RAL\ral_pid.c(256): warning:  #167-D: argument of type "void (*)(struct ThetaInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
 RAL\ral_pid.c:          return PID_Init(PIDS,ThetaInfoErrCal,ThetaInfoOutFunc,THES);
 RAL\ral_pid.c:                                               ^
 RAL\ral_pid.c: RAL\ral_pid.c: 8 warnings, 0 errors
@@ -535,9 +310,6 @@ compiling mal_spi.c...
 compiling mal_uart.c...
 linking...
 robocon.axf: Error: L6218E: Undefined symbol Encoder_ReadBuffer (referred from ral_odometry.o).
-robocon.axf: Error: L6218E: Undefined symbol PosInfoOutFunc (referred from ral_pid.o).
-robocon.axf: Error: L6218E: Undefined symbol ThetaInfoOutFunc (referred from ral_pid.o).
-robocon.axf: Error: L6218E: Undefined symbol VelInfoOutFunc (referred from ral_pid.o).
 robocon.axf: Not enough information to list image symbols.
-robocon.axf: Finished: 1 information, 0 warning and 4 error messages.
+robocon.axf: Finished: 1 information, 0 warning and 1 error messages.
 Target not created

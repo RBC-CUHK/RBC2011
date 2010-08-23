@@ -23,22 +23,24 @@ struct PosInfo{
 	int time;
 	int T1,T2,Tend;
 	int timeRegion;
-	int pwmChannel;
+//	int pwmChannel;
+	struct Motor_Setting* motor;
 	int encoderChannel;	
 };
 
 double PosInfoErrCal(struct PosInfo*);
-void PosInfoOutFunc(struct PosInfo* POSS,double err);
+void PosInfoOutFunc(struct PosInfo* POSS,double result);
 
 struct VelInfo{
 	double targetSpeed;
 	int oldPos;
-	int pwmChannel;
+	//int pwmChannel;
+	struct Motor_Setting* motor;
 	int encoderChannel;
 };
 
 double VelInfoErrCal(struct VelInfo*);
-void VelInfoOutFunc(struct VelInfo* VELS, double err);
+void VelInfoOutFunc(struct VelInfo* VELS, double result);
 
 struct ThetaInfo{
 	double targetTheta;
@@ -46,7 +48,7 @@ struct ThetaInfo{
 };
 
 double ThetaInfoErrCal(struct ThetaInfo*);
-void ThetaInfoOutFunc(struct ThetaInfo* THES,double err);
+void ThetaInfoOutFunc(struct ThetaInfo* THES,double result);
 
 struct PIDStruct* PID_Init(struct PIDStruct* PIDS,double (*err_Calc)(void* info),void (*output_Func)(void* info, double err),void *info);
 void PID_SetParameter(struct PIDStruct* PIDS,double kp,double ki,double kd,double imax,double tolerance);
@@ -56,6 +58,7 @@ void PID_Start(struct PIDStruct* PIDS);
 void PID_Stop(struct PIDStruct* PIDS);
 void PID_Push(struct PIDStruct* PIDS);
 void PID_UpdateAll(void);
-struct PIDStruct* PID_Init_Pos(struct PIDStruct* PIDS,double acc,double topSpeed,double dece,int targetPos,int initPos,int pwmChannel,int encoderChannel);
-struct PIDStruct* PID_Init_Vel(struct PIDStruct* PIDS,double targetSpeed,int pwmChannel,int encoderChannel);
+struct PIDStruct* PID_Init_Pos(struct PIDStruct* PIDS,double acc,double topSpeed,double dece,int targetPos,int initPos,struct Motor_Setting* motor,int encoderChannel);
+struct PIDStruct* PID_Init_Vel(struct PIDStruct* PIDS,double targetSpeed,struct Motor_Setting* motor,int encoderChannel);
+struct PIDStruct* PID_Init_Theta(struct PIDStruct* PIDS,double targetTheta,struct Pos* pos);
 #endif
