@@ -101,3 +101,92 @@ void PID_UpdateAll(void){
 	PID_Update(PIDList[i]);
     return;
 }
+double POS_ComputerTarget(struct PosInfo* POSS)
+	double s;
+	double T1,T2,Tend;
+	int t= POSS->time;
+	int time_region = 0;
+
+	if(POSS->T1 < POSS->T2){
+		if(POSS->time < POSS->T1){
+			POSS->time_region = 1;		
+		} else if(POSS->time < POSS->T2){
+			POSS->time_region = 2;
+		} else if(POSDS->time < POSS->Tend){
+			POSS->time_region = 3;
+		} else {
+			POSS->time_region = 4;
+		}
+	} else {
+		if(POSS->time < POSS->Tend / 2){
+			POSS->time_region = 1;
+		} else if(POSS->time < Tend){
+			POSS->time_region = 3;
+		} else {
+			POSS->time_region = 4;
+		}
+	}	
+	time_region = POSS->time_region;
+	T1 = POSS->T1;
+	T2 = POSS->T2;
+	Tend = POSS->Tend;
+	if(POSS->init_pos < POSS->target_pos){
+
+		switch(time_region){
+			case 1:
+				s = t * t * POSS->acceleration / 2 + (double)POSS->init_pos;
+			break;
+			case 2:
+				s =   (double)POSS->top_speed * ( t - T1) 
+					+ (double)POSS->top_speed * POSS->top_speed / (2 * POSS->acceleration)
+					//+ (double)POSS->top_speed / 2.0 * T1
+					+ (double)POSS->init_pos;
+			break;
+			case 3:
+				s =   -1 * (t-Tend) * (t-Tend) * POSS->deceleration / 2 + (double)POSS->target_pos;
+			break;
+			case 4:
+				s =   POSS->target_pos;
+			break;
+		}
+	}
+	
+	// the case that the curve decreases with time
+	else{
+		switch(time_region){
+			case 1:
+				s = -1 * t * t * POSS->acceleration / 2 + (double)POSS->init_pos;
+			break;
+			case 2:
+				s =  -1* (double)POSS->top_speed * ( t - T1) 
+					- (double)POSS->top_speed * POSS->top_speed / (2 * POSS->acceleration)
+					+ (double)POSS->init_pos;
+			break;
+			case 3:
+				s =   (t-Tend) * (t-Tend) * POSS->deceleration / 2 + (double)POSS->target_pos;
+			break;
+			case 4:
+				s =   POSS->target_pos;
+			break;
+		}
+	
+	}
+	return s;	
+
+}
+float PosInfoErrCal(struct PosInfo* POSS){
+	double correctPos = POS_ComputerTarget(POSS);
+	return (double)Encoder_ReadBuffer(POSS->encoderChannel) - correctPos; 
+}
+
+float VelInfoErrCal(struct VelInfo* VELS){
+	double currentSpeed;
+	int newPos = Encoder_ReadBuffer(VELS->encoderChannel);
+	currentSpeed = newPos - VELS->oldPos;
+	VELS->oldPos = newPos;
+	return currentSpeed - VELS->targetSpeed;
+}
+
+float ThetaInfoErrCal(struct ThetaInfo* THES){
+	return THES->targetTheta - THES->POS->theta; 
+}

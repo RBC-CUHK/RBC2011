@@ -2,6 +2,7 @@
 #define __RAL_PID_H
 
 #define MAX_PID_CHANNEL	10
+#include "ral_odometry.h"
 
 struct PIDStruct{
 	double kp,ki,kd,imax,tolerance,error_cumu,last_error;
@@ -18,18 +19,19 @@ struct PosInfo{
 	double top_speed;
 	double deceleration;
 	int target_pos;
+	int init_pos;
 	int time;
-	int T1,T2,T3;
-	int region;
+	int T1,T2,Tend;
+	int time_region;
 	int pwmChannel;
 	int encoderChannel;	
 };
 
-float PosInfoErrCal(const struct PosInfo*);
+float PosInfoErrCal(struct PosInfo*);
 
 struct VelInfo{
-	double target_speed;
-	int old_pos;
+	double targetSpeed;
+	int oldPos;
 	int pwmChannel;
 	int encoderChannel;
 };
@@ -37,8 +39,8 @@ struct VelInfo{
 float VelInfoErrCal(const struct VelInfo*);
 
 struct ThetaInfo{
-	double target_Theta;
-	struct PosInfo* pos;
+	double targetTheta;
+	struct Pos* pos;
 };
 
 float ThetaInfoErrCal(const struct ThetaInfo*);
