@@ -1,4 +1,3 @@
-#include <lpc213x.h>
 #include "ral_joystick.h"
 #include "../AAL/aal_adc.h"
 #include "../AAL/aal_gpio.h"

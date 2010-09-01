@@ -1,10 +1,17 @@
 #include <lpc213x.h>
 #include "aal_213xpwm.h"
 
-int PWM_PERIOD = 276480; //default 0.02s
+//int PWM_Period = 276480; //default 0.02s
+
+void PWM_InitFrequency(int frequency){
+//	PWM_Period = 13824000 * period / 1000;
+	PWMMR0 = 13824000 / frequency;
+	return ;
+}
 
 void PWM_InitPeriod(int period){		//Init the PWM Period
-	 PWM_PERIOD = 13824000 * period / 1000;
+	PWMMR0 = period;
+	return ;
 }
 
 void PWM_InitChannel(int channel,int level){
@@ -22,7 +29,7 @@ void PWM_InitChannel(int channel,int level){
 	
 	PWMPCR |= 1<<(8+channel);	//The PWM output enable
 	PWMMCR |= (1<<1);			//PWM match control reg: reset timer counter if MR0 matches
-	PWMMR0 = 1/PWM_PERIOD;		//match registers for pwm, MR0~6
+//	PWMMR0 = 1/PWM_PERIOD;		//match registers for pwm, MR0~6
 	
 	if (level>1000)
 	   level=1000;
@@ -38,12 +45,11 @@ void PWM_InitChannel(int channel,int level){
 	PWMLER |= 1<<channel;		//latch enable register
 	PWMTCR |= (1<<0) | (1<<3);	//counter enable, PWM enable
 	
-	PWM_Set(channel, 0);
+//	PWM_Set(channel, 0);
 	
 	for(n = 0 ; n < 100 ; n++){		//safety buffer
 		for(i=0 ; i< 450; i++){}
 	}
-
 }
 
 
@@ -51,10 +57,17 @@ void PWM_InitChannel(int channel,int level){
 
 void PWM_Set(int channel,int level){	//power select(0~1000)
 	
-    if( level > 1000){
-		level = 1000;
+//    if( level > 1000){
+//		level = 1000;
 	
-	switch(channel){				
+	switch(channel){
+		case 1: PWMMR1 = level; break;
+		case 2: PWMMR1 = level; break;
+		case 3: PWMMR1 = level; break;
+		case 4: PWMMR1 = level; break;
+		case 5: PWMMR1 = level; break;
+		case 6: PWMMR1 = level; break;
+/*
 	   case 1: PWMMR1 = level * POWER_1 / 1000.0;
 	   		   break;
 	   case 2: PWMMR2 = level * POWER_2 / 1000.0;
@@ -67,7 +80,7 @@ void PWM_Set(int channel,int level){	//power select(0~1000)
 	   	   	   break;
 	   case 6: PWMMR6 = level * POWER_6 / 1000.0;
 	   	   	   break;
+*/	
     } 
-	
 	PWMLER |= (1<<channel);
 }
