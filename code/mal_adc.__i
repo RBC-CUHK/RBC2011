@@ -1,0 +1,1 @@
+-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I "E:\Software\Keil\ARM\INC" -I "E:\Software\Keil\ARM\INC\Philips" -o "mal_adc.o" --omf_browse "mal_adc.crf" --depend "mal_adc.d" "MAL\mal_adc.c"

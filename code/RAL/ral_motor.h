@@ -1,8 +1,8 @@
 #ifndef __RAL_MOTOR_H
 #define __RAL_MOTOR_H
 
-#define 213xMODE	0
-#define 2103MODE	1
+#define MODE213x	0
+#define MODE2103	1
 
 struct Motor_Setting{
 int controlA; //99 dummy

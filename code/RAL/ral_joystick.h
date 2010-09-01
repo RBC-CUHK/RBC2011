@@ -23,7 +23,7 @@
 #define UPPERBOUND 525.0
 // Analog Setting End
 
-void Joystick_Init();
+void Joystick_Init(void);
 void Joystick_ReadAxis(int channel);
 void Joystick_ReadButton(int channel);
 #endif

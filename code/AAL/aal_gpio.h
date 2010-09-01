@@ -4,11 +4,11 @@
 #define	INPUT	0
 #define OUTPUT	1
 
-/*
-Float type has precision problem would actually cause problems
-(test case 0.7 would give 0 69 in my C program in linux)
-would switch back to int --Wilson
-*/
+
+//Float type has precision problem would actually cause problems
+//(test case 0.7 would give 0 69 in my C program in linux)
+//would switch back to int --Wilson
+
 //void GPIO_Init(float GPIO,int direction);	//INPUT / OUTPUT
 //int GPIO_Read(float GPIO);
 //void GPIO_Set(float int GPIO, int value);
