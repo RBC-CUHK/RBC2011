@@ -24,7 +24,7 @@
 ### ADS-LD Output File: 'robocon.axf'
 ### ADS-LD Command File: 'robocon.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile 'robocon.lnp', Handle=0x000002EC
+### Creating CmdFile 'robocon.lnp', Handle=0x000002F0
 ### Writing '.lnp' file
 ### ADS-LD Command file 'robocon.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.

@@ -3,6 +3,7 @@
 
 #define MAX_PID_CHANNEL	10
 #include "ral_odometry.h"
+#include "ral_motor.h"
 
 struct PIDStruct{
 	double kp,ki,kd,imax,tolerance,error_cumu,last_error;
@@ -12,6 +13,7 @@ struct PIDStruct{
 	char start;
 	double error_term;
 	double PIDResult;
+	int update_divider;
 };
 
 struct PosInfo{
@@ -28,8 +30,9 @@ struct PosInfo{
 	int encoderChannel;	
 };
 
-double PosInfoErrCal(struct PosInfo*);
-void PosInfoOutFunc(struct PosInfo* POSS,double err);
+double PosInfoErrCal(void*);
+void PosInfoOutFunc(void* POSS,double result);
+struct PIDStruct* PID_Init_Pos(struct PIDStruct* PIDS,double acc,double topSpeed,double dece,int targetPos,int initPos,struct Motor_Setting* motor,int encoderChannel);
 
 struct VelInfo{
 	double targetSpeed;
@@ -39,18 +42,22 @@ struct VelInfo{
 	int encoderChannel;
 };
 
-double VelInfoErrCal(struct VelInfo*);
-void VelInfoOutFunc(struct VelInfo* VELS, double err);
+double VelInfoErrCal(void*);
+void VelInfoOutFunc(void*, double result);
+struct PIDStruct* PID_Init_Vel(struct PIDStruct* PIDS,double targetSpeed,struct Motor_Setting* motor,int encoderChannel);
 
 struct ThetaInfo{
 	double targetTheta;
 	struct Pos* pos;
+	struct VelInfo* motorL;
+	struct VelInfo* motorR;
 };
 
-double ThetaInfoErrCal(struct ThetaInfo*);
-void ThetaInfoOutFunc(struct ThetaInfo* THES,double err);
+double ThetaInfoErrCal(void*);
+void ThetaInfoOutFunc(void*,double result);
+struct PIDStruct* PID_Init_Theta(struct PIDStruct* PIDS,double targetTheta,struct VelInfo* motorL, struct VelInfo* motorR, struct Pos* pos);
 
-struct PIDStruct* PID_Init(struct PIDStruct* PIDS,double (*err_Calc)(void* info),void (*output_Func)(void* info, double err),void *info);
+struct PIDStruct* PID_Init(struct PIDStruct* PIDS,double (*err_Calc)(void* info),void (*output_Func)(void* info, double err),void *info,int divider);
 void PID_SetParameter(struct PIDStruct* PIDS,double kp,double ki,double kd,double imax,double tolerance);
 double PID_Calc(struct PIDStruct* PIDS);
 void PID_Update(struct PIDStruct* PIDS);
@@ -58,6 +65,4 @@ void PID_Start(struct PIDStruct* PIDS);
 void PID_Stop(struct PIDStruct* PIDS);
 void PID_Push(struct PIDStruct* PIDS);
 void PID_UpdateAll(void);
-struct PIDStruct* PID_Init_Pos(struct PIDStruct* PIDS,double acc,double topSpeed,double dece,int targetPos,int initPos,int pwmChannel,int encoderChannel);
-struct PIDStruct* PID_Init_Vel(struct PIDStruct* PIDS,double targetSpeed,int pwmChannel,int encoderChannel);
 #endif

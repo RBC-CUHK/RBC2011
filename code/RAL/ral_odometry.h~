@@ -10,20 +10,21 @@
 #define PI_2		1.5707963267948966192313216916398
 #define C180_PI		57.295779513082320876798154814105
 
-
 struct Pos{
 	double x;
 	double y;
 	double theta;
-	int pwmChannelL;
-	int pwmChannelR;
+//	int pwmChannelL;
+//	int pwmChannelR;
+	struct VelInfo* motorL;
+	struct VelInfo* motorR;
 	int encoderChannelL;
 	int encoderChannelR;
 	int encoderLastCntL;
 	int encoderLastCntR;
 };
 
-void Odometry_Init(struct Pos* P, int encoderChannelL, int encoderChannelR);
-void Odometry_Update(struct Pos* P);
-void Odometry_Set(struct Pos* P, double x, double y, double theta);
+void Odometry_Init(struct VelInfo* motorL, struct VelInfo* motorR);
+void Odometry_Update(void);
+void Odometry_Set(double x, double y, double theta);
 #endif

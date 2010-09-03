@@ -1,26 +1,25 @@
-#include <LPC213x.h>
 #include <math.h>
-#include <stdlib.h>
 #include "ral_encoder.h"
 #include "ral_odometry.h"
+#include "ral_pid.h"
 
-void Odometry_Init(struct Pos* P, struct Motor_Setting motorL, struct Motor_Setting motorR, int encoderChannelL, int encoderChannelR){
-//    if(P == NULL)
-//	P = (struct Pos*)malloc(sizeof(struct Pos));
-    P->x = 0;
-    P->y = 0;
-    P->theta = 0.0;
-	P->motorL = motorL;
-	P->motorR = motorR;
-    P->encoderChannelL = encoderChannelL;
-    P->encoderChannelR = encoderChannelR;
+struct Pos Odometry_Pos;
+
+void Odometry_Init(struct VelInfo* motorL, struct VelInfo* motorR){ 
+    Odometry_Pos.x = 0;
+    Odometry_Pos.y = 0;
+    Odometry_Pos.theta = 0.0;
+	Odometry_Pos.motorL = motorL;
+	Odometry_Pos.motorR = motorR;
+    Odometry_Pos.encoderChannelL = motorL->encoderChannel;
+    Odometry_Pos.encoderChannelR = motorR->encoderChannel;
 	//init the last cnt by reading encoder 
-	P->encoderLastCntL = Encoder_ReadBuffer(P->encoderChannelL);
-	P->encoderLastCntR = Encoder_ReadBuffer(P->encoderChannelR);
+	Odometry_Pos.encoderLastCntL = Encoder_ReadBuffer(Odometry_Pos.encoderChannelL);
+	Odometry_Pos.encoderLastCntR = Encoder_ReadBuffer(Odometry_Pos.encoderChannelR);
     return;
 };
 
-void Odometry_Update(struct Pos* P){
+void Odometry_Update(){
 	int LCount;
 	int RCount;
 	double LCONST;
@@ -31,30 +30,30 @@ void Odometry_Update(struct Pos* P){
 	int LnewCount;
 	int RnewCount;
 
-    LnewCount = Encoder_ReadBuffer(P->encoderChannelL);
-    RnewCount = Encoder_ReadBuffer(P->encoderChannelR);
+    LnewCount = Encoder_ReadBuffer(Odometry_Pos.encoderChannelL);
+    RnewCount = Encoder_ReadBuffer(Odometry_Pos.encoderChannelR);
 	
 	//do odometry update by the delta cnt in L/R encoders
-	LCount = LnewCount - P->encoderLastCntL;
-	RCount = RnewCount - P->encoderLastCntR;
+	LCount = LnewCount - Odometry_Pos.encoderLastCntL;
+	RCount = RnewCount - Odometry_Pos.encoderLastCntR;
 
-	P->encoderLastCntL = LnewCount;
-	P->encoderLastCntR = RnewCount;
+	Odometry_Pos.encoderLastCntL = LnewCount;
+	Odometry_Pos.encoderLastCntR = RnewCount;
 
     LCONST = 2 * ENCODER_L_RADIUS * PI / ENCODER_COUNT; 
     RCONST = 2 * ENCODER_R_RADIUS * PI / ENCODER_COUNT; 
     LDistance = LCount * LCONST;
     RDistance = RCount * RCONST;
     delta_Distance = (LDistance + RDistance) / 2.0;
-    P->x += delta_Distance * cos(P->theta * PI_180);
-    P->y += delta_Distance * sin(P->theta * PI_180);
-    P->theta -= (LDistance - RDistance) / ENCODER_DISTANCE * C180_PI;
+    Odometry_Pos.x += delta_Distance * cos(Odometry_Pos.theta * PI_180);
+    Odometry_Pos.y += delta_Distance * sin(Odometry_Pos.theta * PI_180);
+    Odometry_Pos.theta -= (LDistance - RDistance) / ENCODER_DISTANCE * C180_PI;
     return;	
 };
 
-void Odometry_Set(struct Pos* P, double x, double y, double theta){
-    P->x = x;
-    P->y = y;
-    P->theta = theta;
+void Odometry_Set(double x, double y, double theta){
+    Odometry_Pos.x = x;
+    Odometry_Pos.y = y;
+    Odometry_Pos.theta = theta;
     return;
 };

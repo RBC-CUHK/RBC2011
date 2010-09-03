@@ -15,5 +15,6 @@ void PWM_InitPeriod(int period);		//Init the PWM Period
 void PWM_InitFrequency(int frequency);
 void PWM_InitChannel(int channel, int target_level);
 void PWM_Set(int channel, int level);
+void PWM_SetPercentage(int channel,int percentage);
 
 #endif

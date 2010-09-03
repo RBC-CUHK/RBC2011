@@ -8,6 +8,20 @@ Project File Date:  09/01/2010
 
 <h2>Output:</h2>
 Build target 'Target 1'
+compiling ral_pid.c...
+RAL\ral_pid.c(189): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_pid.c:          return (double)Encoder_ReadBuffer(POSS->encoderChannel) - correctPos; 
+RAL\ral_pid.c:                         ^
+RAL\ral_pid.c(200): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_pid.c:          int newPos = Encoder_ReadBuffer(VELS->encoderChannel);
+RAL\ral_pid.c:                       ^
+RAL\ral_pid.c: RAL\ral_pid.c: 2 warnings, 0 errors
+linking...
+robocon.axf: Error: L6218E: Undefined symbol Encoder_ReadBuffer (referred from ral_odometry.o).
+robocon.axf: Not enough information to list image symbols.
+robocon.axf: Finished: 1 information, 0 warning and 1 error messages.
+Target not created
+Build target 'Target 1'
 compiling aal_213xpwm.c...
 compiling aal_adc.c...
 compiling aal_gpio.c...
@@ -19,39 +33,21 @@ compiling ral_linesensor.c...
 compiling ral_motor.c...
 compiling ral_mux.c...
 compiling ral_odometry.c...
-RAL\ral_odometry.c(18): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
-RAL\ral_odometry.c:     P->encoderLastCntL = Encoder_ReadBuffer(P->encoderChannelL);
-RAL\ral_odometry.c:                          ^
-RAL\ral_odometry.c(34): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
-RAL\ral_odometry.c:       LnewCount = Encoder_ReadBuffer(P->encoderChannelL);
+RAL\ral_odometry.c(15): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_odometry.c:     Odometry_Pos.encoderLastCntL = Encoder_ReadBuffer(Odometry_Pos.encoderChannelL);
+RAL\ral_odometry.c:                                    ^
+RAL\ral_odometry.c(31): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_odometry.c:       LnewCount = Encoder_ReadBuffer(Odometry_Pos.encoderChannelL);
 RAL\ral_odometry.c:                   ^
 RAL\ral_odometry.c: RAL\ral_odometry.c: 2 warnings, 0 errors
 compiling ral_pid.c...
-RAL\ral_pid.c(179): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_pid.c(189): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
 RAL\ral_pid.c:          return (double)Encoder_ReadBuffer(POSS->encoderChannel) - correctPos; 
 RAL\ral_pid.c:                         ^
-RAL\ral_pid.c(188): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
+RAL\ral_pid.c(200): warning:  #223-D: function "Encoder_ReadBuffer" declared implicitly
 RAL\ral_pid.c:          int newPos = Encoder_ReadBuffer(VELS->encoderChannel);
 RAL\ral_pid.c:                       ^
-RAL\ral_pid.c(237): warning:  #167-D: argument of type "double (*)(struct PosInfo *)" is incompatible with parameter of type "double (*)(void *)"
-RAL\ral_pid.c:          return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
-RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(237): warning:  #167-D: argument of type "void (*)(struct PosInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
-RAL\ral_pid.c:          return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS);
-RAL\ral_pid.c:                                             ^
-RAL\ral_pid.c(248): warning:  #167-D: argument of type "double (*)(struct VelInfo *)" is incompatible with parameter of type "double (*)(void *)"
-RAL\ral_pid.c:          return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS);
-RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(248): warning:  #167-D: argument of type "void (*)(struct VelInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
-RAL\ral_pid.c:          return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS);
-RAL\ral_pid.c:                                             ^
-RAL\ral_pid.c(256): warning:  #167-D: argument of type "double (*)(struct ThetaInfo *)" is incompatible with parameter of type "double (*)(void *)"
-RAL\ral_pid.c:          return PID_Init(PIDS,ThetaInfoErrCal,ThetaInfoOutFunc,THES);
-RAL\ral_pid.c:                               ^
-RAL\ral_pid.c(256): warning:  #167-D: argument of type "void (*)(struct ThetaInfo *, double)" is incompatible with parameter of type "void (*)(void *, double)"
-RAL\ral_pid.c:          return PID_Init(PIDS,ThetaInfoErrCal,ThetaInfoOutFunc,THES);
-RAL\ral_pid.c:                                               ^
-RAL\ral_pid.c: RAL\ral_pid.c: 8 warnings, 0 errors
+RAL\ral_pid.c: RAL\ral_pid.c: 2 warnings, 0 errors
 compiling main.c...
 compiling arm_math.c...
 assembling Startup.s...
