@@ -383,17 +383,32 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>Source Group 1</GroupName>
+          <GroupName>New Group</GroupName>
           <Files>
             <File>
-              <FileName>Startup.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>.\Startup.s</FilePath>
+              <FileName>aal_213xpwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\AAL\aal_213xpwm.c</FilePath>
             </File>
             <File>
-              <FileName>main.c</FileName>
+              <FileName>aal_adc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\main.c</FilePath>
+              <FilePath>.\AAL\aal_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>aal_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\AAL\aal_gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>aal_timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\AAL\aal_timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>aal_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\AAL\aal_uart.c</FilePath>
             </File>
             <File>
               <FileName>ral_encoder.c</FileName>
@@ -431,34 +446,19 @@
               <FilePath>.\RAL\ral_pid.c</FilePath>
             </File>
             <File>
-              <FileName>mal_adc.c</FileName>
+              <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\MAL\mal_adc.c</FilePath>
+              <FilePath>.\main.c</FilePath>
             </File>
             <File>
-              <FileName>mal_gpio.c</FileName>
+              <FileName>arm_math.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\MAL\mal_gpio.c</FilePath>
+              <FilePath>.\AAL\arm_math.c</FilePath>
             </File>
             <File>
-              <FileName>mal_iap.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\MAL\mal_iap.c</FilePath>
-            </File>
-            <File>
-              <FileName>mal_pwm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\MAL\mal_pwm.c</FilePath>
-            </File>
-            <File>
-              <FileName>mal_spi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\MAL\mal_spi.c</FilePath>
-            </File>
-            <File>
-              <FileName>mal_uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\MAL\mal_uart.c</FilePath>
+              <FileName>Startup.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Startup.s</FilePath>
             </File>
           </Files>
         </Group>

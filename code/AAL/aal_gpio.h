@@ -15,6 +15,6 @@
 
 void GPIO_Init(int GPIO, int direction);
 int GPIO_Read(int GPIO);
-void GPIO_SET(int GPIO, int value);
+void GPIO_Set(int GPIO, int value);
 
 #endif

@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "ral_pid.h"
+#include "ral_encoder.h"
 
 struct PIDStruct* PIDList[MAX_PID_CHANNEL]={NULL};
 int PIDListCount = 0;
