@@ -3,7 +3,7 @@
 <title>Static Call Graph - [F:\Documents\Kit\RBC\Code\RBC2011\code\robocon.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image F:\Documents\Kit\RBC\Code\RBC2011\code\robocon.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 4.1 [Build 481]: Last Updated: Fri Sep 03 15:28:16 2010
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 4.1 [Build 481]: Last Updated: Fri Sep 03 15:30:22 2010
 <BR><P>
 <H3>Maximum Stack Usage =         12 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -13,7 +13,7 @@ main &rArr; Uart_Print
 Functions with no stack information
 </H3><UL>
  <LI><a href="#[9]">Reset_Handler</a>
- <LI><a href="#[31]">__user_initial_stackheap</a>
+ <LI><a href="#[33]">__user_initial_stackheap</a>
  <LI><a href="#[a]">Undef_Handler</a>
  <LI><a href="#[b]">SWI_Handler</a>
  <LI><a href="#[c]">PAbt_Handler</a>
@@ -45,7 +45,7 @@ Function Pointers
  <LI><a href="#[f]">FIQ_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
  <LI><a href="#[12]">__main</a> from __main.o(!!!main) referenced from startup.o(RESET)
  <LI><a href="#[11]">main</a> from main.o(.text) referenced from rtentry2.o(.ARM.Collect$$rtentry$$0000000D)
- <LI><a href="#[31]">__user_initial_stackheap</a> from startup.o(.text) referenced from aal_uart.o(.text)
+ <LI><a href="#[11]">main</a> from main.o(.text) referenced from aal_uart.o(.text)
 </UL>
 <P>
 <H3>
@@ -185,7 +185,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[27]"></a>Uart_SendChar</STRONG> (ARM, 32 bytes, Stack size 0 bytes, aal_uart.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_FixSendInt
+<BR><BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_FixSendInt
 <LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendFloat
 <LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendBit
 <LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendInt
@@ -198,7 +198,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendChar
 </UL>
 <BR>[Called By]<UL><LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_FixSendInt
+<LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_FixSendInt
 <LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendFloat
 <LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendInt
 </UL>
@@ -229,19 +229,12 @@ Global Symbols
 <LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendChar
 </UL>
 
-<P><STRONG><a name="[32]"></a>Uart_FixSendInt</STRONG> (ARM, 336 bytes, Stack size 24 bytes, aal_uart.o(.text), UNUSED)
+<P><STRONG><a name="[31]"></a>Uart_FixSendInt</STRONG> (ARM, 336 bytes, Stack size 24 bytes, aal_uart.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_idivmod
 <LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_Print
 <LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendChar
 </UL>
 
-<P><STRONG><a name="[11]"></a>main</STRONG> (ARM, 24 bytes, Stack size 8 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = main &rArr; Uart_Print
-</UL>
-<BR>[Calls]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_Print
-</UL>
-<BR>[Address Reference Count : 1]<UL><LI> rtentry2.o(.ARM.Collect$$rtentry$$0000000D)
-</UL>
 <P><STRONG><a name="[29]"></a>numDigi</STRONG> (ARM, 228 bytes, Stack size 0 bytes, arm_math.o(.text), UNUSED)
 <BR><BR>[Called By]<UL><LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendInt
 </UL>
@@ -252,22 +245,29 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendInt
 </UL>
 
-<P><STRONG><a name="[31]"></a>__user_initial_stackheap</STRONG> (ARM, 0 bytes, Stack size unknown bytes, startup.o(.text))
+<P><STRONG><a name="[33]"></a>__user_initial_stackheap</STRONG> (ARM, 0 bytes, Stack size unknown bytes, startup.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
 </UL>
-<BR>[Address Reference Count : 1]<UL><LI> aal_uart.o(.text)
+
+<P><STRONG><a name="[11]"></a>main</STRONG> (ARM, 24 bytes, Stack size 8 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = main &rArr; Uart_Print
+</UL>
+<BR>[Calls]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_Print
+</UL>
+<BR>[Address Reference Count : 2]<UL><LI> aal_uart.o(.text)
+<LI> rtentry2.o(.ARM.Collect$$rtentry$$0000000D)
 </UL>
 <P><STRONG><a name="[66]"></a>__aeabi_idiv</STRONG> (ARM, 0 bytes, Stack size 8 bytes, aeabi_sdiv.o(.text), UNUSED)
 
 <P><STRONG><a name="[2b]"></a>__aeabi_idivmod</STRONG> (ARM, 384 bytes, Stack size 8 bytes, aeabi_sdiv.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_FixSendInt
+<BR><BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_FixSendInt
 <LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendFloat
 <LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendInt
 </UL>
 
 <P><STRONG><a name="[67]"></a>__user_libspace</STRONG> (ARM, 12 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
 
-<P><STRONG><a name="[33]"></a>__user_perproc_libspace</STRONG> (ARM, 0 bytes, Stack size 0 bytes, libspace.o(.text))
+<P><STRONG><a name="[32]"></a>__user_perproc_libspace</STRONG> (ARM, 0 bytes, Stack size 0 bytes, libspace.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
 </UL>
 
@@ -281,8 +281,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
 <LI>Call Chain = __user_setup_stackheap
 </UL>
-<BR>[Calls]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_initial_stackheap
-<LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_perproc_libspace
+<BR>[Calls]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_initial_stackheap
+<LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_perproc_libspace
 </UL>
 <BR>[Called By]<UL><LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_sh
 </UL>

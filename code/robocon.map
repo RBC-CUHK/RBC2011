@@ -17,6 +17,7 @@ Section Cross References
     aal_uart.o(.text) refers to fleqf.o(x$fpl$fleqf) for __aeabi_cfcmple
     aal_uart.o(.text) refers to fmul.o(x$fpl$fmul) for __aeabi_fmul
     aal_uart.o(.text) refers to ffix.o(x$fpl$ffix) for __aeabi_f2iz
+    aal_spi.o(.text) refers to aal_uart.o(.text) for Uart_Print
     ral_encoder.o(.text) refers to aal_spi.o(.text) for SPI_setLength
     ral_encoder.o(.text) refers to ral_mux.o(.text) for Mux_Set
     ral_encoder.o(.text) refers to rt_memcpy_w.o(.text) for __aeabi_memcpy4
@@ -54,12 +55,11 @@ Section Cross References
     ral_pid.o(.text) refers to h1_alloc.o(.text) for malloc
     ral_pid.o(.text) refers to ral_pid.o(.bss) for PIDList
     ral_pid.o(.text) refers to ral_pid.o(.data) for PIDListCount
-    main.o(.text) refers to aal_uart.o(.text) for Uart_Print
     startup.o(RESET) refers to startup.o(STACK) for Stack_Top
     startup.o(RESET) refers to __main.o(!!!main) for __main
     startup.o(.text) refers to startup.o(HEAP) for Heap_Mem
     startup.o(.text) refers to startup.o(STACK) for Stack_Mem
-    aal_spi.o(.text) refers to aal_uart.o(.text) for Uart_Print
+    main.o(.text) refers to aal_uart.o(.text) for Uart_Print
     malloc.o(.text) refers (Special) to hguard.o(.text) for __heap$guard
     malloc.o(.text) refers (Special) to init_alloc.o(.text) for _init_alloc
     malloc.o(.text) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
@@ -427,6 +427,7 @@ Removing Unused input sections from the image.
     Removing aal_adc.o(.text), (368 bytes).
     Removing aal_gpio.o(.text), (772 bytes).
     Removing aal_timer.o(.text), (224 bytes).
+    Removing aal_spi.o(.text), (440 bytes).
     Removing ral_encoder.o(.text), (456 bytes).
     Removing ral_encoder.o(.bss), (80 bytes).
     Removing ral_encoder.o(.constdata), (20 bytes).
@@ -440,7 +441,6 @@ Removing Unused input sections from the image.
     Removing ral_pid.o(.text), (3416 bytes).
     Removing ral_pid.o(.bss), (40 bytes).
     Removing ral_pid.o(.data), (12 bytes).
-    Removing aal_spi.o(.text), (440 bytes).
 
 18 unused section(s) (total 8376 bytes) removed from the image.
 
@@ -488,17 +488,17 @@ Image Symbol Table
     ../../angel/scatter.s                    0x00000000   Number         0  __scatter.o ABSOLUTE
     ../../angel/startup.s                    0x00000000   Number         0  __main.o ABSOLUTE
     ../../angel/sys.s                        0x00000000   Number         0  libspace.o ABSOLUTE
+    ../../angel/sys.s                        0x00000000   Number         0  use_no_semi.o ABSOLUTE
     ../../angel/sys.s                        0x00000000   Number         0  mutex_dummy.o ABSOLUTE
     ../../angel/sys.s                        0x00000000   Number         0  sys_stackheap_outer.o ABSOLUTE
-    ../../angel/sys.s                        0x00000000   Number         0  use_no_semi.o ABSOLUTE
     ../../angel/sysapp.c                     0x00000000   Number         0  sys_exit.o ABSOLUTE
     ../../angel/sysapp.c                     0x00000000   Number         0  sys_wrch.o ABSOLUTE
     ../../angel/sysapp.c                     0x00000000   Number         0  sys_command.o ABSOLUTE
     ../../armsys.c                           0x00000000   Number         0  _get_argv.o ABSOLUTE
-    ../../armsys.c                           0x00000000   Number         0  argv_veneer.o ABSOLUTE
     ../../armsys.c                           0x00000000   Number         0  no_argv.o ABSOLUTE
     ../../armsys.c                           0x00000000   Number         0  argv_veneer.o ABSOLUTE
     ../../armsys.c                           0x00000000   Number         0  _get_argv_nomalloc.o ABSOLUTE
+    ../../armsys.c                           0x00000000   Number         0  argv_veneer.o ABSOLUTE
     ../../cos.c                              0x00000000   Number         0  cos.o ABSOLUTE
     ../../cos.c                              0x00000000   Number         0  cos_x.o ABSOLUTE
     ../../cos_i.c                            0x00000000   Number         0  cos_i.o ABSOLUTE
@@ -541,44 +541,44 @@ Image Symbol Table
     ../../heap2.c                            0x00000000   Number         0  heap2.o ABSOLUTE
     ../../heap2.c                            0x00000000   Number         0  fdtree.o ABSOLUTE
     ../../heap2.c                            0x00000000   Number         0  heap2mt.o ABSOLUTE
-    ../../heapalloc.c                        0x00000000   Number         0  heapstubs.o ABSOLUTE
+    ../../heapalloc.c                        0x00000000   Number         0  term_alloc.o ABSOLUTE
+    ../../heapalloc.c                        0x00000000   Number         0  malloc.o ABSOLUTE
     ../../heapalloc.c                        0x00000000   Number         0  maybetermalloc2.o ABSOLUTE
+    ../../heapalloc.c                        0x00000000   Number         0  hguard.o ABSOLUTE
+    ../../heapalloc.c                        0x00000000   Number         0  init_alloc.o ABSOLUTE
+    ../../heapalloc.c                        0x00000000   Number         0  free.o ABSOLUTE
+    ../../heapalloc.c                        0x00000000   Number         0  heapstubs.o ABSOLUTE
     ../../heapalloc.c                        0x00000000   Number         0  hrguard.o ABSOLUTE
     ../../heapalloc.c                        0x00000000   Number         0  maybetermalloc1.o ABSOLUTE
-    ../../heapalloc.c                        0x00000000   Number         0  init_alloc.o ABSOLUTE
     ../../heapalloc.c                        0x00000000   Number         0  maybetermalloc1.o ABSOLUTE
     ../../heapalloc.c                        0x00000000   Number         0  maybetermalloc2.o ABSOLUTE
-    ../../heapalloc.c                        0x00000000   Number         0  malloc.o ABSOLUTE
-    ../../heapalloc.c                        0x00000000   Number         0  hguard.o ABSOLUTE
-    ../../heapalloc.c                        0x00000000   Number         0  term_alloc.o ABSOLUTE
-    ../../heapalloc.c                        0x00000000   Number         0  free.o ABSOLUTE
     ../../heapaux.c                          0x00000000   Number         0  heapauxa.o ABSOLUTE
     ../../heapaux.c                          0x00000000   Number         0  heapauxi.o ABSOLUTE
+    ../../libinit.s                          0x00000000   Number         0  libshutdown.o ABSOLUTE
     ../../libinit.s                          0x00000000   Number         0  libshutdown2.o ABSOLUTE
     ../../libinit.s                          0x00000000   Number         0  libinit2.o ABSOLUTE
     ../../libinit.s                          0x00000000   Number         0  libinit.o ABSOLUTE
-    ../../libinit.s                          0x00000000   Number         0  libshutdown.o ABSOLUTE
     ../../memcpset.s                         0x00000000   Number         0  rt_memcpy_w.o ABSOLUTE
     ../../poly.c                             0x00000000   Number         0  poly.o ABSOLUTE
     ../../retnan.s                           0x00000000   Number         0  retnan.o ABSOLUTE
     ../../rred.c                             0x00000000   Number         0  rred.o ABSOLUTE
     ../../scalbn.s                           0x00000000   Number         0  scalbn.o ABSOLUTE
-    ../../signal.c                           0x00000000   Number         0  defsig_stak_inner.o ABSOLUTE
-    ../../signal.c                           0x00000000   Number         0  defsig_fpe_inner.o ABSOLUTE
     ../../signal.c                           0x00000000   Number         0  defsig_general.o ABSOLUTE
-    ../../signal.c                           0x00000000   Number         0  __raise.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_fpe_inner.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_stak_inner.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_abrt_inner.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_fpe_formal.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_rtred_inner.o ABSOLUTE
     ../../signal.c                           0x00000000   Number         0  defsig_rtmem_outer.o ABSOLUTE
     ../../signal.c                           0x00000000   Number         0  defsig_rtmem_formal.o ABSOLUTE
-    ../../signal.c                           0x00000000   Number         0  defsig_fpe_formal.o ABSOLUTE
-    ../../signal.c                           0x00000000   Number         0  defsig_rtmem_inner.o ABSOLUTE
-    ../../signal.c                           0x00000000   Number         0  defsig_fpe_outer.o ABSOLUTE
-    ../../signal.c                           0x00000000   Number         0  defsig_abrt_inner.o ABSOLUTE
-    ../../signal.c                           0x00000000   Number         0  defsig_exit.o ABSOLUTE
     ../../signal.c                           0x00000000   Number         0  defsig_pvfn_inner.o ABSOLUTE
     ../../signal.c                           0x00000000   Number         0  defsig_cppl_inner.o ABSOLUTE
     ../../signal.c                           0x00000000   Number         0  defsig_segv_inner.o ABSOLUTE
     ../../signal.c                           0x00000000   Number         0  defsig_other.o ABSOLUTE
-    ../../signal.c                           0x00000000   Number         0  defsig_rtred_inner.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_fpe_outer.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_rtmem_inner.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_exit.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  __raise.o ABSOLUTE
     ../../signal.s                           0x00000000   Number         0  defsig.o ABSOLUTE
     ../../sin.c                              0x00000000   Number         0  sin_x.o ABSOLUTE
     ../../sin.c                              0x00000000   Number         0  sin.o ABSOLUTE
@@ -652,9 +652,9 @@ Image Symbol Table
     .ARM.Collect$$rtexit$$00000003           0x000001ec   Section        4  rtexit2.o(.ARM.Collect$$rtexit$$00000003)
     .ARM.Collect$$rtexit$$00000004           0x000001f0   Section        8  rtexit2.o(.ARM.Collect$$rtexit$$00000004)
     .text                                    0x000001f8   Section        0  aal_uart.o(.text)
-    .text                                    0x000005ec   Section        0  main.o(.text)
-    .text                                    0x0000060c   Section        0  arm_math.o(.text)
-    .text                                    0x000008e8   Section       32  startup.o(.text)
+    .text                                    0x000005ec   Section        0  arm_math.o(.text)
+    .text                                    0x000008c8   Section       32  startup.o(.text)
+    .text                                    0x000008e8   Section        0  main.o(.text)
     .text                                    0x00000908   Section      384  aeabi_sdiv.o(.text)
     __arm_div8                               0x00000934   ARM Code       0  aeabi_sdiv.o(.text)
     __arm_div5                               0x00000958   ARM Code       0  aeabi_sdiv.o(.text)
@@ -780,11 +780,11 @@ Image Symbol Table
     Uart_SendBit                             0x0000036c   ARM Code      28  aal_uart.o(.text)
     Uart_SendFloat                           0x00000388   ARM Code     276  aal_uart.o(.text)
     Uart_FixSendInt                          0x0000049c   ARM Code     336  aal_uart.o(.text)
-    main                                     0x000005ec   ARM Code      24  main.o(.text)
-    numDigi                                  0x0000060c   ARM Code     228  arm_math.o(.text)
-    pow2                                     0x000006f0   ARM Code     296  arm_math.o(.text)
-    pow10                                    0x00000818   ARM Code     184  arm_math.o(.text)
-    __user_initial_stackheap                 0x000008e8   ARM Code       0  startup.o(.text)
+    numDigi                                  0x000005ec   ARM Code     228  arm_math.o(.text)
+    pow2                                     0x000006d0   ARM Code     296  arm_math.o(.text)
+    pow10                                    0x000007f8   ARM Code     184  arm_math.o(.text)
+    __user_initial_stackheap                 0x000008c8   ARM Code       0  startup.o(.text)
+    main                                     0x000008e8   ARM Code      24  main.o(.text)
     __aeabi_idiv                             0x00000908   ARM Code       0  aeabi_sdiv.o(.text)
     __aeabi_idivmod                          0x00000908   ARM Code     384  aeabi_sdiv.o(.text)
     __user_libspace                          0x00000a88   ARM Code      12  libspace.o(.text)
@@ -843,7 +843,7 @@ Memory Map of the image
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x00000000   0x00000110   Code   RO          238    RESET               startup.o
+    0x00000000   0x00000110   Code   RO          244    RESET               startup.o
     0x00000110   0x00000008   Code   RO          346  * !!!main             c_t.l(__main.o)(c_t.l)
     0x00000118   0x0000003c   Code   RO          680    !!!scatter          c_t.l(__scatter.o)(c_t.l)
     0x00000154   0x0000002c   Code   RO          682    !!handler_zi        c_t.l(__scatter_zi.o)(c_t.l)
@@ -891,9 +891,9 @@ Memory Map of the image
     0x000001ec   0x00000004   Code   RO          648    .ARM.Collect$$rtexit$$00000003  c_t.l(rtexit2.o)(c_t.l)
     0x000001f0   0x00000008   Code   RO          649    .ARM.Collect$$rtexit$$00000004  c_t.l(rtexit2.o)(c_t.l)
     0x000001f8   0x000003f4   Code   RO           66    .text               aal_uart.o
-    0x000005ec   0x00000020   Code   RO          209    .text               main.o
-    0x0000060c   0x000002dc   Code   RO          224    .text               arm_math.o
-    0x000008e8   0x00000020   Code   RO          239    .text               startup.o
+    0x000005ec   0x000002dc   Code   RO           84    .text               arm_math.o
+    0x000008c8   0x00000020   Code   RO          245    .text               startup.o
+    0x000008e8   0x00000020   Code   RO          251    .text               main.o
     0x00000908   0x00000180   Code   RO          330    .text               c_t.l(aeabi_sdiv.o)(c_t.l)
     0x00000a88   0x0000000c   Code   RO          521    .text               c_t.l(libspace.o)(c_t.l)
     0x00000a94   0x00000004   Code   RO          578    .text               c_t.l(use_no_semi.o)(c_t.l)
@@ -926,8 +926,8 @@ Memory Map of the image
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x40000000   0x00000060   Zero   RW          522    .bss                c_t.l(libspace.o)(c_t.l)
-    0x40000060   0x00000000   Zero   RW          237    HEAP                startup.o
-    0x40000060   0x00000488   Zero   RW          236    STACK               startup.o
+    0x40000060   0x00000000   Zero   RW          243    HEAP                startup.o
+    0x40000060   0x00000488   Zero   RW          242    STACK               startup.o
 
 
 ==============================================================================
