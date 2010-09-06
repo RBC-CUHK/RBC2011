@@ -13,12 +13,17 @@
 #define MUX_ENCODER9 10
 #define MUX_ENCODER10 11
 
+struct Mux_Struct{
+	int EN;
+	int gpio[4];
+};
+
 /*
  * 5 pins, not_EN for enable of mux, other pins for selecting output
  */
-void Mux_Init(int gpio[5]); //Init GPIO ##GPIO[4] EN, GPIO[3] MS --> GPIO[0] LS
-void Mux_Set(int channel);
-void Mux_Unset(void);
+struct Mux_Struct* Mux_Init(struct Mux_Struct* Mux, int EN, int gpio[4]); //Init GPIO[3] MS --> GPIO[0] LS
+void Mux_Set(struct Mux_Struct Mux, int channel);
+void Mux_Unset(struct Mux_Struct Mux);
 
 #endif
 

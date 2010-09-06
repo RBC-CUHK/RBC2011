@@ -4,6 +4,7 @@
 
 //global varibles: local buffer of all encoder values
 static int encoder_value_[20];
+static struct Mux_Struct EncoderMux;
 
 /*
  *	Encoder_Init()
@@ -16,10 +17,11 @@ void Encoder_Init(int channel){
 	 * p0.20 is not_EN
 	 * p0.16-p0.19 is selecting bits
 	 */
-	int gpio[5]={19,18,17,16,20};
+	int gpio[4]={18,17,16,20};
+	int EN = 19;
 	int i;
 
-	Mux_Init(gpio); //Init GPIO ##GPIO[4] EN, GPIO[3] MS --> GPIO[0] LS
+	Mux_Init(&EncoderMux,EN,gpio); //Init GPIO ##GPIO[4] EN, GPIO[3] MS --> GPIO[0] LS
 	SPI_InitMaster(16);
 	for(i=MUX_ENCODER1 ; i<=MUX_ENCODER10 ;i++)
 	{
@@ -40,7 +42,7 @@ void Encoder_Reset(int channel){
 	/*
 	 *set the MDR0
 	 */
-	Mux_Set(channel);// select channel (low that pin)
+	Mux_Set(&EncoderMux,channel);// select channel (low that pin)
 
 	data = 0;
 	data |= (1<<7) | (0<<6) | (0<<5) | (0<<4) | (1<<3);//;LS7366 WR_MDR0 command
@@ -59,35 +61,35 @@ void Encoder_Reset(int channel){
 
 	SPI_Send(data);
 
-	Mux_Unset();// select no pin(high all pin)
+	Mux_Unset(&EncoderMux);// select no pin(high all pin)
 
 	for(i=0;i<100;i++){}//delay
 
 	/*
 	 *  set the MDR1
 	 */
-	Mux_Set(channel);// select channel (low that pin)
+	Mux_Set(&EncoderMux,channel);// select channel (low that pin)
 
 	data = 0;
 	data |= (0<<7) | (0<<6) | (0<<5) | (1<<4) | (0<<3);//;LS7366 CLR_MDR1 command
 
 	SPI_Send(data);
 
-	Mux_Unset();// select no pin(high all pin)
+	Mux_Unset(&EncoderMux);// select no pin(high all pin)
 
 	for(i=0;i<100;i++){}//delay
 
 	/*
 	 *  set the CNTR
 	 */
-	Mux_Set(channel);// select channel (low that pin)
+	Mux_Set(&EncoderMux,channel);// select channel (low that pin)
 
 	data = 0;
 	data |= (0<<7) | (0<<6) | (1<<5) | (0<<4) | (0<<3);//;LS7366 CLR_CNTR command
 
 	SPI_Send(data);
 
-	Mux_Unset();// select no pin(high all pin)
+	Mux_Unset(&EncoderMux);// select no pin(high all pin)
 
 	for(i=0;i<100;i++){}//delay
 }
@@ -104,7 +106,7 @@ int Encoder_Read(int channel){
 	/*
 	 *  get value from LS7366R
 	 */
-	Mux_Set(channel);// select channel (low that pin)
+	Mux_Set(&EncoderMux,channel);// select channel (low that pin)
 
 	data = 0;
 	data |= (0<<7) | (1<<6) | (1<<5) | (0<<4) | (0<<3);//;LS7366 RD_CNTR command
@@ -118,7 +120,7 @@ int Encoder_Read(int channel){
 		data = (data<<8) + i;
 	}
 
-	Mux_Unset();// select no pin(high all pin)
+	Mux_Unset(&EncoderMux);// select no pin(high all pin)
 	return data;
 }
 /*

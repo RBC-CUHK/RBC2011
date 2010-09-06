@@ -3,34 +3,37 @@
 #include "../AAL/aal_gpio.h"
 
 //global varible
-static int gpio_[5];
+//static int gpio_[5];
 
 /*
  *	Mux_Init()
  *	init the mux
  *	Using 5 gpios to represent 4 select pin and 1 not_enable pine
  */
-void Mux_Init(int gpio[5]){ //Init GPIO ##GPIO[4] not_EN, GPIO[3] MS --> GPIO[0] LS
+struct Mux_Struct* Mux_Init(struct Mux_Struct* Mux, int EN, int gpio[4]){ 
+//Init GPIO[3] MS --> GPIO[0] LS
 	int i;
-	for(i=0;i<5;++i){
-		gpio_[i] = gpio[i];
-		GPIO_Init(gpio_[i], OUTPUT);
+	Mux->EN = EN;
+	for(i=0;i<4;++i){
+		MUX->gpio[i] = gpio[i];
+		GPIO_Init(MUX->gpio[i], OUTPUT);
 	}
-	Mux_Unset();//deactive the mux(select no output)
+	Mux_Unset(MUX);//deactive the mux(select no output)
+	return MUX;
 }
 
 /*
  *	Mux_Set()
  *	low the selected pin
  */
-void Mux_Set(int channel){
+void Mux_Set(struct Mux_Struct Mux, int channel){
 	channel &= 0x0F;
-	(channel&0x08) ? GPIO_Set(gpio_[3],1) : GPIO_Set(gpio_[3],0);
-	(channel&0x04) ? GPIO_Set(gpio_[2],1) : GPIO_Set(gpio_[2],0);
-	(channel&0x02) ? GPIO_Set(gpio_[1],1) : GPIO_Set(gpio_[1],0);
-	(channel&0x01) ? GPIO_Set(gpio_[0],1) : GPIO_Set(gpio_[0],0);
+	(channel&0x08) ? GPIO_Set(Mux->gpio[3],1) : GPIO_Set(Mux->gpio[3],0);
+	(channel&0x04) ? GPIO_Set(Mux->gpio[2],1) : GPIO_Set(Mux->gpio[2],0);
+	(channel&0x02) ? GPIO_Set(Mux->gpio[1],1) : GPIO_Set(Mux->gpio[1],0);
+	(channel&0x01) ? GPIO_Set(Mux->gpio[0],1) : GPIO_Set(Mux->gpio[0],0);
 	// active the mux	 		
-	GPIO_Set(gpio_[4],0); //clear not_EN
+	GPIO_Set(Mux->EN,0); //clear not_EN
 
 	////example about what above code doing
 	//switch(channel){
@@ -60,8 +63,9 @@ void Mux_Set(int channel){
  *	Mux_Unset()
  *	deactive the mux(select no output), high all pin
  * */
-void Mux_Unset(void){
+void Mux_Unset(struct MUX_Struct Mux){
 	// deactive the mux	 		
-	GPIO_Set(gpio_[4],1); //set not_EN
+	GPIO_Set(Mux->EN,1); //set not_EN
+	return ;
 }
 
