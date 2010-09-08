@@ -3,16 +3,14 @@
 #include "ral_odometry.h"
 #include "ral_pid.h"
 
-struct Pos Odometry_Pos;
+static struct Pos Odometry_Pos;
 
-void Odometry_Init(struct VelInfo* motorL, struct VelInfo* motorR){ 
+void Odometry_Init(int encoderL, int encoderR){ 
     Odometry_Pos.x = 0;
     Odometry_Pos.y = 0;
     Odometry_Pos.theta = 0.0;
-	Odometry_Pos.motorL = motorL;
-	Odometry_Pos.motorR = motorR;
-    Odometry_Pos.encoderChannelL = motorL->encoderChannel;
-    Odometry_Pos.encoderChannelR = motorR->encoderChannel;
+    Odometry_Pos.encoderChannelL = encoderL;
+    Odometry_Pos.encoderChannelR = encoderR;
 	//init the last cnt by reading encoder 
 	Odometry_Pos.encoderLastCntL = Encoder_ReadBuffer(Odometry_Pos.encoderChannelL);
 	Odometry_Pos.encoderLastCntR = Encoder_ReadBuffer(Odometry_Pos.encoderChannelR);

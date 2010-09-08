@@ -1,4 +1,5 @@
-#include <lpc213x.h>
+#include "../armversion.h"
+#ifdef	__LPC213x_H
 #include "aal_213xpwm.h"
 
 void PWM_InitFrequency(int frequency){	
@@ -93,3 +94,4 @@ void PWM_SetPercentage(int channel,int percentage){
     } 
 	PWMLER |= (1<<channel);
 }
+#endif

@@ -1,8 +1,8 @@
-#include <lpc213x.h>
+#include "../armversion.h"
 #include "aal_timer.h"
 
-void Timer_Init(int channel,int frequency, void (*callback)(void)){
-	frequency = 10;//using 10hz for debug
+void Timer_Init(int channel,int frequency, void (*callback)(void) __irq){
+//	frequency = 10;//using 10hz for debug
 	
 	if (channel==0){
 	   T0PR = 0;									// set prescaler to 0

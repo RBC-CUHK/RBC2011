@@ -2,10 +2,10 @@
 #include "ral_pid.h"
 #include "ral_encoder.h"
 
-struct PIDStruct* PIDList[MAX_PID_CHANNEL]={NULL};
-int PIDListCount = 0;
-unsigned int PIDUpdateCount = 0;
-unsigned int MaxCount = 1;
+static struct PIDStruct* PIDList[MAX_PID_CHANNEL]={NULL};
+static int PIDListCount = 0;
+static unsigned int PIDUpdateCount = 0;
+static unsigned int MaxCount = 1;
 
 
 struct PIDStruct* PID_Init(struct PIDStruct* PIDS,double (*err_Calc)(void* info),void (*output_Func)(void* info, double err),void *info,int divider){

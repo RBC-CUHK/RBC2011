@@ -1,4 +1,4 @@
-#include <lpc213x.h>
+#include "../armversion.h"
 #include "aal_adc.h"
 
 void ADC_InitChannel(int channel){

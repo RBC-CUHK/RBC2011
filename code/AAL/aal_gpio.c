@@ -1,6 +1,6 @@
-#include <lpc213x.h>
-//#include "aal_gpio.h"
+#include "../armversion.h"
 #include "aal_gpio.h"
+
 
 //void GPIO_Init(float GPIO, int direction){
 //	int port = (int)GPIO;

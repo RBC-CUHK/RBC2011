@@ -1,4 +1,4 @@
-#include <lpc213x.h>
+#include "../armversion.h"
 #include "aal_uart.h"
 #include "arm_math.h"
 
@@ -8,7 +8,7 @@ void Uart_Init(int buadrate){
     PINSEL0 |= (1<<2); //RxD for the UART0
     
 	U0LCR = 0x83;	//8 bit length ,DLAB=1	           
-   	U0DLL = 3+(13.824*1000000/(16*buadrate));	//3+Fpclk/(16*buadrate);
+   	U0DLL = (864000/buadrate);	//Fpclk/(16*buadrate);
    	U0DLM = 0x00;
    	U0LCR = 0x03;    //DLAB=0
    	return;
