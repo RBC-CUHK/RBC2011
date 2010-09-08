@@ -480,6 +480,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\Library\RAL\ral_pid.c</FilePath>
             </File>
+            <File>
+              <FileName>ral_servo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Library\RAL\ral_servo.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

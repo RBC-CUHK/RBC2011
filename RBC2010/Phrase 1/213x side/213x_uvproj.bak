@@ -395,6 +395,11 @@
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
             </File>
+            <File>
+              <FileName>armversion.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\armversion.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -434,11 +439,6 @@
               <FileName>arm_math.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\Library\AAL\arm_math.c</FilePath>
-            </File>
-            <File>
-              <FileName>armversion.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\..\Library\AAL\armversion.h</FilePath>
             </File>
           </Files>
         </Group>

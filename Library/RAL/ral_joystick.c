@@ -4,7 +4,7 @@
 
 #include "../AAL/aal_adc.h"
 
-void joystick_Init(){
+void Joystick_Init(){
 	int button[10] = {L1,L2,R1,R2,B1,B2,B3,B4,BL,BR};
 	int analog[4] = {RY,RX,LY,LX};
 	int channel;
@@ -21,10 +21,10 @@ void joystick_Init(){
 	return ;
 }
 
-int joystick_ReadAxis(int channel){
+int Joystick_ReadAxis(int channel){
 	return ADC_Read(channel);
 } 
 
-int joystick_ReadButton(int channel){
+int Joystick_ReadButton(int channel){
 	return GPIO_Read(channel);
 }

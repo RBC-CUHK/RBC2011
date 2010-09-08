@@ -24,6 +24,6 @@
 // Analog Setting End
 
 void Joystick_Init(void);
-void Joystick_ReadAxis(int channel);
-void Joystick_ReadButton(int channel);
+int Joystick_ReadAxis(int channel);
+int Joystick_ReadButton(int channel);
 #endif

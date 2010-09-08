@@ -6,7 +6,7 @@ void Timer_Init(int channel,int frequency, void (*callback)(void) __irq){
 	
 	if (channel==0){
 	   T0PR = 0;									// set prescaler to 0
-	   T0MR0 = 13824000*(1/frequency);				// set interrupt rate,default 10Hz (1mS)
+	   T0MR0 = 13824000/frequency;					// set interrupt rate,default 10Hz (1mS)
 	   												// Pclk/1KHz = (11059200 x 5)/(4 x 1000)
        T0MCR = 3;                             		// Interrupt and Reset on MR0
        T0TCR = 1;                             		// Timer0 Enable
@@ -16,7 +16,7 @@ void Timer_Init(int channel,int frequency, void (*callback)(void) __irq){
     }
 	if (channel==1){
 	   T1PR = 0;									// set prescaler to 0
-	   T1MR0 = 13824000*(1/frequency);				// set interrupt rate,default 10Hz (1mS)
+	   T1MR0 = 13824000/frequency;					// set interrupt rate,default 10Hz (1mS)
 	   											    // Pclk/1KHz = (11059200 x 5)/(4 x 1000)
        T1MCR = 3;                             		// Interrupt and Reset on MR0
        T1TCR = 1;                             		// Timer1 Enable
