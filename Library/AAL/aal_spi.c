@@ -1,7 +1,7 @@
-#include "../armversion.h"
+#include "armversion.h"
 #include "aal_spi.h"
 #include "../RAL/ral_mux.h"
-#include "../AAL/aal_uart.h"
+#include "aal_uart.h"
 
 /*
  *	SPI_InitMaster()

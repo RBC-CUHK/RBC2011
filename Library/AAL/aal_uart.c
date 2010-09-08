@@ -1,4 +1,4 @@
-#include "../armversion.h"
+#include "armversion.h"
 #include "aal_uart.h"
 #include "arm_math.h"
 

@@ -383,33 +383,23 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>New Group</GroupName>
+          <GroupName>Main</GroupName>
           <Files>
             <File>
-              <FileName>aal_213xpwm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\AAL\aal_213xpwm.c</FilePath>
+              <FileName>Startup.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Startup.s</FilePath>
             </File>
             <File>
-              <FileName>aal_adc.c</FileName>
+              <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\AAL\aal_adc.c</FilePath>
+              <FilePath>.\main.c</FilePath>
             </File>
-            <File>
-              <FileName>aal_gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\AAL\aal_gpio.c</FilePath>
-            </File>
-            <File>
-              <FileName>aal_timer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\AAL\aal_timer.c</FilePath>
-            </File>
-            <File>
-              <FileName>aal_uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\AAL\aal_uart.c</FilePath>
-            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>RAL</GroupName>
+          <Files>
             <File>
               <FileName>ral_encoder.c</FileName>
               <FileType>1</FileType>
@@ -445,10 +435,35 @@
               <FileType>1</FileType>
               <FilePath>.\RAL\ral_pid.c</FilePath>
             </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>AAL</GroupName>
+          <Files>
             <File>
-              <FileName>main.c</FileName>
+              <FileName>aal_213xpwm.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\main.c</FilePath>
+              <FilePath>.\AAL\aal_213xpwm.c</FilePath>
+            </File>
+            <File>
+              <FileName>aal_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\AAL\aal_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>aal_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\AAL\aal_gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>aal_timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\AAL\aal_timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>aal_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\AAL\aal_uart.c</FilePath>
             </File>
             <File>
               <FileName>arm_math.c</FileName>
@@ -456,14 +471,14 @@
               <FilePath>.\AAL\arm_math.c</FilePath>
             </File>
             <File>
-              <FileName>Startup.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>.\Startup.s</FilePath>
-            </File>
-            <File>
               <FileName>aal_spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\AAL\aal_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>armversion.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\AAL\armversion.h</FilePath>
             </File>
           </Files>
         </Group>

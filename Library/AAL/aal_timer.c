@@ -1,4 +1,4 @@
-#include "../armversion.h"
+#include "armversion.h"
 #include "aal_timer.h"
 
 void Timer_Init(int channel,int frequency, void (*callback)(void) __irq){

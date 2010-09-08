@@ -1,4 +1,4 @@
-#include "../armversion.h"
+#include "armversion.h"
 #ifdef	__LPC213x_H
 #include "aal_213xpwm.h"
 
