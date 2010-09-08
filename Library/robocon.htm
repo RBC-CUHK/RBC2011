@@ -1,9 +1,9 @@
 <!doctype html public "-//w3c//dtd html 4.0 transitional//en">
 <html><head>
-<title>Static Call Graph - [F:\Documents\Kit\RBC\Code\RBC2011\code\robocon.axf]</title></head>
+<title>Static Call Graph - [F:\Documents\Kit\RBC\Code\RBC2011\Library\robocon.axf]</title></head>
 <body><HR>
-<H1>Static Call Graph for image F:\Documents\Kit\RBC\Code\RBC2011\code\robocon.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 4.1 [Build 481]: Last Updated: Wed Sep 08 14:19:17 2010
+<H1>Static Call Graph for image F:\Documents\Kit\RBC\Code\RBC2011\Library\robocon.axf</H1><HR>
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 4.1 [Build 481]: Last Updated: Wed Sep 08 16:06:11 2010
 <BR><P>
 <H3>Maximum Stack Usage =         24 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -176,10 +176,6 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_exit (via Veneer)
 </UL>
 
-<P><STRONG><a name="[2f]"></a>__user_initial_stackheap</STRONG> (ARM, 0 bytes, Stack size unknown bytes, startup.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
-</UL>
-
 <P><STRONG><a name="[11]"></a>main</STRONG> (ARM, 32 bytes, Stack size 8 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = main &rArr; Uart_Init &rArr; __aeabi_idivmod
 </UL>
@@ -188,6 +184,20 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> rtentry2.o(.ARM.Collect$$rtentry$$0000000D)
 </UL>
+<P><STRONG><a name="[2f]"></a>__user_initial_stackheap</STRONG> (ARM, 0 bytes, Stack size unknown bytes, startup.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
+</UL>
+
+<P><STRONG><a name="[26]"></a>numDigi</STRONG> (ARM, 228 bytes, Stack size 0 bytes, arm_math.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendInt
+</UL>
+
+<P><STRONG><a name="[58]"></a>pow2</STRONG> (ARM, 296 bytes, Stack size 0 bytes, arm_math.o(.text), UNUSED)
+
+<P><STRONG><a name="[27]"></a>pow10</STRONG> (ARM, 184 bytes, Stack size 0 bytes, arm_math.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendInt
+</UL>
+
 <P><STRONG><a name="[21]"></a>Uart_Init</STRONG> (ARM, 100 bytes, Stack size 8 bytes, aal_uart.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Uart_Init &rArr; __aeabi_idivmod
 </UL>
@@ -217,15 +227,15 @@ Global Symbols
 
 <P><STRONG><a name="[25]"></a>Uart_SendInt</STRONG> (ARM, 120 bytes, Stack size 32 bytes, aal_uart.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_idivmod
+<LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendChar
 <LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pow10
 <LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;numDigi
-<LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendChar
 <LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_Print
 </UL>
 <BR>[Called By]<UL><LI><a href="#[29]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendFloat
 </UL>
 
-<P><STRONG><a name="[58]"></a>Uart_GetChar</STRONG> (ARM, 36 bytes, Stack size 0 bytes, aal_uart.o(.text), UNUSED)
+<P><STRONG><a name="[59]"></a>Uart_GetChar</STRONG> (ARM, 36 bytes, Stack size 0 bytes, aal_uart.o(.text), UNUSED)
 
 <P><STRONG><a name="[28]"></a>Uart_SendBit</STRONG> (ARM, 28 bytes, Stack size 4 bytes, aal_uart.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendChar
@@ -245,16 +255,6 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_idivmod
 <LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendChar
 <LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_Print
-</UL>
-
-<P><STRONG><a name="[26]"></a>numDigi</STRONG> (ARM, 228 bytes, Stack size 0 bytes, arm_math.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendInt
-</UL>
-
-<P><STRONG><a name="[59]"></a>pow2</STRONG> (ARM, 296 bytes, Stack size 0 bytes, arm_math.o(.text), UNUSED)
-
-<P><STRONG><a name="[27]"></a>pow10</STRONG> (ARM, 184 bytes, Stack size 0 bytes, arm_math.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendInt
 </UL>
 
 <P><STRONG><a name="[5a]"></a>__aeabi_idiv</STRONG> (ARM, 0 bytes, Stack size 8 bytes, aeabi_sdiv.o(.text), UNUSED)

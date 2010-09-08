@@ -1,8 +1,8 @@
 *** Creating Trace Output File 'robocon.tra' Ok.
 ### Preparing for ADS-LD.
 ### Creating ADS-LD Command Line
-### List of Objects: adding '"startup.o"'
 ### List of Objects: adding '"main.o"'
+### List of Objects: adding '"startup.o"'
 ### List of Objects: adding '"ral_encoder.o"'
 ### List of Objects: adding '"ral_joystick.o"'
 ### List of Objects: adding '"ral_linesensor.o"'
@@ -10,25 +10,25 @@
 ### List of Objects: adding '"ral_mux.o"'
 ### List of Objects: adding '"ral_odometry.o"'
 ### List of Objects: adding '"ral_pid.o"'
-### List of Objects: adding '"aal_213xpwm.o"'
+### List of Objects: adding '"arm_math.o"'
+### List of Objects: adding '"aal_spi.o"'
 ### List of Objects: adding '"aal_adc.o"'
+### List of Objects: adding '"aal_213xpwm.o"'
 ### List of Objects: adding '"aal_gpio.o"'
 ### List of Objects: adding '"aal_timer.o"'
 ### List of Objects: adding '"aal_uart.o"'
-### List of Objects: adding '"arm_math.o"'
-### List of Objects: adding '"aal_spi.o"'
 ### ADS-LD Command completed:
---cpu ARM7TDMI "startup.o" "main.o" "ral_encoder.o" "ral_joystick.o" "ral_linesensor.o" "ral_motor.o" "ral_mux.o" "ral_odometry.o" "ral_pid.o" "aal_213xpwm.o" "aal_adc.o" "aal_gpio.o" "aal_timer.o" "aal_uart.o" "arm_math.o" "aal_spi.o" --strict --scatter "robocon.sct" 
+--cpu ARM7TDMI "main.o" "startup.o" "ral_encoder.o" "ral_joystick.o" "ral_linesensor.o" "ral_motor.o" "ral_mux.o" "ral_odometry.o" "ral_pid.o" "arm_math.o" "aal_spi.o" "aal_adc.o" "aal_213xpwm.o" "aal_gpio.o" "aal_timer.o" "aal_uart.o" --strict --scatter "robocon.sct" 
 --autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
 --info sizes --info totals --info unused --info veneers 
  --list ".\robocon.map" -o "robocon.axf"### Preparing Environment (PrepEnvAds)
 ### ADS-LD Output File: 'robocon.axf'
 ### ADS-LD Command File: 'robocon.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile 'robocon.lnp', Handle=0x00000278
+### Creating CmdFile 'robocon.lnp', Handle=0x000004F0
 ### Writing '.lnp' file
 ### ADS-LD Command file 'robocon.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.
-### ADS-LD: executed with 2 errors
+### ADS-LD: executed with 0 errors
 ### Updating obj list
 ### LDADS_file() completed.

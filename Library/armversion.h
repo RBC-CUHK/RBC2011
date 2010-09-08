@@ -1,5 +1,5 @@
-#include <lpc213x.h>
 //#include <lpc2103.h>
+#include <lpc213x.h>
 
 #ifdef __LPC2103_H
 

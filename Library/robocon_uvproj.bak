@@ -386,19 +386,14 @@
           <GroupName>Main</GroupName>
           <Files>
             <File>
-              <FileName>Startup.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>.\Startup.s</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
             </File>
             <File>
-              <FileName>armversion.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\armversion.h</FilePath>
+              <FileName>Startup.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Startup.s</FilePath>
             </File>
           </Files>
         </Group>
@@ -446,14 +441,19 @@
           <GroupName>AAL</GroupName>
           <Files>
             <File>
-              <FileName>aal_213xpwm.c</FileName>
+              <FileName>aal_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\AAL\aal_213xpwm.c</FilePath>
+              <FilePath>.\AAL\aal_spi.c</FilePath>
             </File>
             <File>
               <FileName>aal_adc.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\AAL\aal_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>aal_213xpwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\AAL\aal_213xpwm.c</FilePath>
             </File>
             <File>
               <FileName>aal_gpio.c</FileName>
@@ -476,9 +476,9 @@
               <FilePath>.\AAL\arm_math.c</FilePath>
             </File>
             <File>
-              <FileName>aal_spi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\AAL\aal_spi.c</FilePath>
+              <FileName>armversion.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\AAL\armversion.h</FilePath>
             </File>
           </Files>
         </Group>

@@ -1,0 +1,38 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+F:\Documents\Kit\RBC\Code\RBC2011\RBC2010\Phrase 1\213x side\213x.uvproj
+Project File Date:  09/08/2010
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling main.c...
+main.c(5): error:  #70: incomplete type is not allowed
+main.c:         struct Mux_Struct MBMux;
+main.c:                           ^
+main.c(9): warning:  #223-D: function "SPI_InitMaster" declared implicitly
+main.c:         SPI_InitMaster(16);
+main.c:         ^
+main.c(11): warning:  #223-D: function "Mux_Init" declared implicitly
+main.c:         Mux_Init(&MBMux,20,muxpin);
+main.c:         ^
+main.c(12): warning:  #223-D: function "Encoder_Init" declared implicitly
+main.c:         Encoder_Init(&MBMux);
+main.c:         ^
+main.c: main.c: 3 warnings, 1 error
+Target not created
+Build target 'Target 1'
+compiling main.c...
+main.c(4): error:  #5: cannot open source input file "RAL/ral_spi.h": No such file or directory
+main.c:   #include "RAL/ral_spi.h"
+main.c:                           ^
+main.c: main.c: 0 warnings, 1 error
+Target not created
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: Code=5624 RO-data=48 RW-data=4 ZI-data=1340  
+FromELF: creating hex file...
+"213x.axf" - 0 Error(s), 0 Warning(s).

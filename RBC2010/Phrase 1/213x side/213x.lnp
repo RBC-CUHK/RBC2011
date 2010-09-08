@@ -1,0 +1,4 @@
+--cpu ARM7TDMI "startup.o" "main.o" "aal_213xpwm.o" "aal_adc.o" "aal_gpio.o" "aal_spi.o" "aal_timer.o" "aal_uart.o" "arm_math.o" "ral_encoder.o" "ral_joystick.o" "ral_linesensor.o" "ral_motor.o" "ral_mux.o" "ral_odometry.o" "ral_pid.o" --strict --scatter "213x.sct" 
+--autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\213x.map" -o "213x.axf"
