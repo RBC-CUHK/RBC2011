@@ -192,7 +192,7 @@ double PosInfoErrCal(void* tempptr){
 
 void PosInfoOutFunc(void* tempptr,double result){
 	struct PosInfo* POSS = (struct PosInfo*)tempptr;
-	POSS->motor->Motor_SetPWM(POSS->motor,result);
+	Motor_SetPWM(POSS->motor,result);
 	return;
 }
 double VelInfoErrCal(void* tempptr){
@@ -206,7 +206,7 @@ double VelInfoErrCal(void* tempptr){
 
 void VelInfoOutFunc(void* tempptr,double result){
 	struct VelInfo* VELS = (struct VelInfo*)tempptr;
-	VELS->motor->Motor_SetPWM(VELS->motor,result);
+	Motor_SetPWM(VELS->motor,result);
 	return;
 }
 
@@ -225,7 +225,7 @@ void ThetaInfoOutFunc(void* tempptr,double result){
 	return;
 }
 
-struct PIDStruct* PID_Init_Pos(struct PIDStruct* PIDS,double acc,double topSpeed,double dece,int targetPos,int initPos,struct Motor_Setting* motor,int encoderChannel,int divider){
+struct PIDStruct* PID_Init_Pos(struct PIDStruct* PIDS,double acc,double topSpeed,double dece,int targetPos,int initPos,struct Motor_Struct* motor,int encoderChannel,int divider){
 	struct PosInfo* POSS;
 	double posDiff = targetPos - initPos;
 	if(posDiff < 0)
@@ -253,7 +253,7 @@ struct PIDStruct* PID_Init_Pos(struct PIDStruct* PIDS,double acc,double topSpeed
 	return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS,divider);
 }
 
-struct PIDStruct* PID_Init_Vel(struct PIDStruct* PIDS,double targetSpeed,struct Motor_Setting* motor,int encoderChannel,int divider){
+struct PIDStruct* PID_Init_Vel(struct PIDStruct* PIDS,double targetSpeed,struct Motor_Struct* motor,int encoderChannel,int divider){
 	struct VelInfo* VELS;
 	VELS = (struct VelInfo*)malloc(sizeof(struct VelInfo));
 	VELS->targetSpeed = targetSpeed;

@@ -3,14 +3,14 @@
 #include "ral_motor.h"
 
 struct Servo_Struct{
-	struct Motor_Setting* MS;
+	struct Motor_Struct* MS;
 	int PWMLowerSide;
 	int PWMUpperSide;
 	int AngleRange;
 	int PWMEach;
 };
 
-struct Servo_Struct* Servo_Init(struct Servo_Struct* SS, struct Motor_Setting* MS, int PWMLowerSide, int PWMUpperSide, int range);
+struct Servo_Struct* Servo_Init(struct Servo_Struct* SS, struct Motor_Struct* MS, int PWMLowerSide, int PWMUpperSide, int range);
 void Servo_SetRelative(struct Servo_Struct* SS, int angle);
 void Servo_SetAbsolute(struct Servo_Struct* SS, int angle);
 #endif

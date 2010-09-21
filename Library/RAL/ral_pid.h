@@ -26,25 +26,25 @@ struct PosInfo{
 	int T1,T2,Tend;
 	int timeRegion;
 //	int pwmChannel;
-	struct Motor_Setting* motor;
+	struct Motor_Struct* motor;
 	int encoderChannel;	
 };
 
 double PosInfoErrCal(void*);
 void PosInfoOutFunc(void* POSS,double result);
-struct PIDStruct* PID_Init_Pos(struct PIDStruct* PIDS,double acc,double topSpeed,double dece,int targetPos,int initPos,struct Motor_Setting* motor,int encoderChannel,int divider);
+struct PIDStruct* PID_Init_Pos(struct PIDStruct* PIDS,double acc,double topSpeed,double dece,int targetPos,int initPos,struct Motor_Struct* motor,int encoderChannel,int divider);
 
 struct VelInfo{
 	double targetSpeed;
 	int oldPos;
 	//int pwmChannel;
-	struct Motor_Setting* motor;
+	struct Motor_Struct* motor;
 	int encoderChannel;
 };
 
 double VelInfoErrCal(void*);
 void VelInfoOutFunc(void*, double result);
-struct PIDStruct* PID_Init_Vel(struct PIDStruct* PIDS,double targetSpeed,struct Motor_Setting* motor,int encoderChannel,int divider);
+struct PIDStruct* PID_Init_Vel(struct PIDStruct* PIDS,double targetSpeed,struct Motor_Struct* motor,int encoderChannel,int divider);
 
 struct ThetaInfo{
 	double targetTheta;

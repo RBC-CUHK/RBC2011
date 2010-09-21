@@ -1,6 +1,6 @@
 #include "ral_servo.h"
 #include "ral_motor.h"
-struct Servo_Struct* Servo_Init(struct Servo_Struct* SS, struct Motor_Setting* MS, int PWMLowerSide, int PWMUpperSide, int range){
+struct Servo_Struct* Servo_Init(struct Servo_Struct* SS, struct Motor_Struct* MS, int PWMLowerSide, int PWMUpperSide, int range){
 	SS->MS = MS;
 	SS->PWMLowerSide = PWMLowerSide;
 	SS->PWMUpperSide = PWMUpperSide;
@@ -14,7 +14,7 @@ void Servo_SetRelative(struct Servo_Struct* SS, int angle){
 	int newPWM = currPWM + angle * SS->PWMEach;
 	if(newPWM > SS->PWMUpperSide)newPWM = SS->PWMUpperSide;
 	else if(newPWM < SS->PWMLowerSide)newPWM = SS->PWMLowerSide;
-	SS->MS->Motor_SetPWM(SS->MS,newPWM);
+	Motor_SetPWM(SS->MS,newPWM);
 	return;
 }
 
@@ -22,6 +22,6 @@ void Servo_SetAbsolute(struct Servo_Struct* SS, int angle){
 	int newPWM = angle * SS->PWMEach + SS->PWMLowerSide;
 	if(newPWM > SS->PWMUpperSide)newPWM = SS->PWMUpperSide;
 	else if(newPWM < SS->PWMLowerSide)newPWM = SS->PWMLowerSide;
-	SS->MS->Motor_SetPWM(SS->MS,newPWM);
+	Motor_SetPWM(SS->MS,newPWM);
 	return;
 }
