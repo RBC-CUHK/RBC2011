@@ -2,14 +2,13 @@ Hoping to do a centralised library
 This can help to inconsistency across different projects
 The following is the guideline to create your own project
 
-1.	First create a folder with a easy to undrestand project name 
-	under year folder like RBC2010 / RBC2011 / etc...
-	Use Keil UVision to create project under the folder just created.
+1.	First create a folder with a easy to undrestand project name under year folder like RBC2010 / RBC2011 / etc...
+2.	Use Keil UVision to create project under the folder just created.
 	(Notes: If you need to 'play' with different chips, like LPC213x and LPC2103, please create sub folders for each of them)
 2.	Copy armversion.h file from library folder to your folder
 3.	With UVision Project, add the armversion.h under your folder and also AAL and RAL layers .C under the library folder.
 4.	Go to Flash->Configure Flash Tools... (or elsewhere to project options)
-5.	Tab C/C++ Include Paths add . ; ..\..\..\Library (Relative path to Library)
+5.	Tab C/C++ Include Paths add . ; ..\Library (Relative path to Library)
 6.	Do the same at Asm
 7.	Edit the armversion.h to choose your ARM Version
 8.	Try to Rebuild all and see if it works
