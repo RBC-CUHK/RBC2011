@@ -456,11 +456,6 @@
           <GroupName>AAL</GroupName>
           <Files>
             <File>
-              <FileName>aal_213xpwm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\Library\AAL\aal_213xpwm.c</FilePath>
-            </File>
-            <File>
               <FileName>aal_adc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\Library\AAL\aal_adc.c</FilePath>
@@ -489,6 +484,11 @@
               <FileName>arm_math.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\Library\AAL\arm_math.c</FilePath>
+            </File>
+            <File>
+              <FileName>aal_pwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Library\AAL\aal_pwm.c</FilePath>
             </File>
           </Files>
         </Group>

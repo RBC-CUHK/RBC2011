@@ -1,6 +1,6 @@
 #include "ral_motor.h"
 #include "AAL/aal_gpio.h"
-#include "AAL/aal_213xpwm.h"
+#include "AAL/aal_pwm.h"
 #include "AAL/aal_spi.h"
 #include "ral_mux.h"
 
@@ -11,12 +11,15 @@ struct Motor_Struct* Motor_Init(struct Motor_Struct* MS,int pwmChannel,int contr
 	MS->controlB = controlB;
 	MS->pwmChannel = pwmChannel;
 	MS->currPWM = 0;
-	if(Mode == MODE213x){
-		PWM_InitChannel(pwmChannel,0);
-		MS->Motor_SetPWM = Motor_Set213xPWM;
+	if(Mode == SELF){
+		PWM_InitChannel(pwmChannel,0);		
+		GPIO_Init(controlA,OUTPUT);
+		GPIO_Init(controlB,OUTPUT);
+		MS->Motor_SetPWM = Motor_SetOwnPWM;
 	} else {
 		MS->Motor_SetPWM = Motor_Set2103PWM;
 	}
+
 	return MS;
 }
 
@@ -48,7 +51,15 @@ void Motor_Set2103PWM(struct Motor_Struct* MS, int PWM){
 		MS->currPWM = PWM;
 	return ;
 }
-void Motor_Set213xPWM(struct Motor_Struct* MS, int PWM){
+void Motor_SetOwnPWM(struct Motor_Struct* MS, int PWM){
+	if(PWM < 0){
+		PWM *= -1;
+		GPIO_Set(MS->controlA,0);
+		GPIO_Set(MS->controlB,1);	
+	} else {
+		GPIO_Set(MS->controlA,1);
+		GPIO_Set(MS->controlB,0);
+	}
 	PWM_Set(MS->pwmChannel,PWM);
 	MS->currPWM = PWM;
 	return ;

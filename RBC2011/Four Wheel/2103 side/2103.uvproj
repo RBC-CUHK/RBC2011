@@ -12,14 +12,14 @@
       <ToolsetName>ARM-ADS</ToolsetName>
       <TargetOption>
         <TargetCommonOption>
-          <Device>LPC2131</Device>
+          <Device>LPC2103</Device>
           <Vendor>NXP (founded by Philips)</Vendor>
           <Cpu>IRAM(0x40000000-0x40001FFF) IROM(0-0x7FFF) CLOCK(12000000) CPUTYPE(ARM7TDMI)</Cpu>
           <FlashUtilSpec>LPC210x_ISP.EXE ("#H" ^X $D COM1: 9600 1)</FlashUtilSpec>
           <StartupFile>"STARTUP\Philips\Startup.s" ("Philips LPC2100 Startup Code")</StartupFile>
           <FlashDriverDll>UL2ARM(-U40296420 -O7 -S0 -C0 -FO7 -FD40000000 -FC800 -FN1 -FF0LPC_IAP2_32 -FS00 -FL08000)</FlashDriverDll>
-          <DeviceId>3735</DeviceId>
-          <RegisterFile>LPC213X.H</RegisterFile>
+          <DeviceId>3974</DeviceId>
+          <RegisterFile>LPC2103.H</RegisterFile>
           <MemoryEnv></MemoryEnv>
           <Cmp></Cmp>
           <Asm></Asm>
@@ -43,7 +43,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\</OutputDirectory>
-          <OutputName>sensor</OutputName>
+          <OutputName>2103</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -99,11 +99,11 @@
           <SimDllName>SARM.DLL</SimDllName>
           <SimDllArguments>-cLPC2100</SimDllArguments>
           <SimDlgDll>DARMP.DLL</SimDlgDll>
-          <SimDlgDllArguments>-pLPC2131</SimDlgDllArguments>
+          <SimDlgDllArguments>-pLPC2103</SimDlgDllArguments>
           <TargetDllName>SARM.DLL</TargetDllName>
           <TargetDllArguments></TargetDllArguments>
           <TargetDlgDll>TARMP.DLL</TargetDlgDll>
-          <TargetDlgDllArguments>-pLPC2131</TargetDlgDllArguments>
+          <TargetDlgDllArguments>-pLPC2103</TargetDlgDllArguments>
         </DllOption>
         <DebugOption>
           <OPTHX>
@@ -158,11 +158,11 @@
             <UseExternalTool>1</UseExternalTool>
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>0</UpdateFlashBeforeDebugging>
-            <Capability>0</Capability>
-            <DriverSelection>-1</DriverSelection>
+            <Capability>1</Capability>
+            <DriverSelection>4096</DriverSelection>
           </Flash1>
-          <Flash2></Flash2>
-          <Flash3>"C:\Program Files\Philips Semiconductors\Philips Flash Utility\LPC210x_ISP.exe" ("#H" ^X $D COM1: 57600 1)</Flash3>
+          <Flash2>BIN\UL2ARM.DLL</Flash2>
+          <Flash3>"LPC210x_ISP.EXE" ("#H" ^X $D COM1: 9600 1)</Flash3>
           <Flash4></Flash4>
         </Utilities>
         <TargetArmAds>
@@ -403,46 +403,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>AAL</GroupName>
-          <Files>
-            <File>
-              <FileName>aal_adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\Library\AAL\aal_adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>aal_gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\Library\AAL\aal_gpio.c</FilePath>
-            </File>
-            <File>
-              <FileName>aal_spi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\Library\AAL\aal_spi.c</FilePath>
-            </File>
-            <File>
-              <FileName>aal_timer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\Library\AAL\aal_timer.c</FilePath>
-            </File>
-            <File>
-              <FileName>aal_uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\Library\AAL\aal_uart.c</FilePath>
-            </File>
-            <File>
-              <FileName>arm_math.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\Library\AAL\arm_math.c</FilePath>
-            </File>
-            <File>
-              <FileName>aal_pwm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\Library\AAL\aal_pwm.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>RAL</GroupName>
           <Files>
             <File>
@@ -484,6 +444,46 @@
               <FileName>ral_servo.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\Library\RAL\ral_servo.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>AAL</GroupName>
+          <Files>
+            <File>
+              <FileName>aal_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Library\AAL\aal_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>aal_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Library\AAL\aal_gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>aal_pwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Library\AAL\aal_pwm.c</FilePath>
+            </File>
+            <File>
+              <FileName>aal_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Library\AAL\aal_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>aal_timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Library\AAL\aal_timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>aal_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Library\AAL\aal_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_math.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Library\AAL\arm_math.c</FilePath>
             </File>
           </Files>
         </Group>

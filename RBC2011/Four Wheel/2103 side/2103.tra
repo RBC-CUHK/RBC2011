@@ -1,9 +1,8 @@
-*** Creating Trace Output File '213x.tra' Ok.
+*** Creating Trace Output File '2103.tra' Ok.
 ### Preparing for ADS-LD.
 ### Creating ADS-LD Command Line
-### List of Objects: adding '"fourwheel.o"'
-### List of Objects: adding '"main.o"'
 ### List of Objects: adding '"startup.o"'
+### List of Objects: adding '"main.o"'
 ### List of Objects: adding '"ral_encoder.o"'
 ### List of Objects: adding '"ral_joystick.o"'
 ### List of Objects: adding '"ral_linesensor.o"'
@@ -14,22 +13,22 @@
 ### List of Objects: adding '"ral_servo.o"'
 ### List of Objects: adding '"aal_adc.o"'
 ### List of Objects: adding '"aal_gpio.o"'
+### List of Objects: adding '"aal_pwm.o"'
 ### List of Objects: adding '"aal_spi.o"'
 ### List of Objects: adding '"aal_timer.o"'
 ### List of Objects: adding '"aal_uart.o"'
 ### List of Objects: adding '"arm_math.o"'
-### List of Objects: adding '"aal_pwm.o"'
 ### ADS-LD Command completed:
---cpu ARM7TDMI "fourwheel.o" "main.o" "startup.o" "ral_encoder.o" "ral_joystick.o" "ral_linesensor.o" "ral_motor.o" "ral_mux.o" "ral_odometry.o" "ral_pid.o" "ral_servo.o" "aal_adc.o" "aal_gpio.o" "aal_spi.o" "aal_timer.o" "aal_uart.o" "arm_math.o" "aal_pwm.o" --strict --scatter "213x.sct" 
+--cpu ARM7TDMI "startup.o" "main.o" "ral_encoder.o" "ral_joystick.o" "ral_linesensor.o" "ral_motor.o" "ral_mux.o" "ral_odometry.o" "ral_pid.o" "ral_servo.o" "aal_adc.o" "aal_gpio.o" "aal_pwm.o" "aal_spi.o" "aal_timer.o" "aal_uart.o" "arm_math.o" --strict --scatter "2103.sct" 
 --autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
 --info sizes --info totals --info unused --info veneers 
- --list ".\213x.map" -o "213x.axf"### Preparing Environment (PrepEnvAds)
-### ADS-LD Output File: '213x.axf'
-### ADS-LD Command File: '213x.lnp'
+ --list ".\2103.map" -o "2103.axf"### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: '2103.axf'
+### ADS-LD Command File: '2103.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile '213x.lnp', Handle=0x000002F0
+### Creating CmdFile '2103.lnp', Handle=0x00000660
 ### Writing '.lnp' file
-### ADS-LD Command file '213x.lnp' is ready.
+### ADS-LD Command file '2103.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.
 ### ADS-LD: executed with 0 errors
 ### Updating obj list

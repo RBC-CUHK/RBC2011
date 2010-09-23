@@ -2,7 +2,7 @@
 #include "fourwheel.h"
 
 #include "AAL/aal_uart.h"
-#include "AAL/aal_213xpwm.h"
+#include "AAL/aal_pwm.h"
 #include "AAL/aal_timer.h"
 #include "AAL/aal_spi.h"
 
@@ -59,13 +59,13 @@ int main(){
 	PWM_InitFrequency(50);
 	
 	//Init the servo motors for angle control
-	Motor_Init(&SMotor1,2,99,99,MODE213x);
+	Motor_Init(&SMotor1,2,99,99,SELF);
 	Servo_Init(&Servo1,&SMotor1,13824,27648,90);
-	Motor_Init(&SMotor2,4,99,99,MODE213x);
+	Motor_Init(&SMotor2,4,99,99,SELF);
 	Servo_Init(&Servo2,&SMotor2,13824,27648,90);
-	Motor_Init(&SMotor3,5,99,99,MODE213x);
+	Motor_Init(&SMotor3,5,99,99,SELF);
 	Servo_Init(&Servo3,&SMotor3,13824,27648,90);
-	Motor_Init(&SMotor4,6,99,99,MODE213x);
+	Motor_Init(&SMotor4,6,99,99,SELF);
 	Servo_Init(&Servo4,&SMotor4,13824,27648,90);
 	
 	//Init the DC motors for movement
