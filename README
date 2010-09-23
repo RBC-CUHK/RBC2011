@@ -4,7 +4,7 @@ The following is the guideline to create your own project
 
 1.	First create a folder with a easy to undrestand project name 
 	under year folder like RBC2010 / RBC2011 / etc...
-	Use Keil UVision to create project under the folder just created.
+2.	Use Keil UVision to create project under the folder just created.
 	(Notes: If you need to 'play' with different chips, like LPC213x and LPC2103, please create sub folders for each of them)
 2.	Copy armversion.h file from library folder to your folder
 3.	With UVision Project, add the armversion.h under your folder and also AAL and RAL layers .C under the library folder.
