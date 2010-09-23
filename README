@@ -2,8 +2,7 @@ Hoping to do a centralised library
 This can help to inconsistency across different projects
 The following is the guideline to create your own project
 
-1.	First create a folder with a easy to undrestand project name 
-	under year folder like RBC2010 / RBC2011 / etc...
+1.	First create a folder with a easy to undrestand project name under year folder like RBC2010 / RBC2011 / etc...
 2.	Use Keil UVision to create project under the folder just created.
 	(Notes: If you need to 'play' with different chips, like LPC213x and LPC2103, please create sub folders for each of them)
 2.	Copy armversion.h file from library folder to your folder
