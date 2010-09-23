@@ -3,14 +3,25 @@
 
 struct Servo_Struct* FL;
 struct Servo_Struct* FR;
-struct Servo_Struct* BL;
 struct Servo_Struct* BR;
+struct Servo_Struct* BL;
 
-void Fourwheel_Init(struct Servo_Struct* SS[4]){
+struct Motor_Struct* FLM;
+struct Motor_Struct* FRM;
+struct Motor_Struct* BRM;
+struct Motor_Struct* BLM;
+
+void Fourwheel_Init(struct Servo_Struct* SS[4], struct Motor_Struct* MS[4]){
 	FL = SS[0];
 	FR = SS[1];
 	BR = SS[2];
 	BL = SS[3];
+	
+	FLM = MS[0];
+	FRM = MS[1];
+	BRM = MS[2];
+	BLM = MS[3];
+
 	return ;
 }
 
@@ -19,6 +30,11 @@ void Fourwheel_Forward(void){
 	Servo_SetAbsolute(FR,90);
 	Servo_SetAbsolute(BR,0);
 	Servo_SetAbsolute(BL,90);
+
+	Motor_SetPWM(FLM,-100);
+	Motor_SetPWM(FRM,100);
+	Motor_SetPWM(BRM,100);
+	Motor_SetPWM(BLM,-100);
 	return ;
 }
 

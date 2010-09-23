@@ -386,14 +386,9 @@
           <GroupName>Main</GroupName>
           <Files>
             <File>
-              <FileName>Startup.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>.\Startup.s</FilePath>
-            </File>
-            <File>
-              <FileName>armversion.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\armversion.h</FilePath>
+              <FileName>fourwheel.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\fourwheel.c</FilePath>
             </File>
             <File>
               <FileName>main.c</FileName>
@@ -401,49 +396,14 @@
               <FilePath>.\main.c</FilePath>
             </File>
             <File>
-              <FileName>fourwheel.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\fourwheel.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>AAL</GroupName>
-          <Files>
-            <File>
-              <FileName>aal_213xpwm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\Library\AAL\aal_213xpwm.c</FilePath>
+              <FileName>armversion.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\armversion.h</FilePath>
             </File>
             <File>
-              <FileName>aal_adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\Library\AAL\aal_adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>aal_gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\Library\AAL\aal_gpio.c</FilePath>
-            </File>
-            <File>
-              <FileName>aal_spi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\Library\AAL\aal_spi.c</FilePath>
-            </File>
-            <File>
-              <FileName>aal_timer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\Library\AAL\aal_timer.c</FilePath>
-            </File>
-            <File>
-              <FileName>aal_uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\Library\AAL\aal_uart.c</FilePath>
-            </File>
-            <File>
-              <FileName>arm_math.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\Library\AAL\arm_math.c</FilePath>
+              <FileName>Startup.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Startup.s</FilePath>
             </File>
           </Files>
         </Group>
@@ -489,6 +449,46 @@
               <FileName>ral_servo.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\Library\RAL\ral_servo.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>AAL</GroupName>
+          <Files>
+            <File>
+              <FileName>aal_213xpwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Library\AAL\aal_213xpwm.c</FilePath>
+            </File>
+            <File>
+              <FileName>aal_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Library\AAL\aal_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>aal_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Library\AAL\aal_gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>aal_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Library\AAL\aal_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>aal_timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Library\AAL\aal_timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>aal_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Library\AAL\aal_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_math.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Library\AAL\arm_math.c</FilePath>
             </File>
           </Files>
         </Group>
