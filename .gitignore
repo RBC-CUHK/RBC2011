@@ -5,3 +5,5 @@
 *.crf
 *.lst
 *.bak
+*.Bak
+*.hex
