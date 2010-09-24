@@ -1,6 +1,6 @@
 #include "armversion.h"
 #include "aal_spi.h"
-#include "../RAL/ral_mux.h"
+#include "RAL/ral_mux.h"
 #include "aal_uart.h"
 
 /*
@@ -16,7 +16,7 @@ void SPI_InitMaster(int clkDivider){
 	PINSEL0 |= 1<<8;        //p0.4 Pin sel for SCK0
 
 	S0SPCCR = clkDivider;        //Clock counter reg, spi clk = PCLK/speed_divider
-	SPI_setLength(8);		//default sending 8 bit mode
+	SPI_SetLength(8);		//default sending 8 bit mode
 }
 /*
  *	SPI_InitMaster()
@@ -48,7 +48,7 @@ void SPI_InitSlave(int clkDivider, void (*callback)(void) __irq){
  *	used when running at Master mode
  *	can only work at 8 or 16 bit because of hard coding
  */
-void SPI_setLength(int length){
+void SPI_SetLength(int length){
 	if(length == 8){
 		S0SPCR = (0<<3) | //CPHA=0
 			(0<<4)	| //CPOL=0

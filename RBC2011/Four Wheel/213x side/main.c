@@ -5,11 +5,13 @@
 #include "AAL/aal_pwm.h"
 #include "AAL/aal_timer.h"
 #include "AAL/aal_spi.h"
+#include "AAL/aal_gpio.h"
 
 #include "RAL/ral_motor.h"
 #include "RAL/ral_servo.h"
 #include "RAL/ral_motor.h"
 #include "RAL/ral_mux.h"
+#include "RAL/ral_joystick.h"
 
 struct Motor_Struct SMotor1;
 struct Servo_Struct Servo1;
@@ -27,23 +29,37 @@ struct Motor_Struct Motor4;
 
 struct Mux_Struct MBMux;
 
-int count = 0;
-int pcount = 0;
-
 void __irq Timer0_Routine(){
+	int ButtonB1 = Joystick_ReadButton(B1);
+	int ButtonB2 = Joystick_ReadButton(B2);
+	int ButtonB3 = Joystick_ReadButton(B3);
+	int ButtonB4 = Joystick_ReadButton(B4);
+	int ButtonBL = Joystick_ReadButton(BL);
+	int ButtonBR = Joystick_ReadButton(BR);
 
+	Uart_SendInt(ButtonB1);
+	Uart_SendInt(ButtonB2);
+	Uart_SendInt(ButtonB3);
+	Uart_SendInt(ButtonB4);
+	Uart_SendInt(ButtonBL);
+	Uart_SendInt(ButtonBR);
+	Uart_Print("\r\n");
 	
+	if(ButtonB1)
+		Fourwheel_Forward();
+	else if(ButtonB2)
+		Fourwheel_Rightward();
+	else if(ButtonB3)
+		Fourwheel_Backward();
+	else if(ButtonB4)
+		Fourwheel_Leftward();
+	else if(ButtonBL)
+		Fourwheel_RotateLeft();
+	else if(ButtonBR)
+		Fourwheel_RotateRight();
+	else
+		Fourwheel_Stop();
 	
-	switch (count % 6){
-		case 0 : Fourwheel_Forward();		break;
-		case 1 : Fourwheel_Leftward();		break;
-		case 2 : Fourwheel_Backward();		break;
-		case 3 : Fourwheel_Rightward();		break;
-		case 4 : Fourwheel_RotateRight();	break;
-		case 5 : Fourwheel_RotateLeft();	break;
-	}
-	pcount++;
-	count = pcount / 100;
 	T0IR = 1;                              	// Clear interrupt flag
 	VICVectAddr = 0;                       	// Acknowledge Interrupt
 }
@@ -53,9 +69,11 @@ int main(){
 	struct Servo_Struct* SS[4] = {&Servo1,&Servo2,&Servo3,&Servo4};
 	struct Motor_Struct* MS[4] = {&Motor1,&Motor2,&Motor3,&Motor4};
 	int muxpin[4] = {19,18,17,16};
+	int i,j = 0;
 		
 	Uart_Init(57600);
 	Mux_Init(&MBMux,20,muxpin);
+	Joystick_Init();
 	PWM_InitFrequency(50);
 	
 	//Init the servo motors for angle control
@@ -76,16 +94,12 @@ int main(){
 
 
 	Fourwheel_Init(SS,MS);
+	for (i = 0; i < 1000; i ++)
+		for (j = 0; j < 6800; j++);
 	SPI_InitMaster(16);
-	Timer_Init(0,10,Timer0_Routine);
-	//Fourwheel_RotateLeft();
-//	Motor_SetPWM(&Motor1,20736);
-//	Motor_SetPWM(&Motor2,20736);
-//	Motor_SetPWM(&Motor3,20736);
-//	Motor_SetPWM(&Motor4,20736);
-//	while(1);
+	Timer_Init(0,50,Timer0_Routine);
+	
 	while(1){
-
 	}
 	return 0;
 }

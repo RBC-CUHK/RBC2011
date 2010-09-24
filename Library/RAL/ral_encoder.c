@@ -38,7 +38,7 @@ void Encoder_Reset(int channel){
 	int i;
 	int data;
 
-	SPI_setLength(8);//encoder use 32-bit mode, we use 4 times 8 bits sending to make it work
+	SPI_SetLength(8);//encoder use 32-bit mode, we use 4 times 8 bits sending to make it work
 
 	/*
 	 *set the MDR0
@@ -103,7 +103,7 @@ int Encoder_Read(int channel){
 	int i,k;
 	int data;
 
-	SPI_setLength(8);//encoder use 32-bit mode, we use 4 times 8 bits sending to make it work
+	SPI_SetLength(8);//encoder use 32-bit mode, we use 4 times 8 bits sending to make it work
 	/*
 	 *  get value from LS7366R
 	 */

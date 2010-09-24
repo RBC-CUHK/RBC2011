@@ -26,7 +26,7 @@
 ### ADS-LD Output File: '2103.axf'
 ### ADS-LD Command File: '2103.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile '2103.lnp', Handle=0x00000660
+### Creating CmdFile '2103.lnp', Handle=0x00000264
 ### Writing '.lnp' file
 ### ADS-LD Command file '2103.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.

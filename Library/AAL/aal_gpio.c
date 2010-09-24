@@ -15,7 +15,7 @@ void GPIO_Init(int GPIO, int direction){
 				   	   PINSEL0 &= bitmask;
 				    else
 				   	   PINSEL1 &= bitmask;
-				    if (direction == OUTPUT)
+				    if (direction == INPUT)
 				   	   IO0DIR &= (0xFFFFFFFF & (~(1 << channel)));
 	   			    else
 				   	   IO0DIR |= 1 << channel;
@@ -25,7 +25,7 @@ void GPIO_Init(int GPIO, int direction){
 				 	   PINSEL2 &= 0xFFFFFFF7;
 				 	else
 					   PINSEL2 &= 0xFFFFFFFB;
-				 	if (direction == OUTPUT)
+				 	if (direction == INPUT)
 					   IO1DIR &= (0xFFFFFFFF & (~(1 << channel)));
 					else
 						IO1DIR |= 1 << channel;
@@ -40,6 +40,7 @@ void GPIO_Init(int GPIO, int direction){
 int GPIO_Read(int GPIO){
 	int port = GPIO / 100;
 	int channel = GPIO % 100;
+	if(channel > 32) return 0;
 	switch(port){
 		 case 0: return (IO0PIN >> channel) & 0x1; 
 		 case 1: return (IO1PIN >> channel) & 0x1;	
@@ -53,6 +54,7 @@ int GPIO_Read(int GPIO){
 void GPIO_Set(int GPIO, int value){
 	int port = GPIO / 100;
 	int channel = GPIO % 100;
+	if(channel > 32) return ;
 	switch(port){
        case 0: switch(value){
 				   case 0: IO0CLR |= (1 << channel); break;

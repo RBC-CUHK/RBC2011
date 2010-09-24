@@ -160,6 +160,8 @@ void PWM_SetPercentage(int channel,int percentage){
 }
 
 void _setPWM(int timer, int channel, int value){
+	value = globalperiod - value;
+	if (value == globalperiod) value = globalperiod + 100;
 	switch (timer){
         case 0:
             switch (channel){

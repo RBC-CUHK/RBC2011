@@ -2,6 +2,7 @@
 
 #include "AAL/aal_spi.h"
 #include "AAL/aal_uart.h"
+#include "AAL/aal_pwm.h"
 
 #include "RAL/ral_mux.h"
 #include "RAL/ral_motor.h"
@@ -11,13 +12,14 @@ struct Mux_Struct MBMux;
 
 struct Motor_Struct Motor[10];
 
+static unsigned short spi_get_data = 0;
+static unsigned short spi_send_data = 0;
+
 void __irq SPI_Routine(){
 	int input;
 	int motor;
 	int level;
 	char sign;
-	unsigned short spi_get_data;
-	unsigned short spi_send_data = 0;
 
 	if ((S0SPSR & 0xF8) == 0x80){
 		input = S0SPDR; // read byte from master, clear the flag
@@ -35,15 +37,14 @@ void __irq SPI_Routine(){
 	
 	Motor_SetPWM(&Motor[motor],level);
 	
-	Uart_Print("SetPWM-");
+//	Uart_Print("SetPWM-");
 	Uart_SendInt(motor);
-	Uart_SendChar(':');
+//	Uart_SendChar(':');
 	Uart_SendInt(level);
-	Uart_Print("\r\n");	
+//	Uart_Print("\r\n");
 	
 	S0SPINT = 0x01; // reset interrupt flag
 	VICVectAddr = 0; // reset VIC
-	return ;
 }
 
 int main(){
@@ -60,6 +61,7 @@ int main(){
 	Motor_Init(&Motor[8],30,28,99,SELF);
 	Motor_Init(&Motor[9],33,29,99,SELF);
 	Uart_Print("Motor Inited\r\n");
+	PWM_InitPeriod(2000);
 	SPI_InitSlave(16,SPI_Routine);
 	Uart_Print("SPI Inited\r\n");
 	while(1);

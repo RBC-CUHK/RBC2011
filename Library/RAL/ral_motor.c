@@ -31,7 +31,7 @@ void Motor_SetPWM(struct Motor_Struct* MS, int PWM){
 void Motor_Set2103PWM(struct Motor_Struct* MS, int PWM){
 	int data;
 	int negative = 0;
-	SPI_setLength(16);
+	int i;
 	if(PWM < 0){
 		PWM *= -1;
 		negative = 1;
@@ -42,15 +42,18 @@ void Motor_Set2103PWM(struct Motor_Struct* MS, int PWM){
 	if(negative == 1)
 		PWM |= 0x0800;
 	data = ((MS->pwmChannel & 0x0F)<<12) | (PWM & 0x0FFF);
+	SPI_SetLength(16);
 	Mux_Set(&MBMux,MUX_2103);
 	SPI_Send(data);
 	Mux_Unset(&MBMux);
+	for (i = 0; i < 6800; i++);
 	if(negative == 1)
 		MS->currPWM = PWM * (-1);
 	else
 		MS->currPWM = PWM;
 	return ;
 }
+
 void Motor_SetOwnPWM(struct Motor_Struct* MS, int PWM){
 	if(PWM < 0){
 		PWM *= -1;
