@@ -1,24 +1,28 @@
+/**
+ *	@file
+ *	@brief	RAL_Encoder Function Implementation
+ */
 #include "ral_encoder.h"
 #include "ral_mux.h"
-#include "../AAL/aal_spi.h"
+#include "AAL/aal_spi.h"
 
 //global varibles: local buffer of all encoder values
 static int encoder_value_[20] ={0};
+
+//the Mux use in Encoder
 static struct Mux_Struct* EncoderMux;
 
-/*
- *	Encoder_Init()
- *	init spi and mux
+/**
+ *	Init Encoders, would also init SPI and mux
  *	reset all encoder values to zero
- * */
+ *	@param Mux	Mux used for Encoders
+ */
 void Encoder_Init(struct Mux_Struct* Mux){
 	/*
 	 * array of pin for mux
 	 * p0.20 is not_EN
 	 * p0.16-p0.19 is selecting bits
 	 */
-//	int gpio[4]={18,17,16,20};
-//	int EN = 19;
 	int i;
 
 //	Mux_Init(EncoderMux,EN,gpio); //Init GPIO ##GPIO[4] EN, GPIO[3] MS --> GPIO[0] LS
@@ -30,10 +34,10 @@ void Encoder_Init(struct Mux_Struct* Mux){
 	}
 }
 
-/*
- *	Encoder_Reset()
- *	reset all value of encoder chip LS7366
- * */
+/**
+ *	Reset the specified encoder
+ *	@param channel	The encoder to be reset
+ */
 void Encoder_Reset(int channel){
 	int i;
 	int data;
@@ -95,10 +99,11 @@ void Encoder_Reset(int channel){
 	for(i=0;i<100;i++){}//delay
 }
 
-/*
- *	Encoder_Read()
+/**
  *	Read the encoder value from one channel
- * */
+ *	@param channel	The encoder to be reset
+ *	@return Rhe encoder value
+ */
 int Encoder_Read(int channel){
 	int i,k;
 	int data;
@@ -124,10 +129,10 @@ int Encoder_Read(int channel){
 	Mux_Unset(EncoderMux);// select no pin(high all pin)
 	return data;
 }
-/*
- *	Encoder_ReadAll()
- *	Store all encoder values in a local buffer for reading
- * */
+
+/**
+ *	Read and Store all encoder values in a local buffer
+ */
 void Encoder_ReadAll(){
 	int i;
 	for(i=MUX_ENCODER1 ; i<=MUX_ENCODER10 ;i++)
@@ -135,10 +140,11 @@ void Encoder_ReadAll(){
 		encoder_value_[i] = Encoder_Read(i);
 	}
 }
-/*
- *	Encoder_ReadBuffer()
- *	Store all encoder values in a local buffer for reading
- * */
+/**
+ *	Read out the buffered encoder value of specified channel
+ *	@param	channel	The encoder to be reset
+ *	@return	Buffered encoder value
+ */
 int Encoder_ReadBuffer(int channel){
 	return encoder_value_[channel];
 }

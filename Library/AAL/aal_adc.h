@@ -1,3 +1,7 @@
+/**
+ *	@file
+ *	@brief	AAL_ADC Header File
+ * */
 #ifndef __AAL_ADC_H
 #define __AAL_ADC_H
 

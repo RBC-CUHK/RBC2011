@@ -1,6 +1,17 @@
+/**
+ *	@file
+ *	@brief	ARM_Math Function Implementation
+ * */
 #include "arm_math.h"
 
-int numDigi(int num){	//max for 7 digi
+/**
+ *	@brief	Number of digits of a number
+ *
+ *	Use if for fast computation but number of digit supported is limited
+ *	@param	num	Number to be analysed
+ *	@return	Number of digits
+ * */
+int numDigi(int num){
 	//check for -ve
 	if (num<0){
 		num=-num;
@@ -26,13 +37,21 @@ int numDigi(int num){	//max for 7 digi
 	}else if (num>=0){
 		return 1;
 	}
-	if (num>10000000){
-		return -1;
-	}
+//	if (num > 1000000000){
+//		return -1;
+//	}
 	return -2;
 
 }
 
+/**
+ *	@brief	Compute the 2 to the power of n
+ *	
+ *	Use if for fast computation but got limit
+ *	@param	n	the power
+ *
+ *	@return	Computed value
+ * */
 int pow2(int n){
 	switch (n){
 	case 0:
@@ -73,6 +92,14 @@ int pow2(int n){
 	return -1;
 }
 
+/**
+ *	@brief	Compute the 10 to the power of n
+ *	
+ *	Use if for fast computation but got limit
+ *	@param	n	the power
+ *
+ *	@return	Computed value
+ * */
 int pow10(int n){
 	switch (n){
 	case 0:

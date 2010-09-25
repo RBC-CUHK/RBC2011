@@ -1,7 +1,16 @@
+/**
+ *	@file
+ *	@brief	AAL_UART Function Implementation
+ * */
 #include "armversion.h"
 #include "aal_uart.h"
 #include "arm_math.h"
 
+/**
+ *	@brief	Init the Uart0
+ *	
+ *	@param	buadrate	buad rate of the Uart0
+ * */
 void Uart_Init(int buadrate){
   	/* pin selection for the UART*/
     PINSEL0 |= (1<<0); //TXD for the UART0
@@ -14,7 +23,16 @@ void Uart_Init(int buadrate){
    	return;
 }
 
-void Uart_SendInt(int num){   	/*send a at most 5 places number*/
+/**
+ *	@brief	Send out a Interger
+ *	
+ *	Number of digits of the num is limited by arm_math
+ *
+ *	@param	num	number to be sent
+ *	@see	Uart_SendChar
+ *	@see	numDigi
+ * */
+void Uart_SendInt(int num){
     int digi;
 	int i;
 	digi=numDigi(num);
@@ -28,11 +46,25 @@ void Uart_SendInt(int num){   	/*send a at most 5 places number*/
 	return;
 }
 
+/**
+ *	@brief Send out a character
+ *
+ *	Underlying function for Uart_Send Family
+ *
+ *	@param	ch	Character to be sent
+ * */
 void Uart_SendChar(char ch){ 	/*send an char*/
 	while( (U0LSR&0x40)==0 );    
  	U0THR  = ch; // Transmit next character
 }
 
+/**
+ *	@brief	Send out a string
+ *
+ *	@param	p	string
+ *
+ *	@see	Uart_SendChar
+ * */
 void Uart_Print(char *p){  		/*send a string*/
 	while(*p!='\0') {
       Uart_SendChar(*p++);
@@ -40,6 +72,13 @@ void Uart_Print(char *p){  		/*send a string*/
    return;
 }
 
+/**
+ *	@brief	Get a character from UART
+ *
+ *	Blocking call
+ *
+ *	@return	Charecter read
+ * */
 char Uart_GetChar(void){ 		/*get a char from the computer*/
 	volatile char ch = '0';
   	while ((U0LSR&0x1)==0); 	// wait until  receive a byte
@@ -47,12 +86,27 @@ char Uart_GetChar(void){ 		/*get a char from the computer*/
   	return ch;
 }
 
+/**
+ *	@brief	Send out a 1 digit number
+ *	
+ *	@param	num	Number to be sent
+ *
+ *	@see	Uart_SendChar
+ * */
 void Uart_SendBit(int num){   	/*send a 1 place number*/
      Uart_SendChar('0'+ num);
 	 return;
 }
 
-void Uart_SendFloat(float num){ /*send a at most 5 place number and 4 dp*/
+/**
+ *	@brief	Send out a floating point number
+ *
+ *	@param	num	Number to be sent
+ *	
+ *	@see	Uart_SendInt
+ *	@see	Uart_SendChar
+ * */
+void Uart_SendFloat(float num){
 	int copy;
 	if (num<0){
 		Uart_Print("-");
@@ -60,7 +114,7 @@ void Uart_SendFloat(float num){ /*send a at most 5 place number and 4 dp*/
 	}
 	copy=(int)num; //print the first part as integer
 	Uart_SendInt(copy); //print the decimal part
-	Uart_Print(".");
+	Uart_SendChar('.');
 	Uart_SendChar('0'+(int)(num*10)%10);
 	Uart_SendChar('0'+(int)(num*100)%10);
 	Uart_SendChar('0'+(int)(num*1000)%10);
@@ -69,20 +123,30 @@ void Uart_SendFloat(float num){ /*send a at most 5 place number and 4 dp*/
 	return;
 }
 
-void Uart_FixSendInt(int num){	/*send an integer*/
+/**
+ *	@brief	Send out a fixed length number
+ *
+ *	Number of digits of the num is limited by arm_math
+ *
+ *	@param	num		Number to be sent
+ *	@param	digit	Number of digits
+ *	
+ *	@see	Uart_SendChar
+ *	@see	pow10
+ *
+ * */
+void Uart_FixSendInt(int num,int digit){	/*send an integer*/
 	int _num = num;
-
+	int i;
 	if (_num < 0){
-		Uart_Print("-");
+		Uart_SendChar('-');
 		_num = -1 * _num;
 	}else{
-		Uart_Print("+");
+		Uart_SendChar('+');
 	}	
-	Uart_SendChar('0'+ (_num / 100000) % 10);
-	Uart_SendChar('0'+ (_num / 10000) % 10);
-	Uart_SendChar('0'+ (_num / 1000) % 10);
-	Uart_SendChar('0'+ (_num / 100) % 10);
-	Uart_SendChar('0'+ (_num / 10) % 10);
-	Uart_SendChar('0'+ _num % 10);	
+
+	for(i = digit; i >= 0; --i){
+		Uart_SendChar('0'+ (_num / pow10(i) % 10));	
+	}
 	return;
 }

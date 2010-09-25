@@ -1,3 +1,7 @@
+/**
+ *	@file
+ *	@brief	RAL_Encoder	Header File
+ * */
 #ifndef __ral_encoder_h
 #define __ral_encoder_h 
 #include "ral_mux.h"

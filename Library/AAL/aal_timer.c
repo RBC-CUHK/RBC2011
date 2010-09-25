@@ -1,6 +1,19 @@
+/**
+ *	@file
+ *	@brief	AAL_Timer Function Implementation
+ * */
 #include "armversion.h"
 #include "aal_timer.h"
 
+/**
+ *	@brief	Init timer
+ *
+ *	Callback when timer interupt is generated
+ *
+ *	@param	channel		Timer channel to be inited
+ *	@param	frequency	Timer frequency in Hz
+ *	@param	callback	Call Back Function Pointer
+ * */
 void Timer_Init(int channel,int frequency, void (*callback)(void) __irq){
 //	frequency = 10;//using 10hz for debug
 	
@@ -24,4 +37,5 @@ void Timer_Init(int channel,int frequency, void (*callback)(void) __irq){
        VICVectCntl1 = 0x20 | 4;                    	// use it for Timer 1 Interrupt
        VICIntEnable = 0x00000020;                  	// Enable Timer1 Interrupt
     }   
+	return ;
 }

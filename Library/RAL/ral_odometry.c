@@ -1,22 +1,40 @@
+/**
+ *	@file
+ *	@brief	RAL_Odometry Function Implementation
+ * */
 #include <math.h>
 #include "ral_encoder.h"
 #include "ral_odometry.h"
 #include "ral_pid.h"
 
+///	Global variable storing coordinates
 struct Pos Odometry_Pos;
-
+/**
+ *	@brief	Init the Odometry Struct
+ *	X , Y coordinates are set to 0
+ *	Heading angle is set to 0 degree
+ *
+ *	@see	Pos
+ *	@param	encoderL	Left encoder channel
+ *	@param	encoderR	Right encoder channel
+ * */
 void Odometry_Init(int encoderL, int encoderR){ 
     Odometry_Pos.x = 0;
     Odometry_Pos.y = 0;
     Odometry_Pos.theta = 0.0;
     Odometry_Pos.encoderChannelL = encoderL;
     Odometry_Pos.encoderChannelR = encoderR;
-	//init the last cnt by reading encoder 
 	Odometry_Pos.encoderLastCntL = Encoder_ReadBuffer(Odometry_Pos.encoderChannelL);
 	Odometry_Pos.encoderLastCntR = Encoder_ReadBuffer(Odometry_Pos.encoderChannelR);
     return;
 };
 
+/**
+ *	@brief Update the coordinates
+ *
+ *	Make use of the two encoders to find out the coordinates.
+ *	Would fail if the cart is drifted.	
+ * */
 void Odometry_Update(){
 	int LCount;
 	int RCount;
@@ -49,6 +67,13 @@ void Odometry_Update(){
     return;	
 };
 
+/**
+ *	@brief	Manually set the coordinates
+ *
+ *	@param	x		X-coordinate
+ *	@param	y		Y-coordinate
+ *	@param	theta	Heading Angle *
+ * */
 void Odometry_Set(double x, double y, double theta){
     Odometry_Pos.x = x;
     Odometry_Pos.y = y;

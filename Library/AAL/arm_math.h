@@ -1,3 +1,7 @@
+/**
+ *	@file
+ *	@brief	ARM_Math Header File
+ * */
 #ifndef __ARM_MATH_H
 #define __ARM_MATH_H
 

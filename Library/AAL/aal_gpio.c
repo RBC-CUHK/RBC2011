@@ -1,10 +1,18 @@
+/**
+ *	@file
+ *	@brief	AAL_GPIO Function Implementation
+ * */
 #include "armversion.h"
 #include "aal_gpio.h"
 
-
-//void GPIO_Init(float GPIO, int direction){
-//	int port = (int)GPIO;
-//	int channel =(GPIO-port)*100;
+/**
+ *	@brief	Init the GPIO pin
+ *
+ *	Do pin select and set the direction
+ *
+ *	@param 	GPIO		GPIO Standadrd
+ *	@param	direction	INPUT / OUTPUT
+ * */
 void GPIO_Init(int GPIO, int direction){
 	int port = GPIO / 100;
 	int channel = GPIO % 100;
@@ -34,23 +42,30 @@ void GPIO_Init(int GPIO, int direction){
 	
 }
 
-//int GPIO_Read(float GPIO){
-//	int port = (int)GPIO;
-//	int channel =(GPIO-port)*100;
+/**
+ *	@brief	Read the GPIO
+ *
+ *	@param	GPIO	GPIO Standard
+ *
+ *	@return	GPIO value read, -1 indicates invalid pin
+ * */
 int GPIO_Read(int GPIO){
 	int port = GPIO / 100;
 	int channel = GPIO % 100;
-	if(channel > 32) return 0;
+	if(channel > 32) return -1;
 	switch(port){
 		 case 0: return (IO0PIN >> channel) & 0x1; 
 		 case 1: return (IO1PIN >> channel) & 0x1;	
 	}
-	return 0;
+	return -1;
 }
 
-//void GPIO_Set(float GPIO, int value){
-//	int port = (int)GPIO;
-//	int channel =(GPIO-port)*100;
+/**
+ *	@brief	Set the GPIO pin
+ *
+ *	@param	GPIO	GPIO Standard
+ *	@param	value	0 / 1
+ * */
 void GPIO_Set(int GPIO, int value){
 	int port = GPIO / 100;
 	int channel = GPIO % 100;

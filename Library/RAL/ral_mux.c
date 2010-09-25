@@ -1,16 +1,23 @@
+/**
+ *	@file
+ *	@brief	RAL_Mux Function Implementation
+ * */
 #include "ral_mux.h"
-#include "../AAL/aal_gpio.h"
+#include "AAL/aal_gpio.h"
 
-//global varible
-//static int gpio_[5];
-
-/*
- *	Mux_Init()
- *	init the mux
- *	Using 5 gpios to represent 4 select pin and 1 not_enable pine
+/**
+ *	@see	Mux_Struct
+ *	@brief	Init the Mux
+ *
+ *	Would accordingly init the GPIOs to Output pins.
+ *	
+ *	@param	Mux		Mux to be inited
+ *	@param	EN		Not Enable pin
+ *	@param	gpio	Select pins
+ *
+ *	@return	Pointer to the inited Mux_Struct
  */
 struct Mux_Struct* Mux_Init(struct Mux_Struct* Mux, int EN, int gpio[4]){ 
-//Init GPIO[3] MS --> GPIO[0] LS
 	int i;
 	Mux->EN = EN;
 	GPIO_Init(EN,OUTPUT);
@@ -22,10 +29,14 @@ struct Mux_Struct* Mux_Init(struct Mux_Struct* Mux, int EN, int gpio[4]){
 	return Mux;
 }
 
-/*
- *	Mux_Set()
- *	low the selected pin
- */
+/**
+ *	@brief	Set the corresponding channel of the mux
+ *
+ *	Would activate the Mux
+ *
+ *	@param	Mux		Mux to be set
+ *	@param	channel	channel to be set
+ * */
 void Mux_Set(struct Mux_Struct* Mux, int channel){
 	channel &= 0x0F;
 	(channel&0x08) ? GPIO_Set(Mux->gpio[0],1) : GPIO_Set(Mux->gpio[0],0);
@@ -36,9 +47,10 @@ void Mux_Set(struct Mux_Struct* Mux, int channel){
 	GPIO_Set(Mux->EN,0); //clear not_EN
 }
 
-/*
- *	Mux_Unset()
- *	deactive the mux(select no output), high all pin
+/**
+ *	@brief	Deactive the mux
+ *	
+ *	@param	Mux		Mux to be deactived
  * */
 void Mux_Unset(struct Mux_Struct* Mux){
 	// deactive the mux	 		

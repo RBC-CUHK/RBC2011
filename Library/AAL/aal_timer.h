@@ -1,3 +1,7 @@
+/**
+ *	@file
+ *	@brief	AAL_Timer Header File
+ * */
 #ifndef __AAL_TIMER_H
 #define __AAL_TIMER_H
 

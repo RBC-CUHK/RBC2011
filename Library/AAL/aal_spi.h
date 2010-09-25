@@ -1,3 +1,7 @@
+/**
+ *	@file
+ *	@brief	AAL_SPI Header File
+ * */
 #ifndef __aal_spi_h
 #define __aal_spi_h
 
