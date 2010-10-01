@@ -9,15 +9,15 @@
 // Joystick Analog
 // Follow the ADC standard
 #define RY 3
-#define LX 0
-#define LY 1
+#define LX 1
+#define LY 0
 #define RX 2
 
 // Analog Setting
 /// Lower Tolerance which regards as central point
-#define LOWERBOUND 475.0
+#define JOYSTICK_LOWERBOUND 475.0
 /// Upper Tolerance which regards as central point
-#define UPPERBOUND 525.0
+#define JOYSTICK_UPPERBOUND 525.0
 
 // Joystick Buttons
 // Follow the GPIO standard

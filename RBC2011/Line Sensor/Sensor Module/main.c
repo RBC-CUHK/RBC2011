@@ -5,7 +5,7 @@
 #include "AAL/aal_gpio.h"
 #include "AAL/aal_adc.h"
 
-#define DELAY	100
+#define DELAY	20
 
 unsigned int count = 0;
 int CountDecoderArray[16] = {0,7,1,8,2,9,3,10,4,11,5,12,6,13,14,15};

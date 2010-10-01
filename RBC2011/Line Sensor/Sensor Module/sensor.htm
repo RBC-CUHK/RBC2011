@@ -1,9 +1,9 @@
 <!doctype html public "-//w3c//dtd html 4.0 transitional//en">
 <html><head>
-<title>Static Call Graph - [C:\Documents and Settings\CEG3430\Desktop\RBC-RBC2011-3a05a30\RBC2011\Line Sensor\Sensor Module\sensor.axf]</title></head>
+<title>Static Call Graph - [C:\Documents and Settings\CEG3430\Desktop\RBC-RBC2011-8889961\RBC2011\Line Sensor\Sensor Module\sensor.axf]</title></head>
 <body><HR>
-<H1>Static Call Graph for image C:\Documents and Settings\CEG3430\Desktop\RBC-RBC2011-3a05a30\RBC2011\Line Sensor\Sensor Module\sensor.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 4.1 [Build 481]: Last Updated: Fri Sep 24 23:03:24 2010
+<H1>Static Call Graph for image C:\Documents and Settings\CEG3430\Desktop\RBC-RBC2011-8889961\RBC2011\Line Sensor\Sensor Module\sensor.axf</H1><HR>
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 4.1 [Build 481]: Last Updated: Mon Sep 27 17:35:39 2010
 <BR><P>
 <H3>Maximum Stack Usage =         96 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -269,8 +269,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendChar
 </UL>
-<BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_FixSendInt
-<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendFloat
+<BR>[Called By]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendFloat
 <LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendInt
 <LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer0_Routine
@@ -303,20 +302,21 @@ Global Symbols
 <LI><a href="#[29]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_Print
 </UL>
 
-<P><STRONG><a name="[38]"></a>Uart_FixSendInt</STRONG> (ARM, 332 bytes, Stack size 24 bytes, aal_uart.o(.text), UNUSED)
+<P><STRONG><a name="[38]"></a>Uart_FixSendInt</STRONG> (ARM, 164 bytes, Stack size 32 bytes, aal_uart.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_idivmod
+<LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pow10
 <LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendChar
-<LI><a href="#[29]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_Print
 </UL>
 
-<P><STRONG><a name="[31]"></a>numDigi</STRONG> (ARM, 228 bytes, Stack size 0 bytes, arm_math.o(.text), UNUSED)
+<P><STRONG><a name="[31]"></a>numDigi</STRONG> (ARM, 208 bytes, Stack size 0 bytes, arm_math.o(.text), UNUSED)
 <BR><BR>[Called By]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendInt
 </UL>
 
 <P><STRONG><a name="[64]"></a>pow2</STRONG> (ARM, 296 bytes, Stack size 0 bytes, arm_math.o(.text), UNUSED)
 
 <P><STRONG><a name="[32]"></a>pow10</STRONG> (ARM, 184 bytes, Stack size 0 bytes, arm_math.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendInt
+<BR><BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_FixSendInt
+<LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendInt
 </UL>
 
 <P><STRONG><a name="[26]"></a>Mux_Unset</STRONG> (ARM, 28 bytes, Stack size 8 bytes, ral_mux.o(.text))
@@ -412,8 +412,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[3f]"></a>_fcmple</STRONG> (ARM, 132 bytes, Stack size 16 bytes, fleqf.o(x$fpl$fleqf), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_fnaninf
-<LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_fcmp_Inf
+<BR><BR>[Calls]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_fcmp_Inf
+<LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_fnaninf
 </UL>
 
 <P><STRONG><a name="[6a]"></a>__fpl_fcmple_InfNaN</STRONG> (ARM, 0 bytes, Stack size unknown bytes, fleqf.o(x$fpl$fleqf), UNUSED)

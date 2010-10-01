@@ -11,7 +11,7 @@ struct Motor_Struct* FRM;
 struct Motor_Struct* BRM;
 struct Motor_Struct* BLM;
 
-int Fourwheel_Speed = 500;
+signed char __MotorDirection[4] = {0};
 
 void Fourwheel_Init(struct Servo_Struct* SS[4], struct Motor_Struct* MS[4]){
 	FL = SS[0];
@@ -27,99 +27,100 @@ void Fourwheel_Init(struct Servo_Struct* SS[4], struct Motor_Struct* MS[4]){
 	return ;
 }
 
+void Fourwheel_SetSpeed(int speed){
+	Motor_SetPWM(FLM,speed*__MotorDirection[0]);
+	Motor_SetPWM(FRM,speed*__MotorDirection[1]);
+	Motor_SetPWM(BRM,speed*__MotorDirection[2]);
+	Motor_SetPWM(BLM,speed*__MotorDirection[3]);	
+}
+
 void Fourwheel_Forward(void){
-//	Fourwheel_Stop();
+	Fourwheel_SetSpeed(0);
 	Servo_SetAbsolute(FL,0);
 	Servo_SetAbsolute(FR,90);
 	Servo_SetAbsolute(BR,0);
 	Servo_SetAbsolute(BL,90);
-
-	Motor_SetPWM(FLM,-Fourwheel_Speed);
-	Motor_SetPWM(FRM,Fourwheel_Speed);
-	Motor_SetPWM(BRM,Fourwheel_Speed);
-	Motor_SetPWM(BLM,-Fourwheel_Speed);
+	__MotorDirection[0] = -1;
+	__MotorDirection[1] = 1;
+	__MotorDirection[2] = 1;
+	__MotorDirection[3] = -1;
 	return ;
 }
 
 void Fourwheel_Backward(void){
-//	Fourwheel_Stop();
+	Fourwheel_SetSpeed(0);
 	Servo_SetAbsolute(FL,0);
 	Servo_SetAbsolute(FR,90);
 	Servo_SetAbsolute(BR,0);
 	Servo_SetAbsolute(BL,90);
-
-	Motor_SetPWM(FLM,Fourwheel_Speed);
-	Motor_SetPWM(FRM,-Fourwheel_Speed);
-	Motor_SetPWM(BRM,-Fourwheel_Speed);
-	Motor_SetPWM(BLM,Fourwheel_Speed);
+	__MotorDirection[0] = 1;
+	__MotorDirection[1] = -1;
+	__MotorDirection[2] = -1;
+	__MotorDirection[3] = 1;
 	return ;
 }
 
 void Fourwheel_Leftward(void){
-//	Fourwheel_Stop();
+	Fourwheel_SetSpeed(0);
 	Servo_SetAbsolute(FL,90);
 	Servo_SetAbsolute(FR,0);
 	Servo_SetAbsolute(BR,90);
 	Servo_SetAbsolute(BL,0);
-
-	Motor_SetPWM(FLM,Fourwheel_Speed);
-	Motor_SetPWM(FRM,Fourwheel_Speed);
-	Motor_SetPWM(BRM,-Fourwheel_Speed);
-	Motor_SetPWM(BLM,-Fourwheel_Speed);
+	__MotorDirection[0] = 1;
+	__MotorDirection[1] = 1;
+	__MotorDirection[2] = -1;
+	__MotorDirection[3] = -1;
 	return ;
 }
 
 void Fourwheel_Rightward(void){
-//	Fourwheel_Stop();
+	Fourwheel_SetSpeed(0);
 	Servo_SetAbsolute(FL,90);
 	Servo_SetAbsolute(FR,0);
 	Servo_SetAbsolute(BR,90);
 	Servo_SetAbsolute(BL,0);
-
-	Motor_SetPWM(FLM,-Fourwheel_Speed);
-	Motor_SetPWM(FRM,-Fourwheel_Speed);
-	Motor_SetPWM(BRM,Fourwheel_Speed);
-	Motor_SetPWM(BLM,Fourwheel_Speed);
+	__MotorDirection[0] = -1;
+	__MotorDirection[1] = -1;
+	__MotorDirection[2] = 1;
+	__MotorDirection[3] = 1;
 	return ;
 }
 
 void Fourwheel_RotateLeft(void){
-//	Fourwheel_Stop();
+	Fourwheel_SetSpeed(0);
 	Servo_SetAbsolute(FL,45);
 	Servo_SetAbsolute(FR,45);
 	Servo_SetAbsolute(BR,45);
 	Servo_SetAbsolute(BL,45);
-	
-	Motor_SetPWM(FLM,Fourwheel_Speed);
-	Motor_SetPWM(FRM,Fourwheel_Speed);
-	Motor_SetPWM(BRM,Fourwheel_Speed);
-	Motor_SetPWM(BLM,Fourwheel_Speed);
+	__MotorDirection[0] = 1;
+	__MotorDirection[1] = 1;
+	__MotorDirection[2] = 1;
+	__MotorDirection[3] = 1;
 	return ;
 }
 
 void Fourwheel_RotateRight(void){
-//	Fourwheel_Stop();
+	Fourwheel_SetSpeed(0);
 	Servo_SetAbsolute(FL,45);
 	Servo_SetAbsolute(FR,45);
 	Servo_SetAbsolute(BR,45);
 	Servo_SetAbsolute(BL,45);
-
-	Motor_SetPWM(FLM,-Fourwheel_Speed);
-	Motor_SetPWM(FRM,-Fourwheel_Speed);
-	Motor_SetPWM(BRM,-Fourwheel_Speed);
-	Motor_SetPWM(BLM,-Fourwheel_Speed);
+	__MotorDirection[0] = -1;
+	__MotorDirection[1] = -1;
+	__MotorDirection[2] = -1;
+	__MotorDirection[3] = -1;
 	return ;
 }
 
 void Fourwheel_Stop(void){
+	Fourwheel_SetSpeed(0);
 	Servo_SetAbsolute(FL,45);
 	Servo_SetAbsolute(FR,45);
 	Servo_SetAbsolute(BR,45);
 	Servo_SetAbsolute(BL,45);
-
-	Motor_SetPWM(FLM,0);
-	Motor_SetPWM(FRM,0);
-	Motor_SetPWM(BRM,0);
-	Motor_SetPWM(BLM,0);
+	__MotorDirection[0] = 0;
+	__MotorDirection[1] = 0;
+	__MotorDirection[2] = 0;
+	__MotorDirection[3] = 0;
 	return ;
 }

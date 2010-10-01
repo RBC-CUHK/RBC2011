@@ -95,7 +95,7 @@ void Motor_Set2103PWM(struct Motor_Struct* MS, int PWM){
 	Mux_Set(&MBMux,MUX_2103);
 	SPI_Send(data);
 	Mux_Unset(&MBMux);
-	for (i = 0; i < 6800; i++);
+	for (i = 0; i < 680; i++);
 	if(negative == 1)
 		MS->currPWM = PWM * (-1);
 	else
