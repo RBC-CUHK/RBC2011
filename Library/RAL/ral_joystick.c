@@ -4,8 +4,8 @@
  * */
 #include "ral_joystick.h"
 
-#include "AAL/aal_gpio.h"
-#include "AAL/aal_adc.h"
+#include "../AAL/aal_gpio.h"
+#include "../AAL/aal_adc.h"
 
 /**
  *	Init the Joystick settings according to configuration at Header file

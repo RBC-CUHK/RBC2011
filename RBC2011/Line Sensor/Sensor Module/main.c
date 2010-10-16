@@ -5,7 +5,8 @@
 #include "AAL/aal_gpio.h"
 #include "AAL/aal_adc.h"
 
-#define DELAY	20
+#define	ADCDELAY	100
+#define DELAY		300
 
 unsigned int count = 0;
 int CountDecoderArray[16] = {0,7,1,8,2,9,3,10,4,11,5,12,6,13,14,15};
@@ -31,13 +32,13 @@ void __irq Timer0_Routine(){
 	}
 	Mux_Set(&MuxDecoder,CountDecoderArray[CountDecoder]);
 	Mux_Set(&MuxAnalog,CountAnalogArray[CountAnalog]);
-	for(delay = 0 ; delay < DELAY ; delay++);	
+	for(delay = 0 ; delay < ADCDELAY ; delay++);	
 	//Convert
 	GPIO_Set(31,1);
 	if(CountDecoder < 8)
-		ADCReading[CountDecoderArray[CountDecoder]] = ADC_Read(1);
+		ADCReading[CountDecoder] = ADC_Read(1);
 	else
-		ADCReading[CountDecoderArray[CountDecoder]] = ADC_Read(2);
+		ADCReading[CountDecoder] = ADC_Read(2);
 	
 //	Uart_SendInt(ADCReading[CountDecoder]);
 //	Uart_SendChar(' ');
@@ -50,15 +51,14 @@ void __irq Timer0_Routine(){
 //	Uart_SendChar('-');
 //	Uart_SendInt(CountAnalogArray[CountAnalog]);
 //	Uart_Print("\r\n");
-	CountDecoder = (CountDecoder + 1) % 16;
-	CountAnalog = (CountAnalog + 1) % 8;	
-	for(delay = 0; delay < 6; delay++){
-		Uart_SendInt(ADC_Read(delay));
-		Uart_SendChar(' ');
-	}
+	
+	Uart_SendInt(ADCReading[CountDecoder]);
+	Uart_SendChar(' ');
 	Uart_Print("\r\n");
-//	if(CountDecoder == 8)
-//		Uart_Print("\r\n");
+	if(CountDecoder == 8)
+		Uart_Print("\r\n");
+	CountDecoder = (CountDecoder + 1) % 16;
+	CountAnalog = (CountAnalog + 1) % 8;
 //	if(CountDecoder == 0)
 //		Uart_Print("\r\n***\r\n"); 
 

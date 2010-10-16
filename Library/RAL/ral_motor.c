@@ -5,9 +5,9 @@
 #include "armversion.h"
 #include "ral_motor.h"
 #include "ral_mux.h"
-#include "AAL/aal_gpio.h"
-#include "AAL/aal_pwm.h"
-#include "AAL/aal_spi.h"
+#include "../AAL/aal_gpio.h"
+#include "../AAL/aal_pwm.h"
+#include "../AAL/aal_spi.h"
 
 /**
  *	@brief	MBMux is the Mux used to communicate with LPC2103.

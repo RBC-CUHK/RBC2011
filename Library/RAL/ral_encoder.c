@@ -4,7 +4,7 @@
  */
 #include "ral_encoder.h"
 #include "ral_mux.h"
-#include "AAL/aal_spi.h"
+#include "../AAL/aal_spi.h"
 
 //global varibles: local buffer of all encoder values
 static int encoder_value_[20] ={0};

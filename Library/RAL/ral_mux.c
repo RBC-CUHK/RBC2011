@@ -3,7 +3,7 @@
  *	@brief	RAL_Mux Function Implementation
  * */
 #include "ral_mux.h"
-#include "AAL/aal_gpio.h"
+#include "../AAL/aal_gpio.h"
 
 /**
  *	@see	Mux_Struct

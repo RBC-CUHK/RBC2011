@@ -4,7 +4,7 @@
  * */
 #include "armversion.h"
 #include "aal_spi.h"
-#include "RAL/ral_mux.h"
+#include "../RAL/ral_mux.h"
 
 /**
  *	@brief	Init the SPI in Master Mode
