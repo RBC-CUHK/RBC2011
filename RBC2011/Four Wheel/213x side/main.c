@@ -102,7 +102,7 @@ int main(){
 
 
 	Fourwheel_Init(SS,MS);
-	for (i = 0; i < 1000; i ++)
+	for (i = 0; i < 500; i ++)
 		for (j = 0; j < 6800; j++);
 	SPI_InitMaster(16);
 	Timer_Init(0,1000,Timer0_Routine);

@@ -30,12 +30,13 @@ void Odometry_Init(int encoderL, int encoderR){
 };
 
 /**
- *	@brief Update the coordinates
+ *	@brief Update the coordinates of a specific Pos struct
  *
- *	Make use of the two encoders to find out the coordinates.
- *	Would fail if the cart is drifted.	
+ *	Input the two new Encoder Count for calculation.
+ *	@param	newEncoderLCount	New left encoder count
+ *	@param	newEncoderRCount	New right encoder count
  * */
-void Odometry_Update(){
+void Odometry_Update_Pos(struct Pos* PS, int newEncoderLCount, int newEncoderRCount){
 	int LCount;
 	int RCount;
 	double LCONST;
@@ -43,27 +44,39 @@ void Odometry_Update(){
 	double LDistance;
 	double RDistance;
 	double delta_Distance;
-	int LnewCount;
-	int RnewCount;
-
-    LnewCount = Encoder_ReadBuffer(Odometry_Pos.encoderChannelL);
-    RnewCount = Encoder_ReadBuffer(Odometry_Pos.encoderChannelR);
-	
 	//do odometry update by the delta cnt in L/R encoders
-	LCount = LnewCount - Odometry_Pos.encoderLastCntL;
-	RCount = RnewCount - Odometry_Pos.encoderLastCntR;
+	LCount = newEncoderLCount - PS->encoderLastCntL;
+	RCount = newEncoderRCount - PS->encoderLastCntR;
 
-	Odometry_Pos.encoderLastCntL = LnewCount;
-	Odometry_Pos.encoderLastCntR = RnewCount;
+	PS->encoderLastCntL = newEncoderLCount;
+	PS->encoderLastCntR = newEncoderRCount;
 
     LCONST = 2 * ENCODER_L_RADIUS * PI / ENCODER_COUNT; 
     RCONST = 2 * ENCODER_R_RADIUS * PI / ENCODER_COUNT; 
     LDistance = LCount * LCONST;
     RDistance = RCount * RCONST;
     delta_Distance = (LDistance + RDistance) / 2.0;
-    Odometry_Pos.x += delta_Distance * cos(Odometry_Pos.theta * PI_180);
-    Odometry_Pos.y += delta_Distance * sin(Odometry_Pos.theta * PI_180);
-    Odometry_Pos.theta -= (LDistance - RDistance) / ENCODER_DISTANCE * C180_PI;
+    PS->x += delta_Distance * cos(PS->theta * PI_180);
+    PS->y += delta_Distance * sin(PS->theta * PI_180);
+    PS->theta -= (LDistance - RDistance) / ENCODER_DISTANCE * C180_PI;
+	return ;
+}
+
+/**
+ *	@brief Update the coordinates
+ *
+ *	Make use of the two encoders to find out the coordinates.
+ *	Would fail if the cart is drifted.	
+ * */
+void Odometry_Update(){
+
+	int LnewCount;
+	int RnewCount;
+
+    LnewCount = Encoder_ReadBuffer(Odometry_Pos.encoderChannelL);
+    RnewCount = Encoder_ReadBuffer(Odometry_Pos.encoderChannelR);
+	
+	Odometry_Update_Pos(&Odometry_Pos,LnewCount,RnewCount);
     return;	
 };
 

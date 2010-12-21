@@ -37,6 +37,7 @@ struct Pos{
 };
 
 void Odometry_Init(int encoderL, int encoderR);
+void Odometry_Update_Pos(struct Pos* PS, int newEncoderLCount, int newEncoderRCount);
 void Odometry_Update(void);
 void Odometry_Set(double x, double y, double theta);
 #endif

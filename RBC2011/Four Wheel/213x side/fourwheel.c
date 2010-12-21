@@ -1,6 +1,7 @@
 #include "fourwheel.h"
 #include "RAL/ral_servo.h"
 
+#define Fourwheel_SetStatus(s) do {if(Status == (s)) return ; else Status = (s);} while(0)
 struct Servo_Struct* FL;
 struct Servo_Struct* FR;
 struct Servo_Struct* BR;
@@ -12,6 +13,7 @@ struct Motor_Struct* BRM;
 struct Motor_Struct* BLM;
 
 signed char __MotorDirection[4] = {0};
+Fourwheel_Status Status = STOP;
 
 void Fourwheel_Init(struct Servo_Struct* SS[4], struct Motor_Struct* MS[4]){
 	FL = SS[0];
@@ -35,6 +37,7 @@ void Fourwheel_SetSpeed(int speed){
 }
 
 void Fourwheel_Forward(void){
+	Fourwheel_SetStatus(FORWARD);
 	Fourwheel_SetSpeed(0);
 	Servo_SetAbsolute(FL,0);
 	Servo_SetAbsolute(FR,90);
@@ -48,6 +51,7 @@ void Fourwheel_Forward(void){
 }
 
 void Fourwheel_Backward(void){
+	Fourwheel_SetStatus(BACKWARD);
 	Fourwheel_SetSpeed(0);
 	Servo_SetAbsolute(FL,0);
 	Servo_SetAbsolute(FR,90);
@@ -61,6 +65,7 @@ void Fourwheel_Backward(void){
 }
 
 void Fourwheel_Leftward(void){
+	Fourwheel_SetStatus(LEFTWARD);
 	Fourwheel_SetSpeed(0);
 	Servo_SetAbsolute(FL,90);
 	Servo_SetAbsolute(FR,0);
@@ -74,6 +79,7 @@ void Fourwheel_Leftward(void){
 }
 
 void Fourwheel_Rightward(void){
+	Fourwheel_SetStatus(RIGHTWARD);
 	Fourwheel_SetSpeed(0);
 	Servo_SetAbsolute(FL,90);
 	Servo_SetAbsolute(FR,0);
@@ -87,6 +93,7 @@ void Fourwheel_Rightward(void){
 }
 
 void Fourwheel_RotateLeft(void){
+	Fourwheel_SetStatus(ROTATELEFT);
 	Fourwheel_SetSpeed(0);
 	Servo_SetAbsolute(FL,45);
 	Servo_SetAbsolute(FR,45);
@@ -100,6 +107,7 @@ void Fourwheel_RotateLeft(void){
 }
 
 void Fourwheel_RotateRight(void){
+	Fourwheel_SetStatus(ROTATERIGHT);
 	Fourwheel_SetSpeed(0);
 	Servo_SetAbsolute(FL,45);
 	Servo_SetAbsolute(FR,45);
@@ -113,6 +121,7 @@ void Fourwheel_RotateRight(void){
 }
 
 void Fourwheel_Stop(void){
+	Fourwheel_SetStatus(STOP);
 	Fourwheel_SetSpeed(0);
 	Servo_SetAbsolute(FL,45);
 	Servo_SetAbsolute(FR,45);
