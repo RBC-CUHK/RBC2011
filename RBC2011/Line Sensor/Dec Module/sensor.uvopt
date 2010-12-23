@@ -193,12 +193,12 @@
       <GroupNumber>1</GroupNumber>
       <FileNumber>3</FileNumber>
       <FileType>1</FileType>
-      <tvExp>0</tvExp>
+      <tvExp>1</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>17</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>1</TopLine>
-      <CurrentLine>12</CurrentLine>
+      <CurrentLine>1</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -226,7 +226,7 @@
 
   <Group>
     <GroupName>AAL</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <File>
@@ -279,8 +279,8 @@
       <Focus>0</Focus>
       <ColumnNumber>6</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>30</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\..\Library\AAL\aal_timer.c</PathWithFileName>
       <FilenameWithoutPath>aal_timer.c</FilenameWithoutPath>
@@ -321,8 +321,8 @@
       <Focus>0</Focus>
       <ColumnNumber>28</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>97</TopLine>
-      <CurrentLine>97</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\..\Library\AAL\aal_pwm.c</PathWithFileName>
       <FilenameWithoutPath>aal_pwm.c</FilenameWithoutPath>
@@ -389,8 +389,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>1</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\..\Library\RAL\ral_linesensor.c</PathWithFileName>
       <FilenameWithoutPath>ral_linesensor.c</FilenameWithoutPath>
@@ -401,10 +401,10 @@
       <FileType>1</FileType>
       <tvExp>1</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>13</ColumnNumber>
+      <ColumnNumber>19</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>100</TopLine>
+      <CurrentLine>123</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\..\Library\RAL\ral_motor.c</PathWithFileName>
       <FilenameWithoutPath>ral_motor.c</FilenameWithoutPath>
@@ -469,8 +469,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>25</TopLine>
-      <CurrentLine>25</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\..\Library\RAL\ral_odometry.c</PathWithFileName>
       <FilenameWithoutPath>ral_odometry.c</FilenameWithoutPath>
@@ -505,6 +505,32 @@
     </File>
   </Group>
 
+  <AlienFiles>
+    <PathWithFilename>F:\Documents\Kit\RBC\Code\RBC2011\Library\RAL\ral_motor.h</PathWithFilename>
+    <TopLine>1</TopLine>
+    <CurrentLine>23</CurrentLine>
+    <Constant>0</Constant>
+    <WindowPosition>
+      <length>0</length>
+      <flags>0</flags>
+      <showCmd>0</showCmd>
+      <MinPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MinPosition>
+      <MaxPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MaxPosition>
+      <NormalPosition>
+        <Top>0</Top>
+        <Left>0</Left>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </NormalPosition>
+    </WindowPosition>
+  </AlienFiles>
+
   <WinLayoutEx>
     <sActiveDebugView></sActiveDebugView>
     <WindowPosition>
@@ -512,8 +538,8 @@
       <flags>2</flags>
       <showCmd>3</showCmd>
       <MinPosition>
-        <xPos>-32000</xPos>
-        <yPos>-32000</yPos>
+        <xPos>-1</xPos>
+        <yPos>-1</yPos>
       </MinPosition>
       <MaxPosition>
         <xPos>-1</xPos>
@@ -529,8 +555,8 @@
     <MDIClientArea>
       <RegID>0</RegID>
       <MDITabState>
-        <Len>353</Len>
-        <Data>01000000040000000100000001000000010000000100000001000000FFFFFFFF0000000001000000010000000000000028000000280000000100000002000000010000000100000039463A5C446F63756D656E74735C4B69745C5242435C436F64655C524243323031315C4C6962726172795C41414C5C61616C5F74696D65722E63000000000B61616C5F74696D65722E6300000000FFDC7800FFFFFFFF47463A5C446F63756D656E74735C4B69745C5242435C436F64655C524243323031315C524243323031315C4C696E652053656E736F725C446563204D6F64756C655C6D61696E2E6300000000066D61696E2E6300000000F0A0A100FFFFFFFF0100000010000000C5D4F200FFDC7800BECEA100F0A0A100BCA8E1009CC1B600F7B88600D9ADC200A5C2D700B3A6BE00EAD6A300F6FA7D00B5E99D005FC3CF00C1838300CACAD5000100000001000000020000009C00000065000000A0050000D0020000</Data>
+        <Len>439</Len>
+        <Data>01000000040000000100000001000000010000000100000001000000FFFFFFFF0000000001000000010000000000000028000000280000000100000003000000020000000100000039463A5C446F63756D656E74735C4B69745C5242435C436F64655C524243323031315C4C6962726172795C52414C5C72616C5F6D6F746F722E63000000000B72616C5F6D6F746F722E6300000000C5D4F200FFFFFFFF39463A5C446F63756D656E74735C4B69745C5242435C436F64655C524243323031315C4C6962726172795C52414C5C72616C5F6D6F746F722E68000000000B72616C5F6D6F746F722E6800000000FFDC7800FFFFFFFF47463A5C446F63756D656E74735C4B69745C5242435C436F64655C524243323031315C524243323031315C4C696E652053656E736F725C446563204D6F64756C655C6D61696E2E6300000000066D61696E2E6300000000BECEA100FFFFFFFF0100000010000000C5D4F200FFDC7800BECEA100F0A0A100BCA8E1009CC1B600F7B88600D9ADC200A5C2D700B3A6BE00EAD6A300F6FA7D00B5E99D005FC3CF00C1838300CACAD5000100000001000000020000009C00000065000000A0050000D0020000</Data>
       </MDITabState>
     </MDIClientArea>
     <ViewEx>
@@ -1741,19 +1767,25 @@
     <ActiveMDIGroup>0</ActiveMDIGroup>
     <MDIGroup>
       <Size>100</Size>
-      <ActiveTab>1</ActiveTab>
+      <ActiveTab>2</ActiveTab>
       <Documents>
         <Doc>
-          <Name>..\..\..\Library\AAL\aal_timer.c</Name>
-          <ColumnNumber>6</ColumnNumber>
+          <Name>..\..\..\Library\RAL\ral_motor.c</Name>
+          <ColumnNumber>19</ColumnNumber>
+          <TopLine>100</TopLine>
+          <CurrentLine>123</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>..\..\..\Library\RAL/ral_motor.h</Name>
+          <ColumnNumber>12</ColumnNumber>
           <TopLine>1</TopLine>
-          <CurrentLine>30</CurrentLine>
+          <CurrentLine>23</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\main.c</Name>
-          <ColumnNumber>17</ColumnNumber>
+          <ColumnNumber>0</ColumnNumber>
           <TopLine>1</TopLine>
-          <CurrentLine>12</CurrentLine>
+          <CurrentLine>1</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>
