@@ -4,7 +4,7 @@
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
 F:\Documents\Kit\RBC\Code\RBC2011\RBC2011\Line Sensor\Dec Module\sensor.uvproj
-Project File Date:  12/21/2010
+Project File Date:  12/23/2010
 
 <h2>Output:</h2>
 Build target 'Target 1'
@@ -30,6 +30,6 @@ compiling ral_odometry.c...
 compiling ral_pid.c...
 compiling ral_servo.c...
 linking...
-Program Size: Code=7584 RO-data=32 RW-data=40 ZI-data=1336  
+Program Size: Code=7604 RO-data=32 RW-data=40 ZI-data=1336  
 FromELF: creating hex file...
 "sensor.axf" - 0 Error(s), 1 Warning(s).

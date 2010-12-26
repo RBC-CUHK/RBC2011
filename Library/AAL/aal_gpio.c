@@ -16,6 +16,7 @@
 void GPIO_Init(int GPIO, int direction){
 	int port = GPIO / 100;
 	int channel = GPIO % 100;
+	if(channel > 32) return ;
 	switch (port){
 		   int bitmask;
 		   case 0:  bitmask = ~(0x3 << (channel % 16 * 2));

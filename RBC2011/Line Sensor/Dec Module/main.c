@@ -117,10 +117,6 @@ int main(){
 	Motor_Init(&LeftMotor,2,16,17,SELF);
 	Motor_Init(&RightMotor,5,18,19,SELF);
 	
-	Motor_SetPWM(&LeftMotor,1000);
-	Motor_SetPWM(&RightMotor,-1000);
-	
-
 	for(i = 0; i < 4; ++i){
 		GPIO_Init(GPIOInput[i],INPUT);
 		GPIO_Init(GPIOOutput[i],OUTPUT);
@@ -131,6 +127,9 @@ int main(){
 
 	Timer_Init(0,20000,Timer0_Routine);
 	Timer_Init(1,50,Timer1_Routine);
+
+	Motor_SetPWM(&LeftMotor,1000);
+	Motor_SetPWM(&RightMotor,-1000);
 	while(1);	   
 	return 0;
 }

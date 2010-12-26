@@ -1,7 +1,7 @@
 #ifndef	__FOURWHEEL_H
 #define	__FOURWHEEL_H
 #include "RAL/ral_servo.h"
-#define MAXSPEED 1000
+#define MAXSPEED 1000.0
 
 //These offsets are for the first prototype
 #define	OFFSET1	-1200
