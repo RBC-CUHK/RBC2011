@@ -26,7 +26,7 @@ F (..\..\..\Library\RAL\ral_joystick.c)(0x4CB9A167)(-c --cpu ARM7TDMI -D__EVAL -
 I (..\..\..\Library\RAL\ral_joystick.h)(0x4CA5AECE)
 I (..\..\..\Library\AAL/aal_gpio.h)(0x4C9EA6F0)
 I (..\..\..\Library\AAL/aal_adc.h)(0x4C9EA6F0)
-F (..\..\..\Library\RAL\ral_linesensor.c)(0x4C9EA6F0)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\..\..\Library -I "E:\Software\Keil\ARM\INC" -I "E:\Software\Keil\ARM\INC\Philips" -o "ral_linesensor.o" --omf_browse "ral_linesensor.crf" --depend "ral_linesensor.d")
+F (..\..\..\Library\RAL\ral_linesensor.c)(0x4D16EE44)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\..\..\Library -I "E:\Software\Keil\ARM\INC" -I "E:\Software\Keil\ARM\INC\Philips" -o "ral_linesensor.o" --omf_browse "ral_linesensor.crf" --depend "ral_linesensor.d")
 F (..\..\..\Library\RAL\ral_motor.c)(0x4D16AE51)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\..\..\Library -I "E:\Software\Keil\ARM\INC" -I "E:\Software\Keil\ARM\INC\Philips" -o "ral_motor.o" --omf_browse "ral_motor.crf" --depend "ral_motor.d")
 I (.\armversion.h)(0x4C9EA6F0)
 I (E:\Software\Keil\ARM\INC\Philips\lpc213x.h)(0x4BB19FA0)

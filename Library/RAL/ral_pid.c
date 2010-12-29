@@ -412,6 +412,11 @@ struct PIDStruct* PID_Init_Vel(struct PIDStruct* PIDS,double targetSpeed,struct 
 	return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS,divider);
 }
 
+struct PIDStruct* PID_Init_RealVel(struct PIDStruct* PIDS,double targetSpeed,int countPerRevolution,double lengthPerRevolution,int updateFrequency, struct Motor_Struct* motor,int encoderChannel,int divider){
+	double underlyingTargetSpeed = (double)targetSpeed / lengthPerRevolution * (double)countPerRevolution / (double)updateFrequency;
+	return PID_Init_Vel(PIDS,underlyingTargetSpeed,motor,encoderChannel,divider);
+}
+
 /**
  *	@brief	Init Function of Theta Mode
  *	

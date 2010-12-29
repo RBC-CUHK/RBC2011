@@ -73,6 +73,7 @@ struct VelInfo{
 double VelInfoErrCal(void*);
 void VelInfoOutFunc(void*, double result);
 struct PIDStruct* PID_Init_Vel(struct PIDStruct* PIDS,double targetSpeed,struct Motor_Struct* motor,int encoderChannel,int divider);
+struct PIDStruct* PID_Init_RealVel(struct PIDStruct* PIDS,double targetSpeed,int countPerRevolution,double lengthPerRevolution,int updateFrequency, struct Motor_Struct* motor,int encoderChannel,int divider);
 
 /**
  *	@brief	PID extra parameters for Theta Mode

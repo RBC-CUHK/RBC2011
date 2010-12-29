@@ -130,6 +130,10 @@ int Encoder_Read(int channel){
 	return data;
 }
 
+void Encoder_Set(int channel, int value){
+	encoder_value_[channel] = value;
+}
+
 /**
  *	Read and Store all encoder values in a local buffer
  */
@@ -140,6 +144,7 @@ void Encoder_ReadAll(){
 		encoder_value_[i] = Encoder_Read(i);
 	}
 }
+
 /**
  *	Read out the buffered encoder value of specified channel
  *	@param	channel	The encoder to be reset

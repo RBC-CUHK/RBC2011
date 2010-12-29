@@ -44,6 +44,8 @@ void PWM_SetPercentage(int channel,int percentage){
 void PWM_InitPeriod213x(int period){		//Init the PWM Period
 	PWMMR0 = period;
 	globalperiod = period;
+   	PWMMCR |= (1<<1);			//PWM match control reg: reset timer counter if MR0 matches
+	PWMTCR |= (1<<0) | (1<<3);	//counter enable, PWM enable
 	return ;
 }
 
@@ -59,8 +61,6 @@ void PWM_InitPeriod213x(int period){		//Init the PWM Period
  *	@see	PWM_Set213x
  * */
 void PWM_InitChannel213x(int channel,int level){
-//	int i;
-//	int n;
 
 	switch(channel){				
 		case 1: PINSEL0 |= 1<< 1; break;	// set p0.0 to PWM1
@@ -72,23 +72,10 @@ void PWM_InitChannel213x(int channel,int level){
 	} 
 
 	PWMPCR |= 1<<(8+channel);	//The PWM output enable
-	PWMMCR |= (1<<1);			//PWM match control reg: reset timer counter if MR0 matches
 
-	switch(channel){			//set motor PWM width 				
-		case 1: PWMMR1 = level; break;
-		case 2: PWMMR2 = level; break;
-		case 3: PWMMR3 = level; break;
-		case 4: PWMMR4 = level; break;
-		case 5: PWMMR5 = level; break;
-		case 6: PWMMR6 = level; break;
-	} 
+	PWM_Set213x(channel,level);
 
-	PWMLER |= 1<<channel;		//latch enable register
-	PWMTCR |= (1<<0) | (1<<3);	//counter enable, PWM enable
-
-	//	for(n = 0 ; n < 100 ; n++){		//safety buffer
-	//		for(i=0 ; i< 450; i++){}
-return ;
+	return ;
 }
 
 /**
@@ -98,6 +85,8 @@ return ;
  *	@param	level	PWM value
  * */
 void PWM_Set213x(int channel,int level){
+	if(level > globalperiod)
+		level = globalperiod;	
 
 	switch(channel){
 		case 1: PWMMR1 = level; break;
@@ -106,6 +95,7 @@ void PWM_Set213x(int channel,int level){
 		case 4: PWMMR4 = level; break;
 		case 5: PWMMR5 = level; break;
 		case 6: PWMMR6 = level; break;
+		default: return;
 	} 
 	PWMLER |= (1<<channel);
 	return ;
@@ -224,8 +214,13 @@ void PWM_Set2103(int channel,int level){
  *	@param	value	PWM Value
  * */
 void _setPWM(int timer, int channel, int value){
-	value = globalperiod - value;
-	if (value == globalperiod) value = globalperiod + 100;
+	if(value > globalperiod)
+		value = 0;
+	else if (value == globalperiod) 
+		value = globalperiod + 100;
+	else
+		value = globalperiod - value;
+	
 	switch (timer){
 		case 0:
 			switch (channel){

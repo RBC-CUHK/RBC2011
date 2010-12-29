@@ -10,6 +10,7 @@ void Encoder_Init(struct Mux_Struct* Mux);
 int Encoder_Read(int channel);
 int Encoder_ReadBuffer(int channel);
 void Encoder_ReadAll(void);
+void Encoder_Set(int channel, int value);
 void Encoder_Reset(int channel);
 
 #endif
