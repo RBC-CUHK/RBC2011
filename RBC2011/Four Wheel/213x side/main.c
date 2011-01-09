@@ -63,6 +63,22 @@ void __irq Timer0_Routine(){
 			FWStatus = ROTATERIGHT;
 		SpeedMultiplier = (float)(JOYSTICK_LOWERBOUND - (float)AxisLY) / (float)(JOYSTICK_LOWERBOUND - 0.0);
 		}
+
+	if(FWStatus == STOP){
+		Fourwheel_Stop();
+	} else if(FWStatus == FORWARD){
+		Fourwheel_Forward();
+	} else if(FWStatus == BACKWARD){
+		Fourwheel_Backward();
+	} else if(FWStatus == LEFTWARD){
+		Fourwheel_Leftward();
+	} else if(FWStatus == RIGHTWARD){
+		Fourwheel_Rightward();
+	} else if(FWStatus == ROTATELEFT){
+		Fourwheel_RotateLeft();
+	} else if(FWStatus == ROTATERIGHT){
+		Fourwheel_RotateRight();
+	}
 	
 	Fourwheel_SetSpeed(MAXSPEED * SpeedMultiplier); 
 
