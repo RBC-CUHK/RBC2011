@@ -61,7 +61,7 @@ UND_Stack_Size  EQU     0x00000000
 SVC_Stack_Size  EQU     0x00000008
 ABT_Stack_Size  EQU     0x00000000
 FIQ_Stack_Size  EQU     0x00000000
-IRQ_Stack_Size  EQU     0x00000080
+IRQ_Stack_Size  EQU     0x00001000
 USR_Stack_Size  EQU     0x00000400
 
 ISR_Stack_Size  EQU     (UND_Stack_Size + SVC_Stack_Size + ABT_Stack_Size + \
@@ -427,7 +427,7 @@ MEMMAP          EQU     0xE01FC040      ; Memory Mapping Control
 ; User Initial Stack & Heap
                 AREA    |.text|, CODE, READONLY
 
-;                IMPORT  __use_two_region_memory
+                IMPORT  __use_two_region_memory
                 EXPORT  __user_initial_stackheap
 __user_initial_stackheap
 

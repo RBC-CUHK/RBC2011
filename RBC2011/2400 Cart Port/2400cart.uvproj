@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>Target 1</TargetName>
+      <TargetName>2400cart</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <TargetOption>
@@ -43,7 +43,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\</OutputDirectory>
-          <OutputName>sample</OutputName>
+          <OutputName>2400cart</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -162,7 +162,7 @@
             <DriverSelection>4096</DriverSelection>
           </Flash1>
           <Flash2>BIN\UL2ARM.DLL</Flash2>
-          <Flash3>"LPC210x_ISP.EXE" ("#H" ^X $D COM1: 9600 1)</Flash3>
+          <Flash3>"C:\Program Files\Philips Semiconductors\Philips Flash Utility\LPC210x_ISP.exe" ("#H" ^X $D COM1: 57600 1)</Flash3>
           <Flash4></Flash4>
         </Utilities>
         <TargetArmAds>
@@ -386,19 +386,59 @@
           <GroupName>Main</GroupName>
           <Files>
             <File>
-              <FileName>armversion.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\armversion.h</FilePath>
-            </File>
-            <File>
               <FileName>Startup.s</FileName>
               <FileType>2</FileType>
               <FilePath>.\Startup.s</FilePath>
             </File>
             <File>
+              <FileName>armversion.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\armversion.h</FilePath>
+            </File>
+            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>AAL</GroupName>
+          <Files>
+            <File>
+              <FileName>aal_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Library\AAL\aal_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>aal_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Library\AAL\aal_gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>aal_pwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Library\AAL\aal_pwm.c</FilePath>
+            </File>
+            <File>
+              <FileName>aal_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Library\AAL\aal_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>aal_timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Library\AAL\aal_timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>aal_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Library\AAL\aal_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_math.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Library\AAL\arm_math.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -444,46 +484,6 @@
               <FileName>ral_servo.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\Library\RAL\ral_servo.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>AAL</GroupName>
-          <Files>
-            <File>
-              <FileName>aal_adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\Library\AAL\aal_adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>aal_gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\Library\AAL\aal_gpio.c</FilePath>
-            </File>
-            <File>
-              <FileName>aal_pwm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\Library\AAL\aal_pwm.c</FilePath>
-            </File>
-            <File>
-              <FileName>aal_spi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\Library\AAL\aal_spi.c</FilePath>
-            </File>
-            <File>
-              <FileName>aal_timer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\Library\AAL\aal_timer.c</FilePath>
-            </File>
-            <File>
-              <FileName>aal_uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\Library\AAL\aal_uart.c</FilePath>
-            </File>
-            <File>
-              <FileName>arm_math.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\Library\AAL\arm_math.c</FilePath>
             </File>
           </Files>
         </Group>

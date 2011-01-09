@@ -23,7 +23,13 @@ void __irq Timer0_Routine(){
 }
 
 void __irq Timer1_Routine(){
-//	int combined = Linesensor_ReadAll();
+	//int combined = Linesensor_ReadAll();
+	int i;
+	for(i = 0; i < 12; ++i){
+		Uart_SendInt(Linesensor_Read(i));
+		Uart_SendChar(' ');
+	}
+	Uart_Print("\r\n");
 //	int straight = combined & 0xff;
 	
 	T1IR = 1;                              	// Clear interrupt flag
@@ -31,8 +37,8 @@ void __irq Timer1_Routine(){
 }
 
 int main(){
-	int LEDPins[12] = {99};
-	int TransistorPins[12] = {99};
+	int LEDPins[12] = 			{116,117,124,126,118,119,128,130, 10,130,126, 12};
+	int TransistorPins[12] =	{120,121,125,127,122,123,129,131, 11, 13, 15, 26};
 
 	Linesensor_Init(TransistorPins,LEDPins);
 
@@ -45,7 +51,7 @@ int main(){
 	Uart_Print("Uart Inited\n\r");
 
 	Timer_Init(0,20000,Timer0_Routine);
-	Timer_Init(1,50,Timer1_Routine);
+	Timer_Init(1,5,Timer1_Routine);
 
 	Motor_SetPWM(&LeftMotor,1000);
 	Motor_SetPWM(&RightMotor,-1000);

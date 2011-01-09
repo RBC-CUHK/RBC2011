@@ -1,8 +1,15 @@
-*** Creating Trace Output File 'sample.tra' Ok.
+*** Creating Trace Output File '2400cart.tra' Ok.
 ### Preparing for ADS-LD.
 ### Creating ADS-LD Command Line
 ### List of Objects: adding '"startup.o"'
 ### List of Objects: adding '"main.o"'
+### List of Objects: adding '"aal_adc.o"'
+### List of Objects: adding '"aal_gpio.o"'
+### List of Objects: adding '"aal_pwm.o"'
+### List of Objects: adding '"aal_spi.o"'
+### List of Objects: adding '"aal_timer.o"'
+### List of Objects: adding '"aal_uart.o"'
+### List of Objects: adding '"arm_math.o"'
 ### List of Objects: adding '"ral_encoder.o"'
 ### List of Objects: adding '"ral_joystick.o"'
 ### List of Objects: adding '"ral_linesensor.o"'
@@ -11,24 +18,17 @@
 ### List of Objects: adding '"ral_odometry.o"'
 ### List of Objects: adding '"ral_pid.o"'
 ### List of Objects: adding '"ral_servo.o"'
-### List of Objects: adding '"aal_adc.o"'
-### List of Objects: adding '"aal_gpio.o"'
-### List of Objects: adding '"aal_pwm.o"'
-### List of Objects: adding '"aal_spi.o"'
-### List of Objects: adding '"aal_timer.o"'
-### List of Objects: adding '"aal_uart.o"'
-### List of Objects: adding '"arm_math.o"'
 ### ADS-LD Command completed:
---cpu ARM7TDMI "startup.o" "main.o" "ral_encoder.o" "ral_joystick.o" "ral_linesensor.o" "ral_motor.o" "ral_mux.o" "ral_odometry.o" "ral_pid.o" "ral_servo.o" "aal_adc.o" "aal_gpio.o" "aal_pwm.o" "aal_spi.o" "aal_timer.o" "aal_uart.o" "arm_math.o" --strict --scatter "sample.sct" 
+--cpu ARM7TDMI "startup.o" "main.o" "aal_adc.o" "aal_gpio.o" "aal_pwm.o" "aal_spi.o" "aal_timer.o" "aal_uart.o" "arm_math.o" "ral_encoder.o" "ral_joystick.o" "ral_linesensor.o" "ral_motor.o" "ral_mux.o" "ral_odometry.o" "ral_pid.o" "ral_servo.o" --strict --scatter "2400cart.sct" 
 --autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
 --info sizes --info totals --info unused --info veneers 
- --list ".\sample.map" -o "sample.axf"### Preparing Environment (PrepEnvAds)
-### ADS-LD Output File: 'sample.axf'
-### ADS-LD Command File: 'sample.lnp'
+ --list ".\2400cart.map" -o "2400cart.axf"### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: '2400cart.axf'
+### ADS-LD Command File: '2400cart.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile 'sample.lnp', Handle=0x00000504
+### Creating CmdFile '2400cart.lnp', Handle=0x00000464
 ### Writing '.lnp' file
-### ADS-LD Command file 'sample.lnp' is ready.
+### ADS-LD Command file '2400cart.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.
 ### ADS-LD: executed with 0 errors
 ### Updating obj list

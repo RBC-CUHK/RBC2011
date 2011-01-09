@@ -19,14 +19,14 @@
 ### List of Objects: adding '"ral_pid.o"'
 ### List of Objects: adding '"ral_servo.o"'
 ### ADS-LD Command completed:
---cpu ARM7TDMI "startup.o" "main.o" "aal_adc.o" "aal_gpio.o" "aal_spi.o" "aal_timer.o" "aal_uart.o" "arm_math.o" "aal_pwm.o" "ral_encoder.o" "ral_joystick.o" "ral_linesensor.o" "ral_motor.o" "ral_mux.o" "ral_odometry.o" "ral_pid.o" "ral_servo.o" --strict --scatter "sensor.sct" 
+--device DARMP "startup.o" "main.o" "aal_adc.o" "aal_gpio.o" "aal_spi.o" "aal_timer.o" "aal_uart.o" "arm_math.o" "aal_pwm.o" "ral_encoder.o" "ral_joystick.o" "ral_linesensor.o" "ral_motor.o" "ral_mux.o" "ral_odometry.o" "ral_pid.o" "ral_servo.o" --strict --scatter "sensor.sct" 
 --autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
 --info sizes --info totals --info unused --info veneers 
  --list ".\sensor.map" -o "sensor.axf"### Preparing Environment (PrepEnvAds)
 ### ADS-LD Output File: 'sensor.axf'
 ### ADS-LD Command File: 'sensor.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile 'sensor.lnp', Handle=0x00000300
+### Creating CmdFile 'sensor.lnp', Handle=0x000002EC
 ### Writing '.lnp' file
 ### ADS-LD Command file 'sensor.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.

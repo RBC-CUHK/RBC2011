@@ -109,6 +109,7 @@ void Motor_Set2103PWM(struct Motor_Struct* MS, int PWM){
  *	@param	PWM		PWM Value
  *	*/
 void Motor_SetOwnPWM(struct Motor_Struct* MS, int PWM){
+	MS->currPWM = PWM;
 	if(PWM < 0){
 		PWM *= -1;
 		GPIO_Set(MS->controlA,0);
@@ -118,6 +119,6 @@ void Motor_SetOwnPWM(struct Motor_Struct* MS, int PWM){
 		GPIO_Set(MS->controlB,0);
 	}
 	PWM_Set(MS->pwmChannel,PWM);
-	MS->currPWM = PWM;
+	
 	return ;
 }

@@ -6,13 +6,13 @@
 #define __RAL_ODOMETRY_H
 
 /// Count per revolution of the Encoder
-#define ENCODER_COUNT	  76000.0 	//count per revolution
+#define ENCODER_COUNT	  88.0 	//count per revolution
 /// Radius of Right Encoder
-#define ENCODER_L_RADIUS  4.75	    //cm
+#define ENCODER_L_RADIUS  3.0	    //cm
 /// Radius of Left Encoder
-#define ENCODER_R_RADIUS  4.75	    //cm
+#define ENCODER_R_RADIUS  3.0	    //cm
 ///	Distance between two encoders
-#define ENCODER_DISTANCE  46.0	    //Distance between 2 encoders (cm)
+#define ENCODER_DISTANCE  8.0	    //Distance between 2 encoders (cm)
 
 ///	PI 
 #define PI	  		3.14159265

@@ -2,17 +2,17 @@
  *	@file
  *	@brief	RAL_PID Function Implementation
  * */
-#include <stdlib.h>
+//#include <stdlib.h>
 #include "ral_pid.h"
 #include "ral_encoder.h"
 
 ///	PID List to store PID members
-static struct PIDStruct* PIDList[MAX_PID_CHANNEL]={NULL};
+static struct PIDStruct* PIDList[MAX_PID_CHANNEL]={0};
 /// Number of members in List
 static int PIDListCount = 0;
 /// For update divider list
 static unsigned int PIDUpdateCount = 0;
-static unsigned int MaxCount = 1;
+//static unsigned int MaxCount = 1;
 
 /**
  *	@brief	Init generic PID struct
@@ -30,7 +30,7 @@ static unsigned int MaxCount = 1;
  *
  *	@return	Pointer to the inited PIDStruct
  * */
-struct PIDStruct* PID_Init(struct PIDStruct* PIDS,double (*err_Calc)(void* info),void (*output_Func)(void* info, double err),void *info,int divider){
+struct PIDStruct* PID_Init(struct PIDStruct* PIDS,double (*err_Calc)(struct PIDStruct* PIDS),void (*output_Func)(struct PIDStruct* PIDS, double err),int divider){
 	PIDS->kp = 0;
 	PIDS->ki = 0;
 	PIDS->kd = 0;
@@ -41,7 +41,6 @@ struct PIDStruct* PID_Init(struct PIDStruct* PIDS,double (*err_Calc)(void* info)
 
 	PIDS->err_Calc = err_Calc;
 	PIDS->output_Func = output_Func;
-	PIDS->info = info;
 	PIDS->start = 0;
 
 	PIDS->error_term = 0;
@@ -81,6 +80,15 @@ double PID_Calc(struct PIDStruct* PIDS){
 	double p_term;
 	double i_term;
 	double d_term;
+	if(PIDS->error_term > 0){
+		if(PIDS->error_term < PIDS->tolerance)
+			return 0;
+	} else {
+		if(PIDS->error_term > -PIDS->tolerance)
+			return 0;
+	}
+		
+
 
 	p_term = PIDS->kp * PIDS->error_term;
 
@@ -101,7 +109,7 @@ double PID_Calc(struct PIDStruct* PIDS){
 
 void PID_Update(struct PIDStruct* PIDS){
 	if(PIDS->start == 0) return;
-	PIDS->error_term = PIDS->err_Calc(PIDS->info);
+	PIDS->error_term = PIDS->err_Calc(PIDS);
 	PIDS->PIDResult = PID_Calc(PIDS);
 	PIDS->output_Func(PIDS,PIDS->PIDResult);
 	return;    
@@ -149,8 +157,8 @@ void PID_Push(struct PIDStruct* PIDS){
 		PIDList[PIDListCount] = PIDS;
 		PIDListCount++;
 	}
-	if(PIDS->update_divider > MaxCount)
-		MaxCount = PIDS->update_divider;
+//	if(PIDS->update_divider > MaxCount)
+//		MaxCount = PIDS->update_divider;
 	return;
 }
 
@@ -168,7 +176,7 @@ void PID_UpdateAll(void){
 		if(PIDUpdateCount % PIDList[i]->update_divider == 0)
 			PID_Update(PIDList[i]);
 	}
-	if(PIDUpdateCount == MaxCount)PIDUpdateCount = 0;
+//	if(PIDUpdateCount == MaxCount)PIDUpdateCount = 0;
 	return;
 }
 
@@ -261,10 +269,10 @@ double POS_ComputerTarget(struct PosInfo* POSS){
  *	@param	tempptr	Pointer to Position Mode information
  *	@return Error term
  * */
-double PosInfoErrCal(void* tempptr){
-	struct PosInfo* POSS = (struct PosInfo*)tempptr;
+double PosInfoErrCal(struct PIDStruct* PIDS){
+	struct PosInfo* POSS = &PIDS->info.Pos;
 	double correctPos = POS_ComputerTarget(POSS);
-	return (double)Encoder_ReadBuffer(POSS->encoderChannel) - correctPos; 
+	return correctPos - (double)Encoder_ReadBuffer(POSS->encoderChannel); 
 }
 
 /**
@@ -275,9 +283,9 @@ double PosInfoErrCal(void* tempptr){
  *	@param	tempptr	Pointer to Position Mode information
  *	@param	result	PID result
  * */
-void PosInfoOutFunc(void* tempptr,double result){
-	struct PosInfo* POSS = (struct PosInfo*)tempptr;
-	Motor_SetPWM(POSS->motor,result);
+void PosInfoOutFunc(struct PIDStruct* PIDS,double result){
+	struct PosInfo* POSS = &PIDS->info.Pos;
+	Motor_SetPWM(POSS->motor,POSS->motor->currPWM + result);
 	return;
 }
 
@@ -290,13 +298,12 @@ void PosInfoOutFunc(void* tempptr,double result){
  *	@param	tempptr	Pointer to Velocity Mode information
  *	@return	Error term
  * */
-double VelInfoErrCal(void* tempptr){
-	struct VelInfo* VELS = (struct VelInfo*)tempptr;
-	double currentSpeed;
+double VelInfoErrCal(struct PIDStruct* PIDS){
+	struct VelInfo* VELS = &PIDS->info.Vel;
 	int newPos = Encoder_ReadBuffer(VELS->encoderChannel);
-	currentSpeed = newPos - VELS->oldPos;
+	VELS->currentSpeed = newPos - VELS->oldPos;
 	VELS->oldPos = newPos;
-	return currentSpeed - VELS->targetSpeed;
+	return VELS->targetSpeed - VELS->currentSpeed;
 }
 
 /**
@@ -307,9 +314,10 @@ double VelInfoErrCal(void* tempptr){
  *	@param	tempptr	Pointer to Velocity Mode information
  *	@param	result	PID result
  * */
-void VelInfoOutFunc(void* tempptr,double result){
-	struct VelInfo* VELS = (struct VelInfo*)tempptr;
-	Motor_SetPWM(VELS->motor,result);
+void VelInfoOutFunc(struct PIDStruct* PIDS,double result){
+	struct VelInfo* VELS = &PIDS->info.Vel;
+	double output = VELS->motor->currPWM + result;
+	Motor_SetPWM(VELS->motor,output);
 	return;
 }
 
@@ -320,8 +328,8 @@ void VelInfoOutFunc(void* tempptr,double result){
  *	@param	tempptr	Pointer to Theta Mode information
  *	@return Error term
  * */
-double ThetaInfoErrCal(void* tempptr){
-	struct ThetaInfo* THES = (struct ThetaInfo*)tempptr;
+double ThetaInfoErrCal(struct PIDStruct* PIDS){
+	struct ThetaInfo* THES = &PIDS->info.Theta;
 	return THES->targetTheta - THES->pos->theta; 
 }
 
@@ -334,13 +342,10 @@ double ThetaInfoErrCal(void* tempptr){
  *	@param	tempptr	Pointer to Theta Mode information
  *	@param	result	PID result
  * */
-void ThetaInfoOutFunc(void* tempptr,double result){
-	struct ThetaInfo* THES = (struct ThetaInfo*)tempptr;
-	if(result < 0){
-		THES->motorL->targetSpeed -= result;
-	} else {
-		THES->motorR->targetSpeed -= result;
-	}
+void ThetaInfoOutFunc(struct PIDStruct* PIDS,double result){
+	struct ThetaInfo* THES = &PIDS->info.Theta;
+	THES->motorL->targetSpeed -= result;
+	THES->motorR->targetSpeed += result;
 	return;
 }
 
@@ -363,12 +368,12 @@ void ThetaInfoOutFunc(void* tempptr,double result){
  *	@return	Pointer to inited Position Mode PID Struct
  * */
 struct PIDStruct* PID_Init_Pos(struct PIDStruct* PIDS,double acc,double topSpeed,double dece,int targetPos,int initPos,struct Motor_Struct* motor,int encoderChannel,int divider){
-	struct PosInfo* POSS;
+	struct PosInfo* POSS = &PIDS->info.Pos;
 	double posDiff = targetPos - initPos;
 	if(posDiff < 0)
 		posDiff = -posDiff;
 
-	POSS = (struct PosInfo*)malloc(sizeof(struct PosInfo));
+//	POSS = (struct PosInfo*)malloc(sizeof(struct PosInfo));
 	POSS->acceleration = acc;
 	POSS->topSpeed =topSpeed;
 	POSS->deceleration = dece;
@@ -387,7 +392,7 @@ struct PIDStruct* PID_Init_Pos(struct PIDStruct* PIDS,double acc,double topSpeed
 	POSS->motor = motor;
 	POSS->encoderChannel = encoderChannel;
 
-	return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,POSS,divider);
+	return PID_Init(PIDS,PosInfoErrCal,PosInfoOutFunc,divider);
 }
 
 /**
@@ -402,14 +407,14 @@ struct PIDStruct* PID_Init_Pos(struct PIDStruct* PIDS,double acc,double topSpeed
  *	@return	Pointer to inited Velocity Mode PID Struct
  * */
 struct PIDStruct* PID_Init_Vel(struct PIDStruct* PIDS,double targetSpeed,struct Motor_Struct* motor,int encoderChannel,int divider){
-	struct VelInfo* VELS;
-	VELS = (struct VelInfo*)malloc(sizeof(struct VelInfo));
+	struct VelInfo* VELS = &PIDS->info.Vel;
+//	VELS = (struct VelInfo*)malloc(sizeof(struct VelInfo));
 	VELS->targetSpeed = targetSpeed;
 	VELS->oldPos = 0;
 	//	VELS->pwmChannel = pwmChannel;
 	VELS->motor = motor;
 	VELS->encoderChannel = encoderChannel;
-	return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,VELS,divider);
+	return PID_Init(PIDS,VelInfoErrCal,VelInfoOutFunc,divider);
 }
 
 struct PIDStruct* PID_Init_RealVel(struct PIDStruct* PIDS,double targetSpeed,int countPerRevolution,double lengthPerRevolution,int updateFrequency, struct Motor_Struct* motor,int encoderChannel,int divider){
@@ -430,11 +435,11 @@ struct PIDStruct* PID_Init_RealVel(struct PIDStruct* PIDS,double targetSpeed,int
  *	@return	Pointer to inited Velocity Mode PID Struct
  * */
 struct PIDStruct* PID_Init_Theta(struct PIDStruct* PIDS,double targetTheta,struct VelInfo* motorL, struct VelInfo* motorR, struct Pos* pos,int divider){
-	struct ThetaInfo* THES;
-	THES = (struct ThetaInfo*)malloc(sizeof(struct ThetaInfo));
+	struct ThetaInfo* THES = &PIDS->info.Theta;
+//	THES = (struct ThetaInfo*)malloc(sizeof(struct ThetaInfo));
 	THES->targetTheta = targetTheta;
 	THES->pos = pos;
 	THES->motorL = motorL;
 	THES->motorR = motorR;
-	return PID_Init(PIDS,ThetaInfoErrCal,ThetaInfoOutFunc,THES,divider);
+	return PID_Init(PIDS,ThetaInfoErrCal,ThetaInfoOutFunc,divider);
 }
