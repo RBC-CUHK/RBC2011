@@ -31,40 +31,40 @@ struct Mux_Struct MBMux;
 
 void __irq Timer0_Routine(){
 	int AxisLY = Joystick_ReadAxis(LY);
+	int AxisLX = Joystick_ReadAxis(LX);
 	int AxisRX = Joystick_ReadAxis(RX);
-	Fourwheel_Status FWStatus = STOP;
+	Fourwheel_Status FWStatus = FREE;
 	float SpeedMultiplier = 0;
 
 	
 	if(AxisLY > JOYSTICK_UPPERBOUND){
-		FWStatus = FORWARD;
+		FWStatus = BACKWARD;
 		SpeedMultiplier = (float)((float)AxisLY - JOYSTICK_UPPERBOUND) / (float)(1024.0 - JOYSTICK_UPPERBOUND);
 		}
 	else if(AxisLY < JOYSTICK_LOWERBOUND){
-		FWStatus = BACKWARD;
+		FWStatus = FORWARD;
 		SpeedMultiplier = (float)(JOYSTICK_LOWERBOUND - (float)AxisLY) / (float)(JOYSTICK_LOWERBOUND - 0.0);
 		}
-
+	else if(AxisLX > JOYSTICK_UPPERBOUND){
+		FWStatus = RIGHTWARD;
+		SpeedMultiplier = (float)((float)AxisLX - JOYSTICK_UPPERBOUND) / (float)(1024.0 - JOYSTICK_UPPERBOUND);
+		}
+	else if(AxisLX < JOYSTICK_LOWERBOUND){
+		FWStatus = LEFTWARD;
+		SpeedMultiplier = (float)(JOYSTICK_LOWERBOUND - (float)AxisLX) / (float)(JOYSTICK_LOWERBOUND - 0.0);
+		}
+	
 	if(AxisRX > JOYSTICK_UPPERBOUND){
-		if(FWStatus == STOP)
-			FWStatus = RIGHTWARD;
-		else if(FWStatus == FORWARD)
-			FWStatus = ROTATERIGHT;
-		else if(FWStatus == BACKWARD)
-			FWStatus = ROTATELEFT;
-		SpeedMultiplier = (float)((float)AxisLY - JOYSTICK_UPPERBOUND) / (float)(1024.0 - JOYSTICK_UPPERBOUND);
+		FWStatus = ROTATERIGHT;
+		SpeedMultiplier = (float)((float)AxisRX - JOYSTICK_UPPERBOUND) / (float)(1024.0 - JOYSTICK_UPPERBOUND);
 		}
-	else if(AxisRX < JOYSTICK_LOWERBOUND){
-		if(FWStatus == STOP)
-			FWStatus = LEFTWARD;
-		else if(FWStatus == FORWARD)
-			FWStatus = ROTATELEFT;
-		else if(FWStatus == BACKWARD)
-			FWStatus = ROTATERIGHT;
-		SpeedMultiplier = (float)(JOYSTICK_LOWERBOUND - (float)AxisLY) / (float)(JOYSTICK_LOWERBOUND - 0.0);
+	else if(AxisLX < JOYSTICK_LOWERBOUND){
+		FWStatus = ROTATELEFT;
+		SpeedMultiplier = (float)(JOYSTICK_LOWERBOUND - (float)AxisRX) / (float)(JOYSTICK_LOWERBOUND - 0.0);
 		}
 
 	if(FWStatus == STOP){
+		SpeedMultiplier = 0;
 		Fourwheel_Stop();
 	} else if(FWStatus == FORWARD){
 		Fourwheel_Forward();
@@ -80,9 +80,22 @@ void __irq Timer0_Routine(){
 		Fourwheel_RotateRight();
 	}
 	
-	Fourwheel_SetSpeed(MAXSPEED * SpeedMultiplier); 
+	Fourwheel_SetSpeed(SpeedMultiplier);
 
 	T0IR = 1;                              	// Clear interrupt flag
+	VICVectAddr = 0;                       	// Acknowledge Interrupt
+}
+
+void __irq Timer1_Routine(){
+	int AxisLY = Joystick_ReadAxis(LY);
+	int AxisRX = Joystick_ReadAxis(RX);
+
+	Uart_SendInt(AxisLY);
+	Uart_SendChar(' ');
+	Uart_SendInt(AxisRX);
+	Uart_Print("\r\n");
+
+	T1IR = 1;                              	// Clear interrupt flag
 	VICVectAddr = 0;                       	// Acknowledge Interrupt
 }
 
@@ -123,14 +136,15 @@ int main(){
 
 	Fourwheel_Init(SS,MS);
 
-	for (i = 0; i < 500; i ++)
+	for (i = 0; i < 1000; i ++)
 		for (j = 0; j < 6800; j++);
 	SPI_InitMaster(16);
-	Timer_Init(0,1000,Timer0_Routine);
-	
+	Timer_Init(0,100,Timer0_Routine);
+//	Timer_Init(1,10,Timer1_Routine);
 	while(1){
 //	//		Following code is used for servo calibration
 //		char input;
+//		int offset;
 //		input = Uart_GetChar();
 //		switch(input){
 //			case '+' : offset += 10;	break;
@@ -142,6 +156,10 @@ int main(){
 //		Servo_Init(&Servo2,&SMotor2,13824 + OFFSET2 + offset,27648 + OFFSET2 + offset,90);
 //		Servo_Init(&Servo3,&SMotor3,13824 + OFFSET3 + offset,27648 + OFFSET3 + offset,90);
 //		Servo_Init(&Servo4,&SMotor4,13824 + OFFSET4 + offset,27648 + OFFSET4 + offset,90);
+//		Servo_SetAbsolute(&Servo1,45);
+//		Servo_SetAbsolute(&Servo2,45);
+//		Servo_SetAbsolute(&Servo3,45);
+//		Servo_SetAbsolute(&Servo4,45);
 //		Uart_SendInt(offset);
 //		Uart_Print("\r\n");
 	}

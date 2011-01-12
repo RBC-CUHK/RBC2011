@@ -37,12 +37,6 @@ void __irq SPI_Routine(){
 	
 	Motor_SetPWM(&Motor[motor],level);
 	
-//	Uart_Print("SetPWM-");
-	Uart_SendInt(motor);
-//	Uart_SendChar(':');
-	Uart_SendInt(level);
-//	Uart_Print("\r\n");
-	
 	S0SPINT = 0x01; // reset interrupt flag
 	VICVectAddr = 0; // reset VIC
 }
@@ -50,6 +44,7 @@ void __irq SPI_Routine(){
 int main(){
 	Uart_Init(57600);
 	Uart_Print("Uart Inited\r\n");
+	PWM_InitPeriod(2000);
 	Motor_Init(&Motor[0],0,17,99,SELF);
 	Motor_Init(&Motor[1],21,18,99,SELF);
 	Motor_Init(&Motor[2],22,22,99,SELF);
@@ -61,7 +56,7 @@ int main(){
 	Motor_Init(&Motor[8],30,28,99,SELF);
 	Motor_Init(&Motor[9],33,29,99,SELF);
 	Uart_Print("Motor Inited\r\n");
-	PWM_InitPeriod(2000);
+	
 	SPI_InitSlave(16,SPI_Routine);
 	Uart_Print("SPI Inited\r\n");
 	while(1);

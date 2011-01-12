@@ -12,6 +12,7 @@ struct Motor_Struct* FRM;
 struct Motor_Struct* BRM;
 struct Motor_Struct* BLM;
 
+static int __MaxSpeed = 1000;
 signed char __MotorDirection[4] = {0};
 Fourwheel_Status Status = STOP;
 
@@ -29,11 +30,21 @@ void Fourwheel_Init(struct Servo_Struct* SS[4], struct Motor_Struct* MS[4]){
 	return ;
 }
 
-void Fourwheel_SetSpeed(int speed){
+void Fourwheel_SetSpeed(float _speed){
+	int speed = 0;
+	if(_speed > 1)
+		_speed = 1;
+	else if(_speed < -1)
+		_speed = -1;
+	speed = _speed * __MaxSpeed;	
 	Motor_SetPWM(FLM,speed*__MotorDirection[0]);
 	Motor_SetPWM(FRM,speed*__MotorDirection[1]);
 	Motor_SetPWM(BRM,speed*__MotorDirection[2]);
 	Motor_SetPWM(BLM,speed*__MotorDirection[3]);	
+}
+
+void Fourwheel_SetMaxSpeed(int MaxSpeed){
+	__MaxSpeed = MaxSpeed;
 }
 
 void Fourwheel_Forward(void){

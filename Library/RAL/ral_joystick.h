@@ -8,14 +8,14 @@
 #define __RAL_JOYSTICK_H
 // Joystick Analog
 // Follow the ADC standard
-#define RY 3
-#define LX 1
-#define LY 0
+#define LX 0
+#define LY 1
 #define RX 2
+#define RY 3
 
 // Analog Setting
 /// Lower Tolerance which regards as central point
-#define JOYSTICK_LOWERBOUND 475.0
+#define JOYSTICK_LOWERBOUND 450.0
 /// Upper Tolerance which regards as central point
 #define JOYSTICK_UPPERBOUND 525.0
 

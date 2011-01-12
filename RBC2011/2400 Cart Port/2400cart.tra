@@ -26,7 +26,7 @@
 ### ADS-LD Output File: '2400cart.axf'
 ### ADS-LD Command File: '2400cart.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile '2400cart.lnp', Handle=0x00000464
+### Creating CmdFile '2400cart.lnp', Handle=0x00000248
 ### Writing '.lnp' file
 ### ADS-LD Command file '2400cart.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.
