@@ -58,7 +58,7 @@ void __irq Timer0_Routine(){
 		FWStatus = ROTATERIGHT;
 		SpeedMultiplier = (float)((float)AxisRX - JOYSTICK_UPPERBOUND) / (float)(1024.0 - JOYSTICK_UPPERBOUND);
 		}
-	else if(AxisLX < JOYSTICK_LOWERBOUND){
+	else if(AxisRX < JOYSTICK_LOWERBOUND){
 		FWStatus = ROTATELEFT;
 		SpeedMultiplier = (float)(JOYSTICK_LOWERBOUND - (float)AxisRX) / (float)(JOYSTICK_LOWERBOUND - 0.0);
 		}

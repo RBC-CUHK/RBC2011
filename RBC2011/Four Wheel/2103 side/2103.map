@@ -530,7 +530,7 @@ Image Symbol Table
     .ARM.Collect$$rtexit$$00000004           0x00000218   Section        8  rtexit2.o(.ARM.Collect$$rtexit$$00000004)
     .text                                    0x00000220   Section       32  startup.o(.text)
     .text                                    0x00000240   Section        0  main.o(.text)
-    .text                                    0x00000498   Section        0  ral_motor.o(.text)
+    .text                                    0x000004ac   Section        0  ral_motor.o(.text)
     .text                                    0x00000644   Section        0  ral_mux.o(.text)
     .text                                    0x00000774   Section        0  aal_gpio.o(.text)
     .text                                    0x00000aa8   Section        0  aal_pwm.o(.text)
@@ -651,9 +651,9 @@ Image Symbol Table
     __rt_exit_prels_1                        0x00000214   ARM Code       0  rtexit2.o(.ARM.Collect$$rtexit$$00000002)
     __rt_exit_exit                           0x00000218   ARM Code       0  rtexit2.o(.ARM.Collect$$rtexit$$00000004)
     __user_initial_stackheap                 0x00000220   ARM Code       0  startup.o(.text)
-    SPI_Routine                              0x00000240   ARM Code     156  main.o(.text)
-    main                                     0x000002dc   ARM Code     344  main.o(.text)
-    Motor_Set2103PWM                         0x00000498   ARM Code     164  ral_motor.o(.text)
+    SPI_Routine                              0x00000240   ARM Code     172  main.o(.text)
+    main                                     0x000002ec   ARM Code     344  main.o(.text)
+    Motor_Set2103PWM                         0x000004ac   ARM Code     144  ral_motor.o(.text)
     Motor_SetOwnPWM                          0x0000053c   ARM Code     100  ral_motor.o(.text)
     Motor_Init                               0x000005a0   ARM Code     120  ral_motor.o(.text)
     Motor_SetPWM                             0x00000618   ARM Code      40  ral_motor.o(.text)
@@ -783,8 +783,8 @@ Memory Map of the image
     0x00000214   0x00000004   Code   RO          532    .ARM.Collect$$rtexit$$00000003  c_t.l(rtexit2.o)(c_t.l)
     0x00000218   0x00000008   Code   RO          533    .ARM.Collect$$rtexit$$00000004  c_t.l(rtexit2.o)(c_t.l)
     0x00000220   0x00000020   Code   RO            4    .text               startup.o
-    0x00000240   0x00000258   Code   RO           11    .text               main.o
-    0x00000498   0x000001ac   Code   RO          109    .text               ral_motor.o
+    0x00000240   0x0000026c   Code   RO           11    .text               main.o
+    0x000004ac   0x00000198   Code   RO          109    .text               ral_motor.o
     0x00000644   0x00000130   Code   RO          131    .text               ral_mux.o
     0x00000774   0x00000334   Code   RO          213    .text               aal_gpio.o
     0x00000aa8   0x000005c0   Code   RO          228    .text               aal_pwm.o
@@ -836,14 +836,14 @@ Image component sizes
        340          8          0          0          0          0   aal_spi.o
        796         36          0          0          0          0   aal_uart.o
        712         24          0          0          0          0   arm_math.o
-       600        100          0          4        220          0   main.o
+       620        104          0          4        220          0   main.o
          0          0          0          0          0          0   ral_encoder.o
-       428          4          0          0          0          0   ral_motor.o
+       408          4          0          0          0          0   ral_motor.o
        304          0          0          0          0          0   ral_mux.o
        304         60          0          0       1160          0   startup.o
 
     ----------------------------------------------------------------------
-      5776        268         32          8       1380          0   Object Totals
+      5776        272         32          8       1380          0   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          0          0          0          0          0          3   (incl. Padding)
 
@@ -901,9 +901,9 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      7288        304         32          8       1480      17480   Grand Totals
-      7288        304         32          8       1480      17480   ELF Image Totals
-      7288        304         32          8          0          0   ROM Totals
+      7288        308         32          8       1480      17388   Grand Totals
+      7288        308         32          8       1480      17388   ELF Image Totals
+      7288        308         32          8          0          0   ROM Totals
 
 ==============================================================================
 

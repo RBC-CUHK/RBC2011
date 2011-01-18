@@ -28,17 +28,20 @@ void Linesensor_Init(int InputPins[12], int OutputPins[12]){
 void Linesensor_Update(void){
 	++_counter;
 	switch(_counter){
-		case 1	:	GPIO_Set(_OutputPins[0],1);
+		case 1	:	
+					GPIO_Set(_OutputPins[0],1);
 					GPIO_Set(_OutputPins[2],1);
 					GPIO_Set(_OutputPins[6],1);
 					GPIO_Set(_OutputPins[11],1);
 					break;
-		case 2	:	GPIO_Set(_OutputPins[0],0);
+		case 2	:	
+					GPIO_Set(_OutputPins[0],0);
 					GPIO_Set(_OutputPins[2],0);
 					GPIO_Set(_OutputPins[6],0);
 					GPIO_Set(_OutputPins[11],0);
 					break;
-		case 3	:	_Readings[0] = GPIO_Read(_InputPins[0]);
+		case 3	:	
+					_Readings[0] = GPIO_Read(_InputPins[0]);
 					_Readings[2] = GPIO_Read(_InputPins[2]);
 					_Readings[6] = GPIO_Read(_InputPins[6]);
 					_Readings[11] = GPIO_Read(_InputPins[11]);
@@ -47,12 +50,14 @@ void Linesensor_Update(void){
 					GPIO_Set(_OutputPins[8],1);
 					GPIO_Set(_OutputPins[10],1);
 					break;
-		case 4	:	GPIO_Set(_OutputPins[3],0);
+		case 4	:	
+					GPIO_Set(_OutputPins[3],0);
 					GPIO_Set(_OutputPins[5],0);
 					GPIO_Set(_OutputPins[8],0);
 					GPIO_Set(_OutputPins[10],0);
 					break;
-		case 5	:	_Readings[3] = GPIO_Read(_InputPins[3]);
+		case 5	:	
+					_Readings[3] = GPIO_Read(_InputPins[3]);
 					_Readings[5] = GPIO_Read(_InputPins[5]);
 					_Readings[8] = GPIO_Read(_InputPins[8]);
 					_Readings[10] = GPIO_Read(_InputPins[10]);
@@ -61,17 +66,20 @@ void Linesensor_Update(void){
 					GPIO_Set(_OutputPins[7],1);
 					GPIO_Set(_OutputPins[9],1);
 					break;
-		case 6	:	GPIO_Set(_OutputPins[1],0);
+		case 6	:	
+					GPIO_Set(_OutputPins[1],0);
 					GPIO_Set(_OutputPins[4],0);
 					GPIO_Set(_OutputPins[7],0);
 					GPIO_Set(_OutputPins[9],0);
 					break;
-		case 7	:	_Readings[1] = GPIO_Read(_InputPins[1]);
+		case 7	:	
+					_Readings[1] = GPIO_Read(_InputPins[1]);
 					_Readings[4] = GPIO_Read(_InputPins[4]);
 					_Readings[7] = GPIO_Read(_InputPins[7]);
 					_Readings[9] = GPIO_Read(_InputPins[9]);
 					break;
-		case 10	:	_counter = 0;
+		case 10	:	
+					_counter = 0;
 					break;
 	}
 	return;
