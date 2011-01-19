@@ -27,6 +27,7 @@ struct Motor_Struct{
 
 struct Motor_Struct* Motor_Init(struct Motor_Struct* MS, int pwmChannel,int controlA, int controlB, char Mode);
 void Motor_SetPWM(struct Motor_Struct* MS, int PWM);
+void Motor_SetPercentage(struct Motor_Struct* MS, float percentage);
 void Motor_Set2103PWM(struct Motor_Struct*, int PWM);
 void Motor_SetOwnPWM(struct Motor_Struct* MS, int PWM);
 #endif

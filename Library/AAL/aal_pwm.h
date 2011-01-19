@@ -87,7 +87,7 @@ void PWM_InitChannel2103(int channel, int level);
 #endif
 #endif
 
-
+int PWM_ReturnPeriod(void);
 void PWM_InitFrequency(int frequency);
-void PWM_SetPercentage(int channel,int percentage);
+void PWM_SetPercentage(int channel,float percentage);
 #endif

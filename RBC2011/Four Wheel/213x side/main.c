@@ -27,15 +27,50 @@ struct Motor_Struct Motor2;
 struct Motor_Struct Motor3;
 struct Motor_Struct Motor4;
 
+struct Motor_Struct SClampL;
+struct Servo_Struct ClampL;
+struct Motor_Struct SClampR;
+struct Servo_Struct ClampR;
+#define LOFFSET	0
+#define ROFFSET	0
+
+struct Motor_Struct UDMotor;
+int UDPercentage = 0;
+
 struct Mux_Struct MBMux;
+
+unsigned char OButtonL1 = 0;
+unsigned char OButtonL2 = 0;
+unsigned char OButtonR1 = 0;
+unsigned char OButtonR2 = 0;
 
 void __irq Timer0_Routine(){
 	int AxisLY = Joystick_ReadAxis(LY);
 	int AxisLX = Joystick_ReadAxis(LX);
 	int AxisRX = Joystick_ReadAxis(RX);
+	unsigned char ButtonL1 = Joystick_ReadButton(ButtonL1);
+	unsigned char ButtonL2 = Joystick_ReadButton(ButtonL2);
+	unsigned char ButtonR1 = Joystick_ReadButton(ButtonR1);
+	unsigned char ButtonR2 = Joystick_ReadButton(ButtonR2);
+	
 	Fourwheel_Status FWStatus = FREE;
 	float SpeedMultiplier = 0;
 
+	if((ButtonL1 == 1) && (OButtonL1 == 0)){
+		UDPercentage += 5;
+		Motor_SetPercentage(&UDMotor,UDPercentage);	
+	} else if((ButtonL2 == 1) && (OButtonL2 == 0)){
+		UDPercentage -= 5;
+		Motor_SetPercentage(&UDMotor,UDPercentage);
+	}
+
+	if((ButtonR1 == 1) && (OButtonR1 == 0)){
+		Servo_SetRelative(&ClampL,5);
+		Servo_SetRelative(&ClampR,5);
+	} else if((ButtonR2 == 1) && (OButtonR2 == 0)){
+		Servo_SetRelative(&ClampL,-5);
+		Servo_SetRelative(&ClampR,-5);
+	}
 	
 	if(AxisLY > JOYSTICK_UPPERBOUND){
 		FWStatus = BACKWARD;
@@ -81,6 +116,11 @@ void __irq Timer0_Routine(){
 	}
 	
 	Fourwheel_SetSpeed(SpeedMultiplier);
+
+	OButtonL1 = ButtonL1;
+	OButtonL2 = ButtonL2;
+	OButtonR1 = ButtonR1;
+	OButtonR2 = ButtonR2;
 
 	T0IR = 1;                              	// Clear interrupt flag
 	VICVectAddr = 0;                       	// Acknowledge Interrupt
@@ -133,8 +173,14 @@ int main(){
 	Motor_Init(&Motor3,3,99,99,MODE2103);
 	Motor_Init(&Motor4,4,99,99,MODE2103);
 
-
 	Fourwheel_Init(SS,MS);
+
+	Motor_Init(&SClampL,7,99,99,SELF);
+	Servo_Init(&ClampL,&SClampL,13824 + LOFFSET,27648 + LOFFSET,90);
+	Motor_Init(&SClampR,8,99,99,SELF);
+	Servo_Init(&ClampR,&SClampR,13824 + ROFFSET,27648 + ROFFSET,90);
+
+	Motor_Init(&UDMotor,5,99,99,MODE2103);
 
 	for (i = 0; i < 1000; i ++)
 		for (j = 0; j < 6800; j++);

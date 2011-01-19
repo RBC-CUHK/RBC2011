@@ -33,10 +33,8 @@ void __irq SPI_Routine(){
 	if (sign == 1)
 		level *= -1;
 				
-	S0SPDR = spi_send_data;
-	if(level == 1000)
-		level = 999;	
-	Motor_SetPWM(&Motor[motor],level*2 - 1);
+	S0SPDR = spi_send_data;	
+	Motor_SetPercentage(&Motor[motor],(float)level / 10.0);
 	
 	S0SPINT = 0x01; // reset interrupt flag
 	VICVectAddr = 0; // reset VIC

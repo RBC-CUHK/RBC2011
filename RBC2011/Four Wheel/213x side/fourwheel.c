@@ -27,6 +27,8 @@ void Fourwheel_Init(struct Servo_Struct* SS[4], struct Motor_Struct* MS[4]){
 	BRM = MS[2];
 	BLM = MS[3];
 
+	Fourwheel_Stop();
+
 	return ;
 }
 

@@ -66,6 +66,30 @@ void Motor_SetPWM(struct Motor_Struct* MS, int PWM){
 }
 
 /**
+ *	@brief	Set PWM of a motor
+ *
+ *	PWM would be set through the corresponding Function anchored
+ *	
+ *	@see	Motor_SetOwnPWM()
+ *	@see	Motor_Set2103PWM()
+ *	@param	MS		Motor to be set
+ *	@param	PWM		PWM Value
+ * */
+void Motor_SetPercentage(struct Motor_Struct* MS, float Percentage){
+	MS->currPWM = PWM_ReturnPeriod() * Percentage;
+	if(Percentage < 0){
+		Percentage *= -1;
+		GPIO_Set(MS->controlA,0);
+		GPIO_Set(MS->controlB,1);	
+	} else {
+		GPIO_Set(MS->controlA,1);
+		GPIO_Set(MS->controlB,0);
+	}
+	PWM_SetPercentage(MS->pwmChannel,Percentage);
+	return ;
+}
+
+/**
  *	@brief	Set PWM value on LPC2103
  *
  *	This function is used to send Set PWM command to LPC2103 through SPI

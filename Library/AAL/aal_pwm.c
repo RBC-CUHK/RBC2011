@@ -31,9 +31,13 @@ void PWM_InitFrequency(int frequency){
  *
  *	@see	PWM_Set
  * */
-void PWM_SetPercentage(int channel,int percentage){
-	PWM_Set(channel,globalperiod * percentage / 100);
+void PWM_SetPercentage(int channel,float percentage){
+	PWM_Set(channel,(float)globalperiod * percentage / 100.0);
 	return ;
+}
+
+int PWM_ReturnPeriod(void){
+	return globalperiod;
 }
 
 #ifdef	__LPC213x_H
@@ -214,11 +218,9 @@ void PWM_Set2103(int channel,int level){
  *	@param	value	PWM Value
  * */
 void _setPWM(int timer, int channel, int value){
-	if(value > globalperiod)
-		value = 0;
-	else if (value == globalperiod) 
+	if (value == 0) 
 		value = globalperiod + 100;
-	else
+	else 
 		value = globalperiod - value;
 	
 	switch (timer){
