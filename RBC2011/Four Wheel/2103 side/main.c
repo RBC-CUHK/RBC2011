@@ -35,6 +35,7 @@ void __irq SPI_Routine(){
 				
 	S0SPDR = spi_send_data;	
 	Motor_SetPercentage(&Motor[motor],(float)level / 10.0);
+	//Motor_SetPWM(&Motor[motor],level);
 	
 	S0SPINT = 0x01; // reset interrupt flag
 	VICVectAddr = 0; // reset VIC
@@ -43,7 +44,8 @@ void __irq SPI_Routine(){
 int main(){
 	Uart_Init(57600);
 	Uart_Print("Uart Inited\r\n");
-	PWM_InitPeriod(2000);
+	//PWM_InitPeriod(2000);
+	PWM_InitFrequency(5000);
 	Motor_Init(&Motor[0],0,17,99,SELF);
 	Motor_Init(&Motor[1],21,18,99,SELF);
 	Motor_Init(&Motor[2],22,22,99,SELF);

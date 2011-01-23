@@ -1,9 +1,9 @@
 <!doctype html public "-//w3c//dtd html 4.0 transitional//en">
 <html><head>
-<title>Static Call Graph - [F:\Documents\Kit\RBC\Code\RBC2011\RBC2011\Four Wheel\2103 side\2103.axf]</title></head>
+<title>Static Call Graph - [C:\Documents and Settings\CEG3430\Desktop\RBC Code\RBC2011\RBC2011\Four Wheel\2103 side\2103.axf]</title></head>
 <body><HR>
-<H1>Static Call Graph for image F:\Documents\Kit\RBC\Code\RBC2011\RBC2011\Four Wheel\2103 side\2103.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 4.1 [Build 481]: Last Updated: Wed Jan 19 09:54:56 2011
+<H1>Static Call Graph for image C:\Documents and Settings\CEG3430\Desktop\RBC Code\RBC2011\RBC2011\Four Wheel\2103 side\2103.axf</H1><HR>
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 4.1 [Build 481]: Last Updated: Fri Jan 21 17:03:07 2011
 <BR><P>
 <H3>Maximum Stack Usage =         80 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -201,7 +201,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_Print
 <LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_Init
 <LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_InitSlave
-<LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWM_InitPeriod2103
+<LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWM_InitFrequency
 <LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor_Init
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> rtentry2.o(.ARM.Collect$$rtentry$$0000000D)
@@ -286,22 +286,25 @@ Global Symbols
 <LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor_SetPercentage
 </UL>
 
-<P><STRONG><a name="[39]"></a>PWM_InitOutput</STRONG> (ARM, 328 bytes, Stack size 0 bytes, aal_pwm.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWM_InitPeriod2103
+<P><STRONG><a name="[3a]"></a>PWM_InitOutput</STRONG> (ARM, 328 bytes, Stack size 0 bytes, aal_pwm.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWM_InitPeriod2103
 </UL>
 
-<P><STRONG><a name="[24]"></a>PWM_InitPeriod2103</STRONG> (ARM, 60 bytes, Stack size 4 bytes, aal_pwm.o(.text))
+<P><STRONG><a name="[39]"></a>PWM_InitPeriod2103</STRONG> (ARM, 60 bytes, Stack size 4 bytes, aal_pwm.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = PWM_InitPeriod2103
 </UL>
-<BR>[Calls]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWM_InitOutput
+<BR>[Calls]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWM_InitOutput
 </UL>
-<BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWM_InitFrequency
-<LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<BR>[Called By]<UL><LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWM_InitFrequency
 </UL>
 
-<P><STRONG><a name="[3a]"></a>PWM_InitFrequency</STRONG> (ARM, 36 bytes, Stack size 16 bytes, aal_pwm.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_idivmod
-<LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWM_InitPeriod2103
+<P><STRONG><a name="[24]"></a>PWM_InitFrequency</STRONG> (ARM, 36 bytes, Stack size 16 bytes, aal_pwm.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = PWM_InitFrequency &rArr; __aeabi_idivmod
+</UL>
+<BR>[Calls]<UL><LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_idivmod
+<LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWM_InitPeriod2103
+</UL>
+<BR>[Called By]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[3b]"></a>_setPWM</STRONG> (ARM, 528 bytes, Stack size 0 bytes, aal_pwm.o(.text))
@@ -441,12 +444,12 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_FixSendInt
 <LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendFloat
 <LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_SendInt
-<LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWM_InitFrequency
 <LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWM_Set2103
 <LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Set
 <LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Read
 <LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
 <LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_Init
+<LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWM_InitFrequency
 </UL>
 
 <P><STRONG><a name="[7a]"></a>__user_libspace</STRONG> (ARM, 12 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)

@@ -22,6 +22,6 @@ struct Servo_Struct{
 };
 
 struct Servo_Struct* Servo_Init(struct Servo_Struct* SS, struct Motor_Struct* MS, int PWMLowerSide, int PWMUpperSide, int range);
-void Servo_SetRelative(struct Servo_Struct* SS, float angle);
-void Servo_SetAbsolute(struct Servo_Struct* SS, float angle);
+void Servo_SetRelative(struct Servo_Struct* SS, int angle);
+void Servo_SetAbsolute(struct Servo_Struct* SS, int angle);
 #endif

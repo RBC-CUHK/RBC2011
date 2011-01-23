@@ -27,7 +27,11 @@ void Fourwheel_Init(struct Servo_Struct* SS[4], struct Motor_Struct* MS[4]){
 	BRM = MS[2];
 	BLM = MS[3];
 
-	Fourwheel_Stop();
+	Fourwheel_SetStatus(STOP);
+	Servo_SetAbsolute(FL,45);
+	Servo_SetAbsolute(FR,45);
+	Servo_SetAbsolute(BR,45);
+	Servo_SetAbsolute(BL,45);
 
 	return ;
 }

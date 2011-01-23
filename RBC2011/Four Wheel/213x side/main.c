@@ -31,8 +31,8 @@ struct Motor_Struct SClampL;
 struct Servo_Struct ClampL;
 struct Motor_Struct SClampR;
 struct Servo_Struct ClampR;
-#define LOFFSET	0
-#define ROFFSET	0
+#define LOFFSET	-2400
+#define ROFFSET	-600
 
 struct Motor_Struct UDMotor;
 int UDPercentage = 0;
@@ -41,37 +41,58 @@ struct Mux_Struct MBMux;
 
 unsigned char OButtonL1 = 0;
 unsigned char OButtonL2 = 0;
-unsigned char OButtonR1 = 0;
-unsigned char OButtonR2 = 0;
+unsigned char OButtonB2 = 0;
+unsigned char OButtonB4 = 0;
 
 void __irq Timer0_Routine(){
+	T0EMR |= 0xf;
+
+	T0IR = 1;                              	// Clear interrupt flag
+	VICVectAddr = 0;                       	// Acknowledge Interrupt
+}
+
+void __irq Timer1_Routine(){
+//	T1EMR |= 0xf;
+
 	int AxisLY = Joystick_ReadAxis(LY);
+	int AxisRY = Joystick_ReadAxis(RY);
 	int AxisLX = Joystick_ReadAxis(LX);
 	int AxisRX = Joystick_ReadAxis(RX);
-	unsigned char ButtonL1 = Joystick_ReadButton(ButtonL1);
-	unsigned char ButtonL2 = Joystick_ReadButton(ButtonL2);
-	unsigned char ButtonR1 = Joystick_ReadButton(ButtonR1);
-	unsigned char ButtonR2 = Joystick_ReadButton(ButtonR2);
+	unsigned char ButtonL1 = Joystick_ReadButton(L1);
+	unsigned char ButtonL2 = Joystick_ReadButton(L2);
+	unsigned char ButtonB2 = Joystick_ReadButton(B2);
+	unsigned char ButtonB4 = Joystick_ReadButton(B4);
+	unsigned char ButtonR1 = Joystick_ReadButton(R1);
+	unsigned char ButtonR2 = Joystick_ReadButton(R2);
+	
 	
 	Fourwheel_Status FWStatus = FREE;
 	float SpeedMultiplier = 0;
 
-	if((ButtonL1 == 1) && (OButtonL1 == 0)){
-		UDPercentage += 5;
-		Motor_SetPercentage(&UDMotor,UDPercentage);	
-	} else if((ButtonL2 == 1) && (OButtonL2 == 0)){
-		UDPercentage -= 5;
-		Motor_SetPercentage(&UDMotor,UDPercentage);
+	T1EMR |= 0xf;
+//	if((ButtonL1 == 1) && (OButtonL1 == 0)){
+//		UDPercentage += 5;
+//		Motor_SetPWM(&UDMotor,UDPercentage*10);	
+//	} else if((ButtonL2 == 1) && (OButtonL2 == 0)){
+//		UDPercentage -= 5;
+//		Motor_SetPWM(&UDMotor,UDPercentage*10);
+//	}
+	if(AxisRY > JOYSTICK_UPPERBOUND){
+		SpeedMultiplier = -1 * (float)((float)AxisRY - JOYSTICK_UPPERBOUND) / (float)(1024.0 - JOYSTICK_UPPERBOUND);
+	} else if(AxisRY < JOYSTICK_LOWERBOUND){
+		SpeedMultiplier = (float)(JOYSTICK_LOWERBOUND - (float)AxisRY) / (float)(JOYSTICK_LOWERBOUND - 0.0);
 	}
+	Motor_SetPWM(&UDMotor,SpeedMultiplier * 500);	
 
-	if((ButtonR1 == 1) && (OButtonR1 == 0)){
-		Servo_SetRelative(&ClampL,5);
-		Servo_SetRelative(&ClampR,5);
-	} else if((ButtonR2 == 1) && (OButtonR2 == 0)){
-		Servo_SetRelative(&ClampL,-5);
-		Servo_SetRelative(&ClampR,-5);
+	if(ButtonB2 == 1){
+		Servo_SetRelative(&ClampL,1);
+		Servo_SetRelative(&ClampR,-1);
+	} else if(ButtonB4 == 1){
+		Servo_SetRelative(&ClampL,-1);
+		Servo_SetRelative(&ClampR,1);
 	}
 	
+	SpeedMultiplier = 0;
 	if(AxisLY > JOYSTICK_UPPERBOUND){
 		FWStatus = BACKWARD;
 		SpeedMultiplier = (float)((float)AxisLY - JOYSTICK_UPPERBOUND) / (float)(1024.0 - JOYSTICK_UPPERBOUND);
@@ -98,6 +119,9 @@ void __irq Timer0_Routine(){
 		SpeedMultiplier = (float)(JOYSTICK_LOWERBOUND - (float)AxisRX) / (float)(JOYSTICK_LOWERBOUND - 0.0);
 		}
 
+	if(ButtonR2 == 1)
+		FWStatus = STOP;
+
 	if(FWStatus == STOP){
 		SpeedMultiplier = 0;
 		Fourwheel_Stop();
@@ -115,25 +139,14 @@ void __irq Timer0_Routine(){
 		Fourwheel_RotateRight();
 	}
 	
+	if(ButtonR1 == 1)
+		SpeedMultiplier = 0;
 	Fourwheel_SetSpeed(SpeedMultiplier);
 
 	OButtonL1 = ButtonL1;
 	OButtonL2 = ButtonL2;
-	OButtonR1 = ButtonR1;
-	OButtonR2 = ButtonR2;
-
-	T0IR = 1;                              	// Clear interrupt flag
-	VICVectAddr = 0;                       	// Acknowledge Interrupt
-}
-
-void __irq Timer1_Routine(){
-	int AxisLY = Joystick_ReadAxis(LY);
-	int AxisRX = Joystick_ReadAxis(RX);
-
-	Uart_SendInt(AxisLY);
-	Uart_SendChar(' ');
-	Uart_SendInt(AxisRX);
-	Uart_Print("\r\n");
+	OButtonB2 = ButtonB2;
+	OButtonB4 = ButtonB4;
 
 	T1IR = 1;                              	// Clear interrupt flag
 	VICVectAddr = 0;                       	// Acknowledge Interrupt
@@ -175,18 +188,24 @@ int main(){
 
 	Fourwheel_Init(SS,MS);
 
-	Motor_Init(&SClampL,7,99,99,SELF);
-	Servo_Init(&ClampL,&SClampL,13824 + LOFFSET,27648 + LOFFSET,90);
-	Motor_Init(&SClampR,8,99,99,SELF);
-	Servo_Init(&ClampR,&SClampR,13824 + ROFFSET,27648 + ROFFSET,90);
+	//for 50Hz PWM
+	Timer_Init(0,50,Timer0_Routine);
+	Motor_Init(&SClampL,101,99,99,SELF);
+	Servo_Init(&ClampL,&SClampL,10368 + LOFFSET,31104 + LOFFSET,135);
+	Motor_Init(&SClampR,102,99,99,SELF);
+	Servo_Init(&ClampR,&SClampR,10368 + ROFFSET,31104 + ROFFSET,135);
+	Servo_SetAbsolute(&ClampR,135);
+	Servo_SetAbsolute(&ClampL,0);
 
-	Motor_Init(&UDMotor,5,99,99,MODE2103);
+	Motor_Init(&UDMotor,6,99,99,MODE2103);
 
 	for (i = 0; i < 1000; i ++)
 		for (j = 0; j < 6800; j++);
 	SPI_InitMaster(16);
-	Timer_Init(0,100,Timer0_Routine);
-//	Timer_Init(1,10,Timer1_Routine);
+	
+	Timer_Init(1,100,Timer1_Routine);
+
+
 	while(1){
 //	//		Following code is used for servo calibration
 //		char input;

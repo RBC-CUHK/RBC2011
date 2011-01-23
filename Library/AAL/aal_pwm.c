@@ -71,11 +71,19 @@ void PWM_InitChannel213x(int channel,int level){
 		case 2: PINSEL0 |= 1<<15; break;	// set p0.7 to PWM2
 		case 3: PINSEL0 |= 1<< 3; break;	// set p0.1 to PWM3
 		case 4: PINSEL0 |= 1<<17; break;	// set p0.8 to PWM4
-		case 5: PINSEL1 |= 1<<10; break; // set p0.21 to PWM5
-		case 6: PINSEL0 |= 1<<19; break;	// set p0.9 to PWM6	   	   	   
+		case 5: PINSEL1 |= 1<<10; break; 	// set p0.21 to PWM5
+		case 6: PINSEL0 |= 1<<19; break;	// set p0.9 to PWM6
+		case 101: T0EMR |= 1<< 6; PINSEL1 |= 3 << 22; break;	//set P0.27 to MAT0.1
+		case 102: T0EMR |= 1<< 8; PINSEL1 |= 3 << 24; break;	//set P0.28 to MAT0.2
+		case 103: T0EMR |= 1<<10; PINSEL1 |= 3 << 26; break;	//set P0.29 to MAT0.3
+		case 111: T1EMR |= 1<< 6; PINSEL0 |= 2 << 26; break;	//set P0.13 to MAT1.1
+		case 112: T1EMR |= 1<< 8; PINSEL1 |= 3 << 2 ; break;	//set P0.17 to MAT1.2
+		case 113: T1EMR |= 1<<10; PINSEL1 |= 3 << 4 ; break;	//set P0.18 to MAT1.3
+		default:	return;	   	   	   
 	} 
 
-	PWMPCR |= 1<<(8+channel);	//The PWM output enable
+	if((channel >= 1) && (channel <= 6))
+		PWMPCR |= 1<<(8+channel);	//The PWM output enable
 
 	PWM_Set213x(channel,level);
 
@@ -99,8 +107,15 @@ void PWM_Set213x(int channel,int level){
 		case 4: PWMMR4 = level; break;
 		case 5: PWMMR5 = level; break;
 		case 6: PWMMR6 = level; break;
+		case 101: T0MR1 = level; return;
+		case 102: T0MR2 = level; return;
+		case 103: T0MR3 = level; return;
+		case 111: T1MR1 = level; return;
+		case 112: T1MR2 = level; return;
+		case 113: T1MR3 = level; return;
 		default: return;
-	} 
+	}
+	
 	PWMLER |= (1<<channel);
 	return ;
 }

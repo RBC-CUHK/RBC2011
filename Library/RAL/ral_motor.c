@@ -66,14 +66,7 @@ void Motor_SetPWM(struct Motor_Struct* MS, int PWM){
 }
 
 /**
- *	@brief	Set PWM of a motor
  *
- *	PWM would be set through the corresponding Function anchored
- *	
- *	@see	Motor_SetOwnPWM()
- *	@see	Motor_Set2103PWM()
- *	@param	MS		Motor to be set
- *	@param	PWM		PWM Value
  * */
 void Motor_SetPercentage(struct Motor_Struct* MS, float Percentage){
 	MS->currPWM = PWM_ReturnPeriod() * Percentage;

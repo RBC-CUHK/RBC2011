@@ -3,10 +3,10 @@
 #include "RAL/ral_servo.h"
 
 //These offsets are for the first prototype
-#define	OFFSET1 100
-#define	OFFSET2	-900
+#define	OFFSET1 1600
+#define	OFFSET2	-800
 #define	OFFSET3	-1000
-#define	OFFSET4	-200
+#define	OFFSET4	0
 
 #define	DELAY	0
 

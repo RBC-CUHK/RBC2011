@@ -35,9 +35,9 @@ struct Servo_Struct* Servo_Init(struct Servo_Struct* SS, struct Motor_Struct* MS
  *	@param	SS		Servo_Struct to be set
  *	@param	angle	The angle
  * */
-void Servo_SetRelative(struct Servo_Struct* SS, float angle){
+void Servo_SetRelative(struct Servo_Struct* SS, int angle){
 	int currPWM = SS->MS->currPWM;
-	int newPWM = currPWM + angle * (float)SS->PWMEach;
+	int newPWM = currPWM + angle * SS->PWMEach;
 	if(newPWM > SS->PWMUpperSide)newPWM = SS->PWMUpperSide;
 	else if(newPWM < SS->PWMLowerSide)newPWM = SS->PWMLowerSide;
 	Motor_SetPWM(SS->MS,newPWM);
@@ -50,8 +50,8 @@ void Servo_SetRelative(struct Servo_Struct* SS, float angle){
  *	@param	SS		Servo_Struct to be set
  *	@param	angle	The angle
  * */
-void Servo_SetAbsolute(struct Servo_Struct* SS, float angle){
-	int newPWM = angle * (float)SS->PWMEach + SS->PWMLowerSide;
+void Servo_SetAbsolute(struct Servo_Struct* SS, int angle){
+	int newPWM = angle * SS->PWMEach + SS->PWMLowerSide;
 	if(newPWM > SS->PWMUpperSide)newPWM = SS->PWMUpperSide;
 	else if(newPWM < SS->PWMLowerSide)newPWM = SS->PWMLowerSide;
 	Motor_SetPWM(SS->MS,newPWM);

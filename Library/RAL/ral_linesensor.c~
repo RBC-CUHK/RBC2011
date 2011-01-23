@@ -1,0 +1,73 @@
+/**
+ *	@file
+ *	@brief	RAL_Linesensor Function Implementation
+ * */
+
+#include "ral_linesensor.h"
+
+#include "../AAL/aal_gpio.h"
+
+int _InputPins[12] = {99};
+int _OutputPins[3] = {99};
+int Readings[12] = {-1};
+
+int counter = 0;
+
+/**
+ * 	Output Pins (3)		Input Pins (12)
+ *	 xx  11  33  xx 	 xx  00  07  xx 
+ *	 11  33  11  22 	 11  01  06  10  
+ *	 22  11  22  33  	 08  02  05  09 
+ *	 xx  22  33  xx  	 xx  03  04  xx 
+ *	 _InputPins[0] : 11
+ *	 _InputPins[1] : 22
+ *	 _InputPins[2] : 33
+ * */
+void Linesensor_Init(int InputPins[12], int OutputPins[3]){
+	int i;
+	for(i = 0; i < 12; ++i){
+		if(i < 3){
+			_OutputPins[i] = OutputPins[i];
+			GPIO_Init(OutputPins[i],OUTPUT);
+		}
+		_InputPins[i] = InputPins[i];
+		GPIO_Init(InputPins[i],INPUT);
+	}
+	counter = 0;
+	return;
+}
+
+
+void Linesensor_Update(void){
+	++counter;
+	switch(counter){
+		case 1	:	GPIO_Set(_OutputPins[0],1);
+					break;
+		case 2	:	GPIO_Set(_OutputPins[0],0);
+					break;
+		case 3	:	Readings[0] = GPIO_Read(_InputPins[0]);
+					Readings[2] = GPIO_Read(_InputPins[2]);
+					Readings[6] = GPIO_Read(_InputPins[6]);
+					Readings[11] = GPIO_Read(_InputPins[11]);
+					GPIO_Set(_OutputPins[1],1);
+					break;
+		case 4	:	GPIO_Set(_OutputPins[1],0);
+					break;
+		case 5	:	Readings[3] = GPIO_Read(_InputPins[3]);
+					Readings[5] = GPIO_Read(_InputPins[5]);
+					Readings[8] = GPIO_Read(_InputPins[8]);
+					Readings[10] = GPIO_Read(_InputPins[10]);
+					GPIO_Set(_OutputPins[2],1);
+					break;
+		case 6	:	GPIO_Set(_OutputPins[2],0);
+					break;
+		case 7	:	Readings[3] = GPIO_Read(_InputPins[3]);
+					Readings[5] = GPIO_Read(_InputPins[5]);
+					Readings[8] = GPIO_Read(_InputPins[8]);
+					Readings[10] = GPIO_Read(_InputPins[10]);
+					break;
+		case 10	:	counter = 0;
+					break;
+	}
+	return;
+}
